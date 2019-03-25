@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "./libs/umd.js",
-  "directories": {
-    
-  },
+  "directories": {},
   "scripts": {
     "build": "rollup --config ./build/rollup.config.js",
     "test": "node ./test"
