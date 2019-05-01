@@ -1,15 +1,25 @@
 /**
  * zax-util
+ * base type of javascript utils
+ * String
+ * Array
+ * Function
+ * Object
  */
 
-import string from './string'
-import func from './func'
-import regex from './regex'
-import regexForm from './regexForm'
+import zaxString from './string'
+import zaxFunc from './func'
+import zaxArray from './array'
+import zaxObject from './object'
+import zaxRegex from './regex'
+import zaxRegexForm from './regexForm'
+
 
 export default {
-    string,
-    func,
-    regex,
-    regexForm
+    zaxString,
+    zaxFunc,
+    zaxArray,
+    zaxObject,
+    zaxRegex,
+    zaxRegexForm,
 }
