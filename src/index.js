@@ -13,7 +13,7 @@ import zaxArray from './array'
 import zaxObject from './object'
 import zaxRegex from './regex'
 import zaxRegexForm from './regexForm'
-
+import zaxTypes from './types'
 
 export default {
     zaxString,
@@ -22,4 +22,5 @@ export default {
     zaxObject,
     zaxRegex,
     zaxRegexForm,
+    zaxTypes,
 }
