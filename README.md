@@ -1,5 +1,4 @@
 # ZAX Util
-## there have 6 modes of amd, cjs, es, iife, system, umd. 
 ## support SSR Miniprogram Browser side
 
 ## install
@@ -23,16 +22,7 @@ import zaxUtil from 'zax-util'
 ```
 
 
-. **compare**
 ``` javascript
-zaxDate.compare('2018/9/10','2018/9/5')
-zaxDate.compare('2018/9/10','2018/9/10')
-zaxDate.compare('2018/9/10','2018/9/11')
-```
-
-``` javascript
-1
-0
--1
+ let { zaxString, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes } = zaxUtil
 ```
  
