@@ -1,10 +1,10 @@
-# Event bus
+# Zax Util
 
 [![Build Status](https://travis-ci.org/jsonchou/zax-util.svg?branch=master)](https://travis-ci.org/jsonchou/zax-util)
 [![codecov](https://codecov.io/gh/jsonchou/zax-util/branch/master/graph/badge.svg)](https://codecov.io/gh/jsonchou/zax-util)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-A subscribe & pubscribe module
+util module
 
 ## Browsers support
 
@@ -21,21 +21,5 @@ yarn add zax-util --save
 ## Usage
 
 ```tsx
-import EventBus, { EventHandler, EventHandlers, EventOptions, EventSource } from 'zax-util'
-
-const eventbus = new EventBus({
-	channel: 'default',
-	debug: false
-})
-
-eventbus.on('foo', handler)
-eventbus.once('qux', handler)
-eventbus.emit('foo', 'bar')
-eventbus.off('foo')
-eventbus.get('foo')
-eventbus.has('foo')
-eventbus.keys()
-eventbus.values()
-eventbus.remove('foo')
-eventbus.removeAll()
+import ZaxUtil, { zaxString, zaxFunc, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes, zaxCases } from 'zax-util'
 ```
