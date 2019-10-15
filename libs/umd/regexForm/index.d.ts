@@ -1,0 +1,20 @@
+import _regex from '../regex';
+export declare function matchRegex(v: string, regexKey: keyof typeof _regex): boolean;
+export declare function isEmail(v: string): boolean;
+export declare function isDate(v: string): boolean;
+export declare function isQQ(v: string): boolean;
+export declare function isTel(v: string): boolean;
+export declare function isIdcard(v: string): boolean;
+export declare function isMobile(v: string): boolean;
+export declare function isPhone(v: string): boolean;
+declare const _default: {
+    matchRegex: typeof matchRegex;
+    isDate: typeof isDate;
+    isEmail: typeof isEmail;
+    isIdcard: typeof isIdcard;
+    isMobile: typeof isMobile;
+    isPhone: typeof isPhone;
+    isQQ: typeof isQQ;
+    isTel: typeof isTel;
+};
+export default _default;

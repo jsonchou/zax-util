@@ -1,28 +1,41 @@
-# ZAX Util
-## support SSR Miniprogram Browser side
+# Event bus
 
-## install
+[![Build Status](https://travis-ci.org/jsonchou/zax-util.svg?branch=master)](https://travis-ci.org/jsonchou/zax-util)
+[![codecov](https://codecov.io/gh/jsonchou/zax-util/branch/master/graph/badge.svg)](https://codecov.io/gh/jsonchou/zax-util)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-``` base
-npm i zax-util -S
+A subscribe & pubscribe module
+
+## Browsers support
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IE8+ Edge+                                                                                                                                                                                                      | last 10 versions                                                                                                                                                                                                  | last 10 versions                                                                                                                                                                                              | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                           |
+
+## Install
+
+```bash
+yarn add zax-util --save
 ```
 
-## build with rollup
+## Usage
 
-``` base
-npm run build
+```tsx
+import EventBus, { EventHandler, EventHandlers, EventOptions, EventSource } from 'zax-util'
+
+const eventbus = new EventBus({
+	channel: 'default',
+	debug: false
+})
+
+eventbus.on('foo', handler)
+eventbus.once('qux', handler)
+eventbus.emit('foo', 'bar')
+eventbus.off('foo')
+eventbus.get('foo')
+eventbus.has('foo')
+eventbus.keys()
+eventbus.values()
+eventbus.remove('foo')
+eventbus.removeAll()
 ```
-
-## use
-
-``` javascript 
-const zaxUtil = require('zax-util')
-or
-import zaxUtil from 'zax-util'
-```
-
-
-``` javascript
- let { zaxString, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes } = zaxUtil
-```
- 
