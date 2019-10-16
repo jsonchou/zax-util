@@ -30,6 +30,7 @@ export function sleep(time = 200) {
 }
 
 export default {
+	/* istanbul ignore next */
 	isFunction,
 	lazy,
 	sleep

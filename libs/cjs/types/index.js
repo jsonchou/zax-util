@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function check(obj, wish) {
-    var tp = get(obj);
+function check(tar, wish) {
+    var tp = get(tar);
     return wish === tp;
 }
 exports.check = check;
-function get(obj) {
-    var tp = Object.prototype.toString.call(obj);
-    return tp.replace('[object ', '').replace(']', '');
+function get(tar) {
+    var tp = Object.prototype.toString.call(tar);
+    var res = tp.replace('[object ', '').replace(']', '');
+    return res;
 }
 exports.get = get;
 function isFunction(tar) {

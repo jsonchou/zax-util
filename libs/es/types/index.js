@@ -1,10 +1,11 @@
-export function check(obj, wish) {
-    let tp = get(obj);
+export function check(tar, wish) {
+    let tp = get(tar);
     return wish === tp;
 }
-export function get(obj) {
-    let tp = Object.prototype.toString.call(obj);
-    return tp.replace('[object ', '').replace(']', '');
+export function get(tar) {
+    let tp = Object.prototype.toString.call(tar);
+    let res = tp.replace('[object ', '').replace(']', '');
+    return res;
 }
 export function isFunction(tar) {
     return check(tar, 'String');

@@ -13,5 +13,12 @@
 		],
 		"@babel/typescript"
 	],
-	"plugins": ["@babel/transform-runtime"]
+	"plugins": [
+		"@babel/transform-runtime",
+		"@babel/proposal-object-rest-spread",
+		["@babel/proposal-decorators", { "legacy": true }],
+		["@babel/proposal-class-properties", { "loose": true }],
+		["import", { "libraryName": "antd-mobile", "style": "css" }]
+	],
+	"ignore": ["*.min.js"]
 }

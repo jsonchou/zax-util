@@ -23,7 +23,7 @@ export function sort(arr, orderBy = 'ASC', key) {
     }
     return arr.sort(func);
 }
-export function unique(arr, key) {
+export function unique(arr, key = 'id') {
     if (!arr.length) {
         console.error('arr is null');
         return;
@@ -37,10 +37,6 @@ export function unique(arr, key) {
         tmp = new Set(arr);
     }
     else if (isObject(first)) {
-        if (!key) {
-            console.log('you lost a param named key');
-            return;
-        }
         tmp = [];
         let map = new Map();
         for (let item of arr) {
@@ -55,9 +51,64 @@ export function unique(arr, key) {
     }
     return [...tmp];
 }
+export function union(...arr) {
+    var len = arr.length;
+    var i = 0;
+    var first = arr[0];
+    while (++i < len) {
+        var arg = arr[i];
+        if (!arg)
+            continue;
+        if (!Array.isArray(arg)) {
+            arg = [arg];
+        }
+        for (var j = 0; j < arg.length; j++) {
+            var ele = arg[j];
+            if (first.includes(ele))
+                continue;
+            first.push(ele);
+        }
+    }
+    return first;
+}
+export function diff(...arr) {
+    let diffArray = (one, two) => {
+        if (!Array.isArray(two)) {
+            return one.slice();
+        }
+        let tlen = two.length;
+        let olen = one.length;
+        let idx = -1;
+        let arr = [];
+        while (++idx < olen) {
+            let ele = one[idx];
+            let hasEle = false;
+            for (let i = 0; i < tlen; i++) {
+                let val = two[i];
+                if (ele === val) {
+                    hasEle = true;
+                    break;
+                }
+            }
+            if (hasEle === false) {
+                arr.push(ele);
+            }
+        }
+        return arr;
+    };
+    let len = arr.length;
+    let idx = 0;
+    let first = arr[0];
+    while (++idx < len) {
+        first = diffArray(first, arr[idx]);
+    }
+    return first;
+}
 export default {
     isArray,
     sort,
-    unique
+    unique,
+    union,
+    diff
 };
 //# sourceMappingURL=index.js.map

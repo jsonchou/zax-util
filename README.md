@@ -1,5 +1,6 @@
 # Zax Util
 
+[![NPM version](https://img.shields.io/npm/v/zax-util.svg?style=flat)](https://www.npmjs.com/package/zax-util)
 [![Build Status](https://travis-ci.org/jsonchou/zax-util.svg?branch=master)](https://travis-ci.org/jsonchou/zax-util)
 [![codecov](https://codecov.io/gh/jsonchou/zax-util/branch/master/graph/badge.svg)](https://codecov.io/gh/jsonchou/zax-util)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)

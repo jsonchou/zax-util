@@ -6,34 +6,35 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var regex_1 = __importDefault(require("../regex"));
 function matchRegex(v, regexKey) {
     var nv = v.replace(/\ /gi, '');
-    if (nv && nv.match(regex_1.default[regexKey])) {
+    var rex = regex_1.default[regexKey];
+    if (nv && nv.match(rex)) {
         return true;
     }
     return false;
 }
 exports.matchRegex = matchRegex;
 function isEmail(v) {
-    return matchRegex(v, 'email');
+    return matchRegex(v, 'EMAIL');
 }
 exports.isEmail = isEmail;
 function isDate(v) {
-    return matchRegex(v, 'date');
+    return matchRegex(v, 'DATE');
 }
 exports.isDate = isDate;
 function isQQ(v) {
-    return matchRegex(v, 'qq');
+    return matchRegex(v, 'QQ');
 }
 exports.isQQ = isQQ;
 function isTel(v) {
-    return matchRegex(v, 'tel');
+    return matchRegex(v, 'TEL');
 }
 exports.isTel = isTel;
 function isIdcard(v) {
-    return matchRegex(v, 'idcard');
+    return matchRegex(v, 'IDCARD');
 }
 exports.isIdcard = isIdcard;
 function isMobile(v) {
-    return matchRegex(v, 'mobile');
+    return matchRegex(v, 'MOBILE');
 }
 exports.isMobile = isMobile;
 function isPhone(v) {

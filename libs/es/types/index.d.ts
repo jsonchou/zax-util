@@ -1,6 +1,6 @@
-declare type TYPES = 'Boolean' | 'Number' | 'String' | 'Function' | 'Array' | 'Date' | 'RegExp' | 'Object' | 'Error' | 'Null';
-export declare function check(obj: any, wish: TYPES): boolean;
-export declare function get(obj: any): string;
+export declare type TYPES = 'Boolean' | 'Number' | 'String' | 'Function' | 'Array' | 'Date' | 'RegExp' | 'Object' | 'Error' | 'Null';
+export declare function check(tar: any, wish: TYPES): boolean;
+export declare function get(tar: any): TYPES;
 export declare function isFunction(tar: any): boolean;
 export declare function isArray(tar: any): boolean;
 export declare function isObject(tar: any): boolean;

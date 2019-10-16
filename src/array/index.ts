@@ -1,3 +1,7 @@
+/**
+ * array module
+ * partial from https://github.com/jonschlinkert/arr-diff
+ */
 import { isArray, isNumber, isString, isObject } from '../types/index'
 
 type TypeObject = { [key: string]: any }
@@ -11,13 +15,13 @@ export type TypeOrderBy = 'ASC' | 'DESC'
  * sort the array.
  *
  * ```js
- * sortBy([{id:2},{id:3},{id:1}], "ASC", "id");
+ * sort([{id:2},{id:3},{id:1}], "ASC", "id");
  * //=> [{id:1},{id:2},{id:3}]
  * ```
  *
- * @name .sortBy
- * @param  {Array} `array`
- * @return {Array}
+ * @param arr
+ * @param orderBy
+ * @param key
  */
 export function sort(arr: MixArray, orderBy: TypeOrderBy = 'ASC', key?: string): MixArray | void {
 	if (!arr.length) {
@@ -42,18 +46,18 @@ export function sort(arr: MixArray, orderBy: TypeOrderBy = 'ASC', key?: string):
 }
 
 /**
- * unique the array.
+ * unique array.
  *
  * ```js
  * unique(['a','c','d','a']);
  * //=> ['a','b','c']
  * ```
  *
- * @name .sort
- * @param  {Array} `array`
- * @return {Array}
+ * @param arr
+ * @param key
  */
-export function unique(arr: MixArray, key: 'id'): MixArray | void {
+
+export function unique(arr: MixArray, key = 'id'): MixArray | void {
 	if (!arr.length) {
 		console.error('arr is null')
 		return
@@ -66,10 +70,6 @@ export function unique(arr: MixArray, key: 'id'): MixArray | void {
 	} else if (typeof first === 'number') {
 		tmp = new Set(arr as (number[]))
 	} else if (isObject(first)) {
-		if (!key) {
-			console.log('you lost a param named key')
-			return
-		}
 		tmp = []
 		let map = new Map()
 		for (let item of arr as ObjectArray) {
@@ -85,8 +85,95 @@ export function unique(arr: MixArray, key: 'id'): MixArray | void {
 	return [...tmp]
 }
 
+/**
+ * union the array of simple.
+ *
+ * ```js
+ * union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f']);
+ * //=> ['a', 'b', 'c', 'd', 'e', 'f']
+ * ```
+ *
+ * @param arr
+ */
+
+export function union(...arr: TypeArray[]): TypeArray {
+	var len = arr.length
+	var i = 0
+	var first = arr[0]
+
+	while (++i < len) {
+		var arg = arr[i]
+		if (!arg) continue
+
+		if (!Array.isArray(arg)) {
+			arg = [arg]
+		}
+
+		for (var j = 0; j < arg.length; j++) {
+			var ele = arg[j] as (string & number)
+			if (first.includes(ele)) continue
+			first.push(ele)
+		}
+	}
+	return first
+}
+
+/**
+ * diff the first array of simple.
+ *
+ * ```js
+ * diff(['a', 'b', 'c'], ['a'], ['b'],['g'])
+ * //=> ['c']
+ * ```
+ *
+ * @param arr
+ */
+
+export function diff(...arr: TypeArray[]): TypeArray {
+	let diffArray = (one: any[], two: any[]): any[] => {
+		if (!Array.isArray(two)) {
+			return one.slice()
+		}
+
+		let tlen = two.length
+		let olen = one.length
+		let idx = -1
+		let arr = []
+
+		while (++idx < olen) {
+			let ele = one[idx]
+
+			let hasEle = false
+			for (let i = 0; i < tlen; i++) {
+				let val = two[i]
+
+				if (ele === val) {
+					hasEle = true
+					break
+				}
+			}
+
+			if (hasEle === false) {
+				arr.push(ele)
+			}
+		}
+		return arr
+	}
+
+	let len = arr.length
+	let idx = 0
+	let first = arr[0]
+	while (++idx < len) {
+		first = diffArray(first, arr[idx])
+	}
+	return first
+}
+
 export default {
+	/* istanbul ignore next */
 	isArray,
 	sort,
-	unique
+	unique,
+	union,
+	diff
 }
