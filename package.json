@@ -2,7 +2,7 @@
 	"name": "zax-util",
 	"innerModule": false,
 	"needBuild": true,
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "zax-util",
 	"main": "./libs/umd",
 	"module": "./libs/es",
