@@ -1,2 +1,2 @@
-declare const _default: (...info: any[]) => (target: any, key: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+declare const _default: (...info: any[]) => Function;
 export default _default;

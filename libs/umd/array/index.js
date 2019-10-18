@@ -1,9 +1,39 @@
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+/**
+ * Array module.
+ * @module zaxArray
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs/array
+ * @see partial from https://github.com/jonschlinkert/arr-diff
+ */
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -17,6 +47,19 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var index_1 = require("../types/index");
+    /**
+     * sort array.
+     *
+     * ```js
+     * sort([{ id: 2 }, { id: 3 }, { id: 1 }], 'ASC', 'id'))
+     * //=> [{id:1},{id:2},{id:3}]
+     * ```
+     *
+     * @param arr {MixArray}
+     * @param orderBy {TypeOrderBy}
+     * @param key {String}
+     * @readonly {MixArray | void}
+     */
     function sort(arr, orderBy, key) {
         if (orderBy === void 0) { orderBy = 'ASC'; }
         if (!arr.length) {
@@ -43,37 +86,69 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
         return arr.sort(func);
     }
     exports.sort = sort;
+    /**
+     * unique array.
+     *
+     * ```js
+     * unique(['a','c','d','a']);
+     * //=> ['a','b','c']
+     * ```
+     *
+     * @param arr {MixArray}
+     * @param key
+     * @readonly {MixArray | void}
+     */
     function unique(arr, key) {
+        var e_1, _a;
         if (key === void 0) { key = 'id'; }
         if (!arr.length) {
             console.error('arr is null');
             return;
         }
         var first = arr[0];
-        var tmp;
+        /* istanbul ignore next */
         if (typeof first === 'string') {
-            tmp = new Set(arr);
+            var tmp = new Set(arr);
+            return __spread(Array.from(tmp));
         }
         else if (typeof first === 'number') {
-            tmp = new Set(arr);
+            var tmp = new Set(arr);
+            return __spread(Array.from(tmp));
         }
         else if (index_1.isObject(first)) {
-            tmp = [];
             var map = new Map();
-            for (var _i = 0, _a = arr; _i < _a.length; _i++) {
-                var item = _a[_i];
-                if (!map.has(item[key])) {
-                    map.set(item[key], true);
-                    tmp.push({
-                        id: item.id,
-                        name: item.name
-                    });
+            var tmp = [];
+            try {
+                for (var _b = __values(arr), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var item = _c.value;
+                    if (!map.has(item[key])) {
+                        map.set(item[key], true);
+                        tmp.push(item);
+                    }
                 }
             }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            return __spread(Array.from(tmp));
         }
-        return __spreadArrays(tmp);
     }
     exports.unique = unique;
+    /**
+     * union the array of simple.
+     *
+     * ```js
+     * union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f']);
+     * //=> ['a', 'b', 'c', 'd', 'e', 'f']
+     * ```
+     *
+     * @param arr {TypeArray[]}
+     * @returns {TypeArray}
+     */
     function union() {
         var arr = [];
         for (var _i = 0; _i < arguments.length; _i++) {
@@ -84,8 +159,10 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
         var first = arr[0];
         while (++i < len) {
             var arg = arr[i];
+            /* istanbul ignore next */
             if (!arg)
                 continue;
+            /* istanbul ignore next */
             if (!Array.isArray(arg)) {
                 arg = [arg];
             }
@@ -99,12 +176,24 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
         return first;
     }
     exports.union = union;
+    /**
+     * diff the first array of simple.
+     *
+     * ```js
+     * diff(['a', 'b', 'c'], ['a'], ['b'], ['g'])
+     * //=> ['c']
+     * ```
+     *
+     * @param arr {TypeArray[]}
+     * @returns {TypeArray}
+     */
     function diff() {
         var arr = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             arr[_i] = arguments[_i];
         }
         var diffArray = function (one, two) {
+            /* istanbul ignore next */
             if (!Array.isArray(two)) {
                 return one.slice();
             }
@@ -138,6 +227,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     }
     exports.diff = diff;
     exports.default = {
+        /* istanbul ignore next */
         isArray: index_1.isArray,
         sort: sort,
         unique: unique,

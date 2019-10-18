@@ -1,3 +1,8 @@
+/**
+ * Regex module.
+ * @module zaxRegex
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs/regex
+ */
 export declare const EMAIL = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$";
 export declare const DATE = "^\\d{4}(\\-|\\/|.)\\d{1,2}\\1\\d{1,2}$";
 export declare const QQ = "^[1-9]*[1-9][0-9]*$";

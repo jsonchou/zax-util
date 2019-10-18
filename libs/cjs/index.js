@@ -1,4 +1,9 @@
 "use strict";
+/**
+ * Zax Util module.
+ * @module zaxUtil
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs
+ */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };

@@ -1,3 +1,8 @@
+/**
+ * Zax Util module.
+ * @module zaxUtil
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs
+ */
 import zaxString from './string';
 import zaxFunc from './func';
 import zaxArray from './array';
