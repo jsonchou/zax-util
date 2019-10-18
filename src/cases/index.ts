@@ -15,7 +15,7 @@ type Nothing = {} // jsdoc2md bugs, do not remove this line
  *
  * ```js
  * cleancase(" qq-ww_ee.rr ");
- * //=> 'qqwweerr'
+ * //=> 'qq-ww_ee.rr'
  * ```
  *
  * @param str {String} result of cleaing

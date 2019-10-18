@@ -19,7 +19,7 @@
 
 ### zaxArray~sort(arr, orderBy, key)
 <p>sort array.</p>
-<pre class="prettyprint source lang-js"><code>sort([{id:2},{id:3},{id:1}], &quot;ASC&quot;, &quot;id&quot;);
+<pre class="prettyprint source lang-js"><code>sort([{ id: 2 }, { id: 3 }, { id: 1 }], 'ASC', 'id'))
 //=> [{id:1},{id:2},{id:3}]
 </code></pre>
 
@@ -66,7 +66,7 @@
 
 ### zaxArray~diff(...arr) ⇒ <code>TypeArray</code>
 <p>diff the first array of simple.</p>
-<pre class="prettyprint source lang-js"><code>diff(['a', 'b', 'c'], ['a'], ['b'],['g'])
+<pre class="prettyprint source lang-js"><code>diff(['a', 'b', 'c'], ['a'], ['b'], ['g'])
 //=> ['c']
 </code></pre>
 

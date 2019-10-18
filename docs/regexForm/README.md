@@ -19,6 +19,9 @@
 
 ### zaxRegexForm~matchRegex(v, regexKey)
 <p>checke string with regex</p>
+<pre class="prettyprint source lang-js"><code>matchRegex(&quot;d@d.d&quot;, &quot;EMAIL&quot; );
+//=> true
+</code></pre>
 
 **Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
 
@@ -31,6 +34,9 @@
 
 ### zaxRegexForm~isEmail(v)
 <p>isEmail</p>
+<pre class="prettyprint source lang-js"><code>isEmail(&quot;d@d.d&quot;);
+//=> true
+</code></pre>
 
 **Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
 
@@ -42,6 +48,9 @@
 
 ### zaxRegexForm~isDate(v)
 <p>isDate</p>
+<pre class="prettyprint source lang-js"><code>isDate(new Date());
+//=> true
+</code></pre>
 
 **Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
 
@@ -53,6 +62,9 @@
 
 ### zaxRegexForm~isQQ(v)
 <p>isQQ</p>
+<pre class="prettyprint source lang-js"><code>isQQ(54645464);
+//=> true
+</code></pre>
 
 **Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
 
@@ -64,6 +76,9 @@
 
 ### zaxRegexForm~isTel(v)
 <p>isTel</p>
+<pre class="prettyprint source lang-js"><code>isTel(&quot;027-87665432&quot;);
+//=> true
+</code></pre>
 
 **Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
 
@@ -75,6 +90,9 @@
 
 ### zaxRegexForm~isIdcard(v)
 <p>isIdcard</p>
+<pre class="prettyprint source lang-js"><code>isIdcard(130324200106012652);
+//=> true
+</code></pre>
 
 **Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
 
@@ -86,6 +104,9 @@
 
 ### zaxRegexForm~isMobile(v)
 <p>isMobile</p>
+<pre class="prettyprint source lang-js"><code>isMobile(13402938476);
+//=> true
+</code></pre>
 
 **Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
 
@@ -97,6 +118,9 @@
 
 ### zaxRegexForm~isPhone(v)
 <p>isPhone</p>
+<pre class="prettyprint source lang-js"><code>isPhone(13456575859);
+//=> true
+</code></pre>
 
 **Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
 

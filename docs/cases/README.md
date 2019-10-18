@@ -6,6 +6,7 @@
 **See**: https://github.com/jsonchou/zax-util/tree/master/docs/cases  
 
 * [zaxCases](#module_zaxCases)
+    * [~cleancase(str)](#module_zaxCases..cleancase) ⇒ <code>String</code>
     * [~pascalcase(&#x60;string&#x60;)](#module_zaxCases..pascalcase) ⇒ <code>String</code>
     * [~camelcase(&#x60;string&#x60;)](#module_zaxCases..camelcase) ⇒ <code>String</code>
     * [~dashcase(&#x60;string&#x60;)](#module_zaxCases..dashcase) ⇒ <code>String</code>
@@ -13,6 +14,21 @@
     * [~pathcase(&#x60;string&#x60;)](#module_zaxCases..pathcase) ⇒ <code>String</code>
     * [~sentencecase(&#x60;string&#x60;)](#module_zaxCases..sentencecase) ⇒ <code>String</code>
     * [~snakecase(&#x60;string&#x60;)](#module_zaxCases..snakecase) ⇒ <code>String</code>
+
+<a name="module_zaxCases..cleancase"></a>
+
+### zaxCases~cleancase(str) ⇒ <code>String</code>
+<p>standard string of cleaning</p>
+<pre class="prettyprint source lang-js"><code>cleancase(&quot; qq-ww_ee.rr &quot;);
+//=> 'qqwweerr'
+</code></pre>
+
+**Kind**: inner method of [<code>zaxCases</code>](#module_zaxCases)  
+**Returns**: <code>String</code> - <p>result</p>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| str | <code>String</code> | <p>result of cleaing</p> |
 
 <a name="module_zaxCases..pascalcase"></a>
 
