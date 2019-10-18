@@ -1,4 +1,4 @@
-export default (...info: any[]) => {
+export default (...info: any[]): Function => {
 	return function decorator(target: any, key: string, descriptor: PropertyDescriptor) {
 		/* istanbul ignore next */
 		const original = descriptor.value

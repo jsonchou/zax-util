@@ -18,13 +18,14 @@ export type TypeOrderBy = 'ASC' | 'DESC'
  * sort array.
  *
  * ```js
- * sort([{id:2},{id:3},{id:1}], "ASC", "id");
+ * sort([{ id: 2 }, { id: 3 }, { id: 1 }], 'ASC', 'id'))
  * //=> [{id:1},{id:2},{id:3}]
  * ```
  *
- * @param arr
- * @param orderBy
- * @param key
+ * @param arr {MixArray}
+ * @param orderBy {TypeOrderBy}
+ * @param key {String}
+ * @readonly {MixArray | void}
  */
 export function sort(arr: MixArray, orderBy: TypeOrderBy = 'ASC', key?: string): MixArray | void {
 	if (!arr.length) {
@@ -56,36 +57,36 @@ export function sort(arr: MixArray, orderBy: TypeOrderBy = 'ASC', key?: string):
  * //=> ['a','b','c']
  * ```
  *
- * @param arr
+ * @param arr {MixArray}
  * @param key
+ * @readonly {MixArray | void}
  */
 
-export function unique(arr: MixArray, key = 'id'): MixArray | void {
+export function unique(arr: MixArray, key: string = 'id'): MixArray | void {
 	if (!arr.length) {
 		console.error('arr is null')
 		return
 	}
 	let first = arr[0]
-	let tmp: any
 
+	/* istanbul ignore next */
 	if (typeof first === 'string') {
-		tmp = new Set(arr as (string[]))
+		let tmp = new Set<string>(arr as string[])
+		return [...Array.from(tmp)]
 	} else if (typeof first === 'number') {
-		tmp = new Set(arr as (number[]))
+		let tmp = new Set<number>(arr as (number[]))
+		return [...Array.from(tmp)]
 	} else if (isObject(first)) {
-		tmp = []
-		let map = new Map()
+		let map = new Map<string | number, boolean>()
+		let tmp: TypeObject[] = []
 		for (let item of arr as ObjectArray) {
 			if (!map.has(item[key])) {
 				map.set(item[key], true)
-				tmp.push({
-					id: item.id,
-					name: item.name
-				})
+				tmp.push(item)
 			}
 		}
+		return [...Array.from(tmp)]
 	}
-	return [...tmp]
 }
 
 /**
@@ -96,7 +97,8 @@ export function unique(arr: MixArray, key = 'id'): MixArray | void {
  * //=> ['a', 'b', 'c', 'd', 'e', 'f']
  * ```
  *
- * @param arr
+ * @param arr {TypeArray[]}
+ * @returns {TypeArray}
  */
 
 export function union(...arr: TypeArray[]): TypeArray {
@@ -106,8 +108,10 @@ export function union(...arr: TypeArray[]): TypeArray {
 
 	while (++i < len) {
 		var arg = arr[i]
+		/* istanbul ignore next */
 		if (!arg) continue
 
+		/* istanbul ignore next */
 		if (!Array.isArray(arg)) {
 			arg = [arg]
 		}
@@ -125,15 +129,17 @@ export function union(...arr: TypeArray[]): TypeArray {
  * diff the first array of simple.
  *
  * ```js
- * diff(['a', 'b', 'c'], ['a'], ['b'],['g'])
+ * diff(['a', 'b', 'c'], ['a'], ['b'], ['g'])
  * //=> ['c']
  * ```
  *
- * @param arr
+ * @param arr {TypeArray[]}
+ * @returns {TypeArray}
  */
 
 export function diff(...arr: TypeArray[]): TypeArray {
 	let diffArray = (one: any[], two: any[]): any[] => {
+		/* istanbul ignore next */
 		if (!Array.isArray(two)) {
 			return one.slice()
 		}

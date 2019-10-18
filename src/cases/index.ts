@@ -10,8 +10,22 @@ import { isString } from '../types'
 
 type Nothing = {} // jsdoc2md bugs, do not remove this line
 
+/**
+ * standard string of cleaning
+ *
+ * ```js
+ * cleancase(" qq-ww_ee.rr ");
+ * //=> 'qqwweerr'
+ * ```
+ *
+ * @param str {String} result of cleaing
+ * @returns {String} result
+ */
 export function cleancase(str: string): string {
 	var re = /^[-_.\W\s]+|[-_.\W\s]+$/g
+	if (!isString(str)) {
+		return ''
+	}
 	return str.trim().replace(re, '')
 }
 
@@ -60,7 +74,7 @@ export function camelcase(str: string): string {
 		return str.toLowerCase()
 	}
 	var re = /[-_.\W\s]+(\w|$)/g
-	return cleancase(str).replace(re, function(_, ch) {
+	return cleancase(str).replace(re, (_, ch) => {
 		return ch.toUpperCase()
 	})
 }

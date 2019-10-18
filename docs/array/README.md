@@ -12,24 +12,25 @@
 * [zaxArray](#module_zaxArray)
     * [~sort(arr, orderBy, key)](#module_zaxArray..sort)
     * [~unique(arr, key)](#module_zaxArray..unique)
-    * [~union(...arr)](#module_zaxArray..union)
-    * [~diff(...arr)](#module_zaxArray..diff)
+    * [~union(...arr)](#module_zaxArray..union) ⇒ <code>TypeArray</code>
+    * [~diff(...arr)](#module_zaxArray..diff) ⇒ <code>TypeArray</code>
 
 <a name="module_zaxArray..sort"></a>
 
 ### zaxArray~sort(arr, orderBy, key)
-<p>sort the array.</p>
+<p>sort array.</p>
 <pre class="prettyprint source lang-js"><code>sort([{id:2},{id:3},{id:1}], &quot;ASC&quot;, &quot;id&quot;);
 //=> [{id:1},{id:2},{id:3}]
 </code></pre>
 
 **Kind**: inner method of [<code>zaxArray</code>](#module_zaxArray)  
+**Read only**: true  
 
-| Param | Default |
-| --- | --- |
-| arr |  | 
-| orderBy | <code>ASC</code> | 
-| key |  | 
+| Param | Type | Default |
+| --- | --- | --- |
+| arr | <code>MixArray</code> |  | 
+| orderBy | <code>TypeOrderBy</code> | <code>ASC</code> | 
+| key | <code>String</code> |  | 
 
 <a name="module_zaxArray..unique"></a>
 
@@ -40,15 +41,16 @@
 </code></pre>
 
 **Kind**: inner method of [<code>zaxArray</code>](#module_zaxArray)  
+**Read only**: true  
 
-| Param | Default |
-| --- | --- |
-| arr |  | 
-| key | <code>id</code> | 
+| Param | Type | Default |
+| --- | --- | --- |
+| arr | <code>MixArray</code> |  | 
+| key |  | <code>id</code> | 
 
 <a name="module_zaxArray..union"></a>
 
-### zaxArray~union(...arr)
+### zaxArray~union(...arr) ⇒ <code>TypeArray</code>
 <p>union the array of simple.</p>
 <pre class="prettyprint source lang-js"><code>union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f']);
 //=> ['a', 'b', 'c', 'd', 'e', 'f']
@@ -56,13 +58,13 @@
 
 **Kind**: inner method of [<code>zaxArray</code>](#module_zaxArray)  
 
-| Param |
-| --- |
-| ...arr | 
+| Param | Type |
+| --- | --- |
+| ...arr | <code>Array.&lt;TypeArray&gt;</code> | 
 
 <a name="module_zaxArray..diff"></a>
 
-### zaxArray~diff(...arr)
+### zaxArray~diff(...arr) ⇒ <code>TypeArray</code>
 <p>diff the first array of simple.</p>
 <pre class="prettyprint source lang-js"><code>diff(['a', 'b', 'c'], ['a'], ['b'],['g'])
 //=> ['c']
@@ -70,7 +72,7 @@
 
 **Kind**: inner method of [<code>zaxArray</code>](#module_zaxArray)  
 
-| Param |
-| --- |
-| ...arr | 
+| Param | Type |
+| --- | --- |
+| ...arr | <code>Array.&lt;TypeArray&gt;</code> | 
 

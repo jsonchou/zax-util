@@ -1,5 +1,19 @@
-import { zaxString, zaxFunc, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes, zaxCases } from '../src/index'
+import zaxString from '../src/string'
+import zaxFunc from '../src/func'
+import zaxArray from '../src/array'
+import zaxObject from '../src/object'
+import zaxRegex from '../src/regex'
+import zaxRegexForm from '../src/regexForm'
+import zaxTypes from '../src/types'
+import zaxCases from '../src/cases'
+
 import { log } from '../src/utils/index'
+
+const stdTypeList = [1, 'a', { a: 1 }, [1], console.log, new Date(), null, undefined, /\ /gi]
+
+let waitObj = {
+	k: 0
+}
 
 describe('zaxString', () => {
 	let keys = Object.keys(zaxString)
@@ -9,14 +23,106 @@ describe('zaxString', () => {
 			expect(zaxString[par]).toBeInstanceOf(Function)
 		})
 	})
+
+	it(`should be string type`, () => {
+		expect(zaxString.isString('a')).toEqual(true)
+		expect(zaxString.isString(1)).toEqual(false)
+		expect(zaxString.isString({ a: 1 })).toEqual(false)
+		expect(zaxString.isString([])).toEqual(false)
+		expect(zaxString.isString(console.log)).toEqual(false)
+		expect(zaxString.isString(new Date())).toEqual(false)
+		expect(zaxString.isString(null)).toEqual(false)
+		expect(zaxString.isString(undefined)).toEqual(false)
+		expect(zaxString.isString(/\ /gi)).toEqual(false)
+	})
+
+	it(`should be ellipsis string`, () => {
+		expect(zaxString.ellipsis('')).toEqual('')
+		expect(zaxString.ellipsis('dd')).toEqual('dd')
+		expect(zaxString.ellipsis('qwertyuiop', 5, '*', 3)).toEqual('qwert***')
+		expect(zaxString.ellipsis('qwertyuiop', 5, '*')).toEqual('qwert***')
+		expect(zaxString.ellipsis('qwertyuiop', 5)).toEqual('qwert...')
+		expect(zaxString.ellipsis('qwertyuiop', 9)).toEqual('qwertyuio...')
+		expect(zaxString.ellipsis('qwertyuiop', 10)).toEqual('qwertyuiop')
+		expect(zaxString.ellipsis('qwertyuiop', 11)).toEqual('qwertyuiop')
+		expect(zaxString.ellipsis('qwertyuiop', 5, '$', 5)).toEqual('qwert$$$$$')
+		expect(zaxString.ellipsis('qwer', 5)).toEqual('qwer')
+	})
+
+	it(`should be striptags html`, () => {
+		expect(zaxString.striptags('qwer<a>ddd</a>ty<strong>xxx</strong>uiop', ['a'])).toEqual('qwer<a>ddd</a>tyxxxuiop')
+	})
 })
 
 describe('zaxFunc', () => {
+	beforeEach(() => {
+		window.setTimeout(() => {
+			waitObj.k = 1
+		}, 1000)
+	})
 	let keys = Object.keys(zaxFunc)
 	keys.forEach(par => {
 		it(`should have ${par} method`, () => {
 			expect(zaxFunc).toHaveProperty(par)
 			expect(zaxFunc[par]).toBeInstanceOf(Function)
+		})
+	})
+
+	it(`should be correct wait function`, () => {
+		let res = zaxFunc.wait(waitObj, 'k')
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			expect(info).toBeTruthy()
+		})
+
+		let res2 = zaxFunc.wait([], 'k')
+		expect(res2).toBeInstanceOf(Promise)
+		res2.then(info => {
+			expect(info).toBeFalsy()
+		}).catch(err => {
+			console.error(err)
+		})
+
+		let res3 = zaxFunc.wait([], '')
+		expect(res3).toBeInstanceOf(Promise)
+		res3.then(info => {
+			expect(info).toBeFalsy()
+		}).catch(err => {
+			console.error(err)
+		})
+
+		let res4 = zaxFunc.wait({}, 'k', 30)
+		expect(res4).toBeInstanceOf(Promise)
+		res4.then(info => {
+			expect(info).toBeTruthy()
+		}).catch(err => {
+			console.error(err)
+		})
+
+		let res5 = zaxFunc.wait({}, 'k', 30, 3500)
+		expect(res5).toBeInstanceOf(Promise)
+		res5.then(info => {
+			expect(info).toBeTruthy()
+		}).catch(err => {
+			console.error(err)
+		})
+	})
+
+	it(`should be correct sleep function`, () => {
+		let res = zaxFunc.sleep(3000)
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			expect(info).toBeTruthy()
+		}).catch(err => {
+			console.error(err)
+		})
+
+		let res2 = zaxFunc.sleep()
+		expect(res2).toBeInstanceOf(Promise)
+		res2.then(info => {
+			expect(info).toBeTruthy()
+		}).catch(err => {
+			console.error(err)
 		})
 	})
 })
@@ -28,6 +134,31 @@ describe('zaxArray', () => {
 			expect(zaxArray).toHaveProperty(par)
 			expect(zaxArray[par]).toBeInstanceOf(Function)
 		})
+	})
+
+	it(`should be correct sort function result `, () => {
+		expect(zaxArray.sort([])).toBeFalsy()
+		expect(zaxArray.sort(['a', 'c', 'd', 'a'], 'ASC')).toEqual(['a', 'a', 'c', 'd'])
+		expect(zaxArray.sort([1, 2, 9, 3, 4, 3, 2, 3, 4, 5, 3], 'ASC')).toEqual([1, 2, 2, 3, 3, 3, 3, 4, 4, 5, 9])
+		expect(zaxArray.sort(['a', 'c', 'd', 'a'], 'DESC')).toEqual(['d', 'c', 'a', 'a'])
+		expect(zaxArray.sort([{ id: 2, v: 1 }, { id: 3, v: 4 }, { id: 1, v: 7 }], 'ASC', 'id')).toEqual([{ id: 1, v: 7 }, { id: 2, v: 1 }, { id: 3, v: 4 }])
+		expect(zaxArray.sort([{ id: 2, v: 1 }, { id: 3, v: 4 }, { id: 1, v: 7 }], 'DESC', 'id')).toEqual([{ id: 3, v: 4 }, { id: 2, v: 1 }, { id: 1, v: 7 }])
+	})
+
+	it(`should be correct unique function result `, () => {
+		expect(zaxArray.unique([])).toBeFalsy()
+		expect(zaxArray.unique([], 'id')).toBeFalsy()
+		expect(zaxArray.unique(['a', 'c', 'd', 'a'])).toEqual(['a', 'c', 'd'])
+		expect(zaxArray.unique([{ id: 1, v: 'a' }, { id: 2, v: 'c' }, { id: 3, v: 'd' }, { id: 1, v: 'a' }])).toEqual([{ id: 1, v: 'a' }, { id: 2, v: 'c' }, { id: 3, v: 'd' }])
+	})
+
+	it(`should be correct union function result `, () => {
+		expect(zaxArray.union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f'])).toEqual(['a', 'b', 'c', 'd', 'e', 'f'])
+		expect(zaxArray.union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f'])).toEqual(['a', 'b', 'c', 'd', 'e', 'f'])
+	})
+
+	it(`should be correct diff function result `, () => {
+		expect(zaxArray.diff(['a', 'b', 'c'], ['a'], ['b'], ['g'])).toEqual(['c'])
 	})
 })
 
@@ -49,6 +180,46 @@ describe('zaxRegexForm', () => {
 			expect(zaxRegexForm[par]).toBeInstanceOf(Function)
 		})
 	})
+
+	it(`should be correct isDate function result `, () => {
+		expect(zaxRegexForm.isDate('2019-09-04')).toEqual(true)
+		expect(zaxRegexForm.isDate('dd')).toEqual(false)
+	})
+
+	it(`should be correct isEmail function result `, () => {
+		expect(zaxRegexForm.isEmail('d@d.d')).toEqual(true)
+		expect(zaxRegexForm.isEmail('ddd')).toEqual(false)
+	})
+
+	it(`should be correct isIdcard function result `, () => {
+		expect(zaxRegexForm.isIdcard('130324200106012652')).toEqual(true)
+		expect(zaxRegexForm.isIdcard(130324200106012652)).toEqual(true)
+	})
+
+	it(`should be correct isMobile function result `, () => {
+		expect(zaxRegexForm.isMobile(13402938476)).toEqual(true)
+		expect(zaxRegexForm.isMobile('13402938476')).toEqual(true)
+	})
+
+	it(`should be correct isPhone function result `, () => {
+		expect(zaxRegexForm.isPhone(13402938476)).toEqual(true)
+		expect(zaxRegexForm.isPhone('13402938476')).toEqual(true)
+	})
+
+	it(`should be correct isQQ function result `, () => {
+		expect(zaxRegexForm.isQQ(54645464)).toEqual(true)
+		expect(zaxRegexForm.isQQ('54645464')).toEqual(true)
+	})
+
+	it(`should be correct isTel function result `, () => {
+		expect(zaxRegexForm.isTel(87665432)).toEqual(true)
+		expect(zaxRegexForm.isTel('87665432')).toEqual(true)
+	})
+
+	it(`should be correct matchRegex function result `, () => {
+		expect(zaxRegexForm.matchRegex(87665432, 'QQ')).toEqual(true)
+		expect(zaxRegexForm.matchRegex('87665432', 'QQ')).toEqual(true)
+	})
 })
 
 describe('zaxTypes', () => {
@@ -61,7 +232,6 @@ describe('zaxTypes', () => {
 	})
 })
 
-
 describe('zaxCases', () => {
 	let keys = Object.keys(zaxCases)
 	keys.forEach(par => {
@@ -69,6 +239,51 @@ describe('zaxCases', () => {
 			expect(zaxCases).toHaveProperty(par)
 			expect(zaxCases[par]).toBeInstanceOf(Function)
 		})
+		it(`should input a string`, () => {
+			expect(zaxCases[par]()).toBeFalsy()
+		})
+		it(`should return a string`, () => {
+			expect(zaxCases[par]('std word')).toBeTruthy()
+		})
+	})
+
+	it(`should be correct cleancase function result `, () => {
+		expect(zaxCases.cleancase('_-qq-ww_ee.rr-_')).toEqual('qq-ww_ee.rr')
+	})
+	it(`should be correct camelcase function result `, () => {
+		expect(zaxCases.camelcase(' qq-ww_ee.rr ')).toEqual('qqWwEeRr')
+		expect(zaxCases.camelcase('foo bar baz')).toEqual('fooBarBaz')
+		expect(zaxCases.camelcase('q')).toEqual('q')
+	})
+	it(`should be correct pascalcase function result `, () => {
+		expect(zaxCases.pascalcase(' qq-ww_ee.rr ')).toEqual('QqWwEeRr')
+		expect(zaxCases.pascalcase('foo bar baz')).toEqual('FooBarBaz')
+		expect(zaxCases.pascalcase('q')).toEqual('Q')
+	})
+	it(`should be correct snakecase function result `, () => {
+		expect(zaxCases.snakecase(' qq-ww_ee.rr ')).toEqual('qq_ww_ee_rr')
+		expect(zaxCases.snakecase('foo bar baz')).toEqual('foo_bar_baz')
+		expect(zaxCases.snakecase('q')).toEqual('q')
+	})
+	it(`should be correct pathcase function result `, () => {
+		expect(zaxCases.pathcase(' qq-ww_ee.rr ')).toEqual('qq/ww/ee/rr')
+		expect(zaxCases.pathcase('foo bar baz')).toEqual('foo/bar/baz')
+		expect(zaxCases.pathcase('q')).toEqual('q')
+	})
+	it(`should be correct sentencecase function result `, () => {
+		expect(zaxCases.sentencecase('qq-ww_ee.rr')).toEqual('Qq-ww_ee.rr')
+		expect(zaxCases.sentencecase('foo bar baz')).toEqual('Foo bar baz')
+		expect(zaxCases.sentencecase('q')).toEqual('Q')
+	})
+	it(`should be correct dotcase function result `, () => {
+		expect(zaxCases.dotcase(' qq-ww_ee.rr ')).toEqual('qq.ww.ee.rr')
+		expect(zaxCases.dotcase('foo bar baz')).toEqual('foo.bar.baz')
+		expect(zaxCases.dotcase('q')).toEqual('q')
+	})
+	it(`should be correct dashcase function result `, () => {
+		expect(zaxCases.dashcase(' qq-ww_ee.rr ')).toEqual('qq-ww-ee-rr')
+		expect(zaxCases.dashcase('foo bar baz')).toEqual('foo-bar-baz')
+		expect(zaxCases.dashcase('q')).toEqual('q')
 	})
 })
 
@@ -80,8 +295,6 @@ describe('zaxRegex', () => {
 		})
 	})
 })
-
-
 
 describe('log', () => {
 	it('should invoke success', () => {
@@ -96,8 +309,13 @@ describe('log', () => {
 		expect(res).toBeTruthy()
 		expect(res).toBeInstanceOf(Function)
 
-		let res2 = log()
+		let res2 = log('test', 'extra param')
+		expect(log).toBeInstanceOf(Function)
 		expect(res2).toBeTruthy()
 		expect(res2).toBeInstanceOf(Function)
+
+		let res3 = log()
+		expect(res3).toBeTruthy()
+		expect(res3).toBeInstanceOf(Function)
 	})
 })
