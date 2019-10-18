@@ -12,6 +12,8 @@ export const IDCARD = '(^\\d{15}$)|(^\\d{18}$)|(^\\d{17}(\\d|X|x)$)' //身份证
 export const MOBILE = '^1[3456789]\\d{9}$' //手机
 export const PHONNE = '^1[3456789]\\d{9}$' //手机
 
+type Nothing = {} // jsdoc2md bugs, do not remove this line
+
 export default {
 	EMAIL,
 	DATE,

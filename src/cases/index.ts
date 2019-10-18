@@ -4,9 +4,11 @@
  * @see https://github.com/jsonchou/zax-util/tree/master/docs/cases
  */
 
- 'use strict'
+'use strict'
 
 import { isString } from '../types'
+
+type Nothing = {} // jsdoc2md bugs, do not remove this line
 
 export function cleancase(str: string): string {
 	var re = /^[-_.\W\s]+|[-_.\W\s]+$/g
@@ -21,7 +23,6 @@ export function cleancase(str: string): string {
  * //=> 'FooBarBaz'
  * ```
  *
- * @name .pascalcase
  * @param  {String} `string`
  * @return {String}
  * @api public
@@ -46,7 +47,6 @@ export function pascalcase(str: string): string {
  * //=> 'fooBarBaz'
  * ```
  *
- * @name .camelcase
  * @param  {String} `string` The string to camelcase.
  * @return {String}
  * @api public
@@ -74,7 +74,6 @@ export function camelcase(str: string): string {
  * //=> 'a-b-c-d-e'
  * ```
  *
- * @name .dashcase
  * @param  {String} `string`
  * @return {String}
  * @tags dasherize, dashify, hyphenate, case
@@ -102,7 +101,6 @@ export function dashcase(str: string): string {
  * //=> 'a.b.c.d.e'
  * ```
  *
- * @name .dotcase
  * @param  {String} `string`
  * @return {String}
  * @api public
@@ -129,7 +127,6 @@ export function dotcase(str: string): string {
  * //=> 'a/b/c/d/e'
  * ```
  *
- * @name .pathcase
  * @param  {String} `string`
  * @return {String}
  * @api public
@@ -156,7 +153,6 @@ export function pathcase(str: string): string {
  * //=> 'Foo bar baz.'
  * ```
  *
- * @name .sentencecase
  * @param  {String} `string`
  * @return {String}
  * @api public
@@ -180,7 +176,6 @@ export function sentencecase(str: string): string {
  * //=> 'a_b_c_d_e'
  * ```
  *
- * @name .snakecase
  * @param  {String} `string`
  * @return {String}
  * @api public

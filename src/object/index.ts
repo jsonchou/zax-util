@@ -6,6 +6,8 @@
 
 import { isObject } from '../types/index'
 
+type Nothing = {} // jsdoc2md bugs, do not remove this line
+
 export default {
 	/* istanbul ignore next */
 	isObject

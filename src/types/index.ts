@@ -9,19 +9,20 @@ export type TYPES = 'Boolean' | 'Number' | 'String' | 'Function' | 'Array' | 'Da
 
 /**
  * check type
- * @param {any} tar - target
- * @param {string} wish - wish type
+ * @param {any} tar
+ * @param {TYPES} wish - wish type
+ * @returns {Boolean}
  */
 
-export function check(tar: any, wish: TYPES) {
+export function check(tar: any, wish: TYPES):boolean {
 	let tp = get(tar)
 	return wish === tp
 }
 
 /**
  * get type
- * @param {any} tar - target
- * @returns {string} - type target result
+ * @param {any} tar
+ * @returns {TYPES}
  */
 export function get(tar: any): TYPES {
 	let tp = Object.prototype.toString.call(tar)
@@ -31,8 +32,8 @@ export function get(tar: any): TYPES {
 
 /**
  * isFunction
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isFunction(tar: any): boolean {
 	return check(tar, 'String')
@@ -40,8 +41,8 @@ export function isFunction(tar: any): boolean {
 
 /**
  * isArray
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isArray(tar: any): boolean {
 	return check(tar, 'Array')
@@ -49,8 +50,8 @@ export function isArray(tar: any): boolean {
 
 /**
  * isObject
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isObject(tar: any): boolean {
 	return check(tar, 'Object')
@@ -58,8 +59,8 @@ export function isObject(tar: any): boolean {
 
 /**
  * isDate
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isDate(tar: any): boolean {
 	return check(tar, 'Date')
@@ -67,8 +68,8 @@ export function isDate(tar: any): boolean {
 
 /**
  * isRegExp
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isRegExp(tar: any): boolean {
 	return check(tar, 'RegExp')
@@ -76,8 +77,8 @@ export function isRegExp(tar: any): boolean {
 
 /**
  * isNumber
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isNumber(tar: any): boolean {
 	return check(tar, 'Number')
@@ -85,8 +86,8 @@ export function isNumber(tar: any): boolean {
 
 /**
  * isString
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isString(tar: any): boolean {
 	return check(tar, 'String')
@@ -94,8 +95,8 @@ export function isString(tar: any): boolean {
 
 /**
  * isFunction
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isBoolean(tar: any): boolean {
 	return check(tar, 'Boolean')
@@ -103,8 +104,8 @@ export function isBoolean(tar: any): boolean {
 
 /**
  * isError
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isError(tar: any): boolean {
 	return check(tar, 'Error')
@@ -112,8 +113,8 @@ export function isError(tar: any): boolean {
 
 /**
  * isNull
- * @param {any} tar - target
- * @returns {bool} - type target result
+ * @param {any} tar
+ * @returns {Boolean}
  */
 export function isNull(tar: any): boolean {
 	return check(tar, 'Null')

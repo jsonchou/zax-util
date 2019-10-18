@@ -6,10 +6,12 @@
 
 import _regex from '../regex'
 
+type Nothing = {} // jsdoc2md bugs, do not remove this line
+
 /**
  * checke string with regex
- * @param v target string
- * @param regexKey regex
+ * @param v {String} target string
+ * @param regexKey {String} regex
  */
 export function matchRegex(v: string, regexKey: keyof typeof _regex): boolean {
 	let nv = v.replace(/\ /gi, '')
@@ -22,7 +24,7 @@ export function matchRegex(v: string, regexKey: keyof typeof _regex): boolean {
 
 /**
  * isEmail
- * @param v target string
+ * @param v {String} target string
  */
 export function isEmail(v: string): boolean {
 	return matchRegex(v, 'EMAIL')
@@ -30,7 +32,7 @@ export function isEmail(v: string): boolean {
 
 /**
  * isDate
- * @param v target string
+ * @param v {String} target string
  */
 export function isDate(v: string): boolean {
 	return matchRegex(v, 'DATE')
@@ -38,7 +40,7 @@ export function isDate(v: string): boolean {
 
 /**
  * isQQ
- * @param v target string
+ * @param v {String} target string
  */
 export function isQQ(v: string): boolean {
 	return matchRegex(v, 'QQ')
@@ -46,7 +48,7 @@ export function isQQ(v: string): boolean {
 
 /**
  * isTel
- * @param v target string
+ * @param v {String} target string
  */
 export function isTel(v: string): boolean {
 	return matchRegex(v, 'TEL')
@@ -54,7 +56,7 @@ export function isTel(v: string): boolean {
 
 /**
  * isIdcard
- * @param v target string
+ * @param v {String} target string
  */
 export function isIdcard(v: string): boolean {
 	return matchRegex(v, 'IDCARD')
@@ -62,7 +64,7 @@ export function isIdcard(v: string): boolean {
 
 /**
  * isMobile
- * @param v target string
+ * @param v {String} target string
  */
 export function isMobile(v: string): boolean {
 	return matchRegex(v, 'MOBILE')
@@ -70,7 +72,7 @@ export function isMobile(v: string): boolean {
 
 /**
  * isPhone
- * @param v target string
+ * @param v {String} target string
  */
 export function isPhone(v: string): boolean {
 	return isMobile(v)

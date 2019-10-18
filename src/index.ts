@@ -1,5 +1,3 @@
-let STUB = 1;
-
 /**
  * Zax Util module.
  * @module zaxUtil
@@ -15,9 +13,6 @@ import zaxRegexForm from './regexForm'
 import zaxTypes from './types'
 import zaxCases from './cases'
 
-STUB = 1;
+type Nothing = {} // jsdoc2md bugs, do not remove this line
 
-/**
- * test
- */
 export { zaxString, zaxFunc, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes, zaxCases }

@@ -7,18 +7,18 @@
 
 * [zaxTypes](#module_zaxTypes)
     * [~_default](#module_zaxTypes.._default)
-    * [~check(tar, wish)](#module_zaxTypes..check)
-    * [~get(tar)](#module_zaxTypes..get) ⇒ <code>string</code>
-    * [~isFunction(tar)](#module_zaxTypes..isFunction) ⇒ <code>bool</code>
-    * [~isArray(tar)](#module_zaxTypes..isArray) ⇒ <code>bool</code>
-    * [~isObject(tar)](#module_zaxTypes..isObject) ⇒ <code>bool</code>
-    * [~isDate(tar)](#module_zaxTypes..isDate) ⇒ <code>bool</code>
-    * [~isRegExp(tar)](#module_zaxTypes..isRegExp) ⇒ <code>bool</code>
-    * [~isNumber(tar)](#module_zaxTypes..isNumber) ⇒ <code>bool</code>
-    * [~isString(tar)](#module_zaxTypes..isString) ⇒ <code>bool</code>
-    * [~isBoolean(tar)](#module_zaxTypes..isBoolean) ⇒ <code>bool</code>
-    * [~isError(tar)](#module_zaxTypes..isError) ⇒ <code>bool</code>
-    * [~isNull(tar)](#module_zaxTypes..isNull) ⇒ <code>bool</code>
+    * [~check(tar, wish)](#module_zaxTypes..check) ⇒ <code>Boolean</code>
+    * [~get(tar)](#module_zaxTypes..get) ⇒ <code>TYPES</code>
+    * [~isFunction(tar)](#module_zaxTypes..isFunction) ⇒ <code>Boolean</code>
+    * [~isArray(tar)](#module_zaxTypes..isArray) ⇒ <code>Boolean</code>
+    * [~isObject(tar)](#module_zaxTypes..isObject) ⇒ <code>Boolean</code>
+    * [~isDate(tar)](#module_zaxTypes..isDate) ⇒ <code>Boolean</code>
+    * [~isRegExp(tar)](#module_zaxTypes..isRegExp) ⇒ <code>Boolean</code>
+    * [~isNumber(tar)](#module_zaxTypes..isNumber) ⇒ <code>Boolean</code>
+    * [~isString(tar)](#module_zaxTypes..isString) ⇒ <code>Boolean</code>
+    * [~isBoolean(tar)](#module_zaxTypes..isBoolean) ⇒ <code>Boolean</code>
+    * [~isError(tar)](#module_zaxTypes..isError) ⇒ <code>Boolean</code>
+    * [~isNull(tar)](#module_zaxTypes..isNull) ⇒ <code>Boolean</code>
 
 <a name="module_zaxTypes.._default"></a>
 
@@ -28,167 +28,134 @@
 **Kind**: inner property of [<code>zaxTypes</code>](#module_zaxTypes)  
 <a name="module_zaxTypes..check"></a>
 
-### zaxTypes~check(tar, wish)
+### zaxTypes~check(tar, wish) ⇒ <code>Boolean</code>
 <p>check type</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
-| wish | <code>string</code> | <p>wish type</p> |
+| tar | <code>any</code> |  |
+| wish | <code>TYPES</code> | <p>wish type</p> |
 
 <a name="module_zaxTypes..get"></a>
 
-### zaxTypes~get(tar) ⇒ <code>string</code>
+### zaxTypes~get(tar) ⇒ <code>TYPES</code>
 <p>get type</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>string</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isFunction"></a>
 
-### zaxTypes~isFunction(tar) ⇒ <code>bool</code>
+### zaxTypes~isFunction(tar) ⇒ <code>Boolean</code>
 <p>isFunction</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isArray"></a>
 
-### zaxTypes~isArray(tar) ⇒ <code>bool</code>
+### zaxTypes~isArray(tar) ⇒ <code>Boolean</code>
 <p>isArray</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isObject"></a>
 
-### zaxTypes~isObject(tar) ⇒ <code>bool</code>
+### zaxTypes~isObject(tar) ⇒ <code>Boolean</code>
 <p>isObject</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isDate"></a>
 
-### zaxTypes~isDate(tar) ⇒ <code>bool</code>
+### zaxTypes~isDate(tar) ⇒ <code>Boolean</code>
 <p>isDate</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isRegExp"></a>
 
-### zaxTypes~isRegExp(tar) ⇒ <code>bool</code>
+### zaxTypes~isRegExp(tar) ⇒ <code>Boolean</code>
 <p>isRegExp</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isNumber"></a>
 
-### zaxTypes~isNumber(tar) ⇒ <code>bool</code>
+### zaxTypes~isNumber(tar) ⇒ <code>Boolean</code>
 <p>isNumber</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isString"></a>
 
-### zaxTypes~isString(tar) ⇒ <code>bool</code>
+### zaxTypes~isString(tar) ⇒ <code>Boolean</code>
 <p>isString</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isBoolean"></a>
 
-### zaxTypes~isBoolean(tar) ⇒ <code>bool</code>
+### zaxTypes~isBoolean(tar) ⇒ <code>Boolean</code>
 <p>isFunction</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isError"></a>
 
-### zaxTypes~isError(tar) ⇒ <code>bool</code>
+### zaxTypes~isError(tar) ⇒ <code>Boolean</code>
 <p>isError</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 
 <a name="module_zaxTypes..isNull"></a>
 
-### zaxTypes~isNull(tar) ⇒ <code>bool</code>
+### zaxTypes~isNull(tar) ⇒ <code>Boolean</code>
 <p>isNull</p>
 
 **Kind**: inner method of [<code>zaxTypes</code>](#module_zaxTypes)  
-**Returns**: <code>bool</code> - <ul>
-<li>type target result</li>
-</ul>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| tar | <code>any</code> | <p>target</p> |
+| Param | Type |
+| --- | --- |
+| tar | <code>any</code> | 
 

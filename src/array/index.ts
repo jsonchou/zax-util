@@ -15,7 +15,7 @@ type MixArray = TypeArray | ObjectArray
 export type TypeOrderBy = 'ASC' | 'DESC'
 
 /**
- * sort the array.
+ * sort array.
  *
  * ```js
  * sort([{id:2},{id:3},{id:1}], "ASC", "id");
