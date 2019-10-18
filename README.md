@@ -24,3 +24,6 @@ yarn add zax-util --save
 ```tsx
 import ZaxUtil, { zaxString, zaxFunc, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes, zaxCases } from 'zax-util'
 ```
+
+## More
+[Docs](https://github.com/jsonchou/zax-util/tree/master/docs)

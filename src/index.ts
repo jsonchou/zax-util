@@ -1,5 +1,9 @@
+let STUB = 1;
+
 /**
- * zax-util
+ * Zax Util module.
+ * @module zaxUtil
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs
  */
 
 import zaxString from './string'
@@ -11,4 +15,9 @@ import zaxRegexForm from './regexForm'
 import zaxTypes from './types'
 import zaxCases from './cases'
 
+STUB = 1;
+
+/**
+ * test
+ */
 export { zaxString, zaxFunc, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes, zaxCases }
