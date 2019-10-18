@@ -1,3 +1,9 @@
+/**
+ * RegexForm module.
+ * @module zaxRegexForm
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs/regexForm
+ */
+
 import _regex from '../regex'
 
 export function matchRegex(v: string, regexKey: keyof typeof _regex): boolean {

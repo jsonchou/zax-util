@@ -1,7 +1,10 @@
 /**
- * array module
- * partial from https://github.com/jonschlinkert/arr-diff
+ * Array module.
+ * @module zaxArray
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs/array
+ * @see partial from https://github.com/jonschlinkert/arr-diff
  */
+
 import { isArray, isNumber, isString, isObject } from '../types/index'
 
 type TypeObject = { [key: string]: any }

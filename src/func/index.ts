@@ -1,4 +1,10 @@
-import { isFunction } from '../types/index'
+/**
+ * Func module.
+ * @module zaxFunc
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs/func
+ */
+
+ import { isFunction } from '../types/index'
 
 export function lazy(parentObj: object, key: string, ticker = 30, expiredTime = 3000) {
 	return new Promise(resolve => {

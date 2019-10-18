@@ -1,4 +1,10 @@
-'use strict'
+/**
+ * Cases module.
+ * @module zaxCases
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs/cases
+ */
+
+ 'use strict'
 
 import { isString } from '../types'
 

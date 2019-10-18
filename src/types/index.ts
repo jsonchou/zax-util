@@ -1,7 +1,7 @@
 /**
  * Types module.
  * @module zaxTypes
- * @see
+ * @see https://github.com/jsonchou/zax-util/tree/master/docs/types
  */
 
 /** @type {TYPES} */
