@@ -3,6 +3,7 @@
 		"includePattern": ".+\\.ts(doc|x)?$",
 		"excludePattern": ".+\\.(test|spec).ts"
 	},
+	"no-cache": true,
 	"plugins": [
 		"plugins/markdown",
 		"node_modules/jsdoc-babel"

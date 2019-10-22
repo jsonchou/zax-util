@@ -2,7 +2,7 @@
  * @Author: jsonchou
  * @Date: 2019-08-01 18:04:40
  * @Last Modified by: jsonchou
- * @Last Modified time: 2019-10-22 11:41:28
+ * @Last Modified time: 2019-10-22 11:43:01
  */
 const path = require('path')
 const chalk = require('chalk')
@@ -49,9 +49,6 @@ let doPublish = async () => {
 	try {
 		execSync(`git add .`, { stdio: 'inherit' })
 		let logInfo = RELEASE_LOG ? `release: v${version} ${RELEASE_LOG}` : `release: v${version}`
-
-		console.log(chalk.bold.green(logInfo))
-
 		execSync(`git commit -am "${logInfo}"`, { stdio: 'inherit' })
 		execSync(`git push`, { stdio: 'inherit' })
 	} catch (err) {
@@ -71,6 +68,7 @@ let doPublish = async () => {
 	execSync(`git push`, { stdio: 'inherit' })
 
 	doneRainbow(`version ${version} published!`)
+	console.log(chalk.bold.green(RELEASE_LOG))
 }
 
 doPublish()

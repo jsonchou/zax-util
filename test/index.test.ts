@@ -49,10 +49,29 @@ describe('zaxString', () => {
 		expect(zaxString.ellipsis('qwer', 5)).toEqual('qwer')
 	})
 
+	it(`should be toWord string`, () => {
+		expect(zaxString.toWord(3)).toEqual('three')
+		expect(zaxString.toWord(0)).toEqual('zero')
+		expect(zaxString.toWord(10)).toEqual('ten')
+		expect(zaxString.toWord(10, 'zh-cn')).toEqual('十')
+	})
+
+	it(`should be toDay string`, () => {
+		expect(zaxString.toDay(3)).toEqual('三')
+		expect(zaxString.toDay(0)).toEqual('日')
+		expect(zaxString.toDay(0, 'en-us')).toEqual('sun')
+	})
+
+	it(`should be toMonth string`, () => {
+		expect(zaxString.toMonth(3)).toEqual('三')
+		expect(zaxString.toMonth(1)).toEqual('一')
+		expect(zaxString.toMonth(10, 'en-us')).toEqual('oct')
+	})
+
 	it(`should be toWords string`, () => {
-		expect(zaxString.toWords(3)).toEqual('three')
-		expect(zaxString.toWords(0)).toEqual('zero')
-		expect(zaxString.toWords(10)).toEqual('ten')
+		expect(zaxString.toWord(3)).toEqual('three')
+		expect(zaxString.toWord(0)).toEqual('zero')
+		expect(zaxString.toWord(10)).toEqual('ten')
 	})
 
 	it(`should be striptags html`, () => {
