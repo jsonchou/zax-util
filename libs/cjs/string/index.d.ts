@@ -77,7 +77,7 @@ declare const toMonth: (num: 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 11 | 12, l
  * @param str {String} target
  * @param limit {Number} limit
  * @param tail {SpecialCharType} tail
- * @param tailRepeatTime {Number} tail repeat time
+ * @param tailRepeatTime {Number} tail repeat times
  * @returns {String} string of result
  */
 declare const ellipsis: (str: string, limit?: number, tail?: "]" | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "_" | "+" | "{" | "}" | "|" | ":" | "<" | ">" | "?" | "-" | "=" | "[" | ";" | "'" | "," | "." | "/" | "\"" | "`" | " ", tailRepeatTime?: number) => string;
@@ -91,3 +91,4 @@ declare const expData: {
 };
 export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, isString };
 export default expData;
+//# sourceMappingURL=index.d.ts.map

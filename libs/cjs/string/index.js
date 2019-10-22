@@ -92,7 +92,7 @@ exports.toMonth = toMonth;
  * @param str {String} target
  * @param limit {Number} limit
  * @param tail {SpecialCharType} tail
- * @param tailRepeatTime {Number} tail repeat time
+ * @param tailRepeatTime {Number} tail repeat times
  * @returns {String} string of result
  */
 var ellipsis = function (str, limit, tail, tailRepeatTime) {

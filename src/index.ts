@@ -16,3 +16,4 @@ import zaxCases from './cases'
 type Nothing = {} // jsdoc2md bugs, do not remove this line
 
 export { zaxString, zaxFunc, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes, zaxCases }
+

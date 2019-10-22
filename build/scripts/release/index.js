@@ -2,7 +2,7 @@
  * @Author: jsonchou
  * @Date: 2019-08-01 18:04:40
  * @Last Modified by: jsonchou
- * @Last Modified time: 2019-10-22 11:43:01
+ * @Last Modified time: 2019-10-22 16:53:11
  */
 const path = require('path')
 const chalk = require('chalk')
@@ -30,6 +30,12 @@ let doRun = async cmd => {
 }
 
 let doPublish = async () => {
+
+	if (!RELEASE_LOG) {
+		console.error(chalk.bold.red('please input release log'))
+		return
+	}
+
 	let safeNpm = checkNpm(innerModule)
 
 	if (!safeNpm) {
@@ -48,7 +54,7 @@ let doPublish = async () => {
 
 	try {
 		execSync(`git add .`, { stdio: 'inherit' })
-		let logInfo = RELEASE_LOG ? `release: v${version} ${RELEASE_LOG}` : `release: v${version}`
+		let logInfo = `release: v${version} ${RELEASE_LOG}`
 		execSync(`git commit -am "${logInfo}"`, { stdio: 'inherit' })
 		execSync(`git push`, { stdio: 'inherit' })
 	} catch (err) {
@@ -68,7 +74,6 @@ let doPublish = async () => {
 	execSync(`git push`, { stdio: 'inherit' })
 
 	doneRainbow(`version ${version} published!`)
-	console.log(chalk.bold.green(RELEASE_LOG))
 }
 
 doPublish()

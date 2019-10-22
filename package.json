@@ -2,7 +2,7 @@
 	"name": "zax-util",
 	"version": "1.0.8",
 	"description": "zax-util",
-	"main": "./libs/umd",
+	"main": "./libs/cjs",
 	"directories": {
 		"test": "test",
 		"lib": "libs",
@@ -12,9 +12,9 @@
 	"scripts": {
 		"lint": "eslint --ext .ts src/",
 		"lint:fix": "eslint --fix --ext .ts src/",
-		"build:cjs": "rimraf './libs/cjs' && tsc -t 'ES5' -m 'CommonJS' --outDir './libs/cjs' -d --sourceMap ",
-		"build:es": "rimraf './libs/es' && tsc -t 'ES6' -m 'ESNext' --outDir './libs/es' -d --sourceMap",
-		"build:umd": "rimraf './libs/umd' && tsc -t 'ES5' -m 'UMD' --outDir './libs/umd' -d --sourceMap",
+		"build:cjs": "rimraf './libs/cjs' && tsc -t 'ES5' -m 'CommonJS' --outDir './libs/cjs' ",
+		"build:es": "rimraf './libs/es' && tsc -t 'ES6' -m 'ESNext' --outDir './libs/es' ",
+		"build:umd": "rimraf './libs/umd' && tsc -t 'ES5' -m 'UMD' --outDir './libs/umd' ",
 		"doc:array": "rimraf './docs/array/*.md' && jsdoc2md --files ./src/array/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/array/README.md",
 		"doc:cases": "rimraf './docs/cases/*.md' && jsdoc2md --files ./src/cases/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/cases/README.md",
 		"doc:func": "rimraf './docs/func/*.md' && jsdoc2md --files ./src/func/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/func/README.md",
@@ -113,7 +113,7 @@
 			"/build/",
 			"/types/",
 			"/test/",
-			"/lib/"
+			"/libs/"
 		],
 		"coverageThreshold": {
 			"global": {

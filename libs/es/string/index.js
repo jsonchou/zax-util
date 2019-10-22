@@ -79,7 +79,7 @@ const toMonth = (num, locale = 'zh-cn') => {
  * @param str {String} target
  * @param limit {Number} limit
  * @param tail {SpecialCharType} tail
- * @param tailRepeatTime {Number} tail repeat time
+ * @param tailRepeatTime {Number} tail repeat times
  * @returns {String} string of result
  */
 const ellipsis = (str, limit = 10, tail = '.', tailRepeatTime = 3) => {

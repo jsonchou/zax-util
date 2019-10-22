@@ -83,5 +83,5 @@ Jan - Dec : 1 - 12</p>
 | str | <code>String</code> |  | <p>target</p> |
 | limit | <code>Number</code> | <code>10</code> | <p>limit</p> |
 | tail | <code>SpecialCharType</code> | <code>.</code> | <p>tail</p> |
-| tailRepeatTime | <code>Number</code> | <code>3</code> | <p>tail repeat time</p> |
+| tailRepeatTime | <code>Number</code> | <code>3</code> | <p>tail repeat times</p> |
 

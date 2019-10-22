@@ -24,3 +24,4 @@ declare const _default: {
     sleep: typeof sleep;
 };
 export default _default;
+//# sourceMappingURL=index.d.ts.map
