@@ -1,6 +1,6 @@
 {
 	"name": "zax-util",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "zax-util",
 	"main": "./libs/umd",
 	"directories": {
