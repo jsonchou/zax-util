@@ -42,9 +42,14 @@ var ellipsis = function (str, limit, tail, tailLength) {
     return striptags_1.default(str).substr(0, limit) + tail.repeat(tailLength);
 };
 exports.ellipsis = ellipsis;
+var toWords = function (num) {
+    return ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'][num];
+};
+exports.toWords = toWords;
 /* istanbul ignore next */
 var expData = {
     isString: index_1.isString,
+    toWords: toWords,
     ellipsis: ellipsis,
     striptags: striptags_1.default
 };

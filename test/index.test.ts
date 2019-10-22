@@ -7,7 +7,7 @@ import zaxRegexForm from '../src/regexForm'
 import zaxTypes from '../src/types'
 import zaxCases from '../src/cases'
 
-import { log } from '../src/utils/index'
+import { log } from '../src/_utils/index'
 
 const stdTypeList = [1, 'a', { a: 1 }, [1], console.log, new Date(), null, undefined, /\ /gi]
 
@@ -24,7 +24,7 @@ describe('zaxString', () => {
 		})
 	})
 
-	it(`should be string type`, () => {
+	it(`should be isString type`, () => {
 		expect(zaxString.isString('a')).toEqual(true)
 		expect(zaxString.isString(1)).toEqual(false)
 		expect(zaxString.isString({ a: 1 })).toEqual(false)
@@ -47,6 +47,12 @@ describe('zaxString', () => {
 		expect(zaxString.ellipsis('qwertyuiop', 11)).toEqual('qwertyuiop')
 		expect(zaxString.ellipsis('qwertyuiop', 5, '$', 5)).toEqual('qwert$$$$$')
 		expect(zaxString.ellipsis('qwer', 5)).toEqual('qwer')
+	})
+
+	it(`should be toWords string`, () => {
+		expect(zaxString.toWords(3)).toEqual('three')
+		expect(zaxString.toWords(0)).toEqual('zero')
+		expect(zaxString.toWords(10)).toEqual('ten')
 	})
 
 	it(`should be striptags html`, () => {
@@ -124,6 +130,19 @@ describe('zaxFunc', () => {
 		}).catch(err => {
 			console.error(err)
 		})
+	})
+
+	it('should be correct output', async () => {
+		let tmp = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+		let arr: string[] = []
+		console.log(1)
+		tmp.forEach(async (item, index) => {
+			await zaxFunc.sleep(Math.floor(Math.random() * (index + 1) * 300))
+			console.warn(item)
+			arr.push(item)
+		})
+		console.log(2)
+		expect(arr).toEqual([])
 	})
 })
 

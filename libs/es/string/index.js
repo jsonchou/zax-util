@@ -31,12 +31,16 @@ const ellipsis = (str, limit = 10, tail = '.', tailLength = 3) => {
     }
     return striptags(str).substr(0, limit) + tail.repeat(tailLength);
 };
+const toWords = (num) => {
+    return ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'][num];
+};
 /* istanbul ignore next */
 const expData = {
     isString,
+    toWords,
     ellipsis,
     striptags
 };
-export { isString, ellipsis, striptags };
+export { isString, toWords, ellipsis, striptags };
 export default expData;
 //# sourceMappingURL=index.js.map

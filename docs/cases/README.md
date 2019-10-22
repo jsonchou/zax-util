@@ -20,7 +20,7 @@
 ### zaxCases~cleancase(str) ⇒ <code>String</code>
 <p>standard string of cleaning</p>
 <pre class="prettyprint source lang-js"><code>cleancase(&quot; qq-ww_ee.rr &quot;);
-//=> 'qqwweerr'
+//=> 'qq-ww_ee.rr'
 </code></pre>
 
 **Kind**: inner method of [<code>zaxCases</code>](#module_zaxCases)  

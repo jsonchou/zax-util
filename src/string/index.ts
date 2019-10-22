@@ -39,13 +39,18 @@ const ellipsis = (str: string, limit: number = 10, tail: SpecialCharType = '.', 
 	return striptags(str).substr(0, limit) + tail.repeat(tailLength)
 }
 
+const toWords = (num: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10) => {
+	return ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'][num]
+}
+
 /* istanbul ignore next */
 const expData = {
 	isString,
+	toWords,
 	ellipsis,
 	striptags
 }
 
-export { isString, ellipsis, striptags }
+export { isString, toWords, ellipsis, striptags }
 
 export default expData

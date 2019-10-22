@@ -23,10 +23,12 @@ export declare type SpecialCharType = typeof SpecialChar[number];
  * @readonly {MixArray | void}
  */
 declare const ellipsis: (str: string, limit?: number, tail?: "]" | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "_" | "+" | "{" | "}" | "|" | ":" | "<" | ">" | "?" | "-" | "=" | "[" | ";" | "'" | "," | "." | "/" | "\"" | "`" | " ", tailLength?: number) => string;
+declare const toWords: (num: 0 | 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3) => string;
 declare const expData: {
     isString: typeof isString;
+    toWords: (num: 0 | 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3) => string;
     ellipsis: (str: string, limit?: number, tail?: "]" | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "_" | "+" | "{" | "}" | "|" | ":" | "<" | ">" | "?" | "-" | "=" | "[" | ";" | "'" | "," | "." | "/" | "\"" | "`" | " ", tailLength?: number) => string;
     striptags: typeof striptags;
 };
-export { isString, ellipsis, striptags };
+export { isString, toWords, ellipsis, striptags };
 export default expData;
