@@ -1,7 +1,5 @@
 {
 	"name": "zax-util",
-	"innerModule": false,
-	"needBuild": true,
 	"version": "1.0.6",
 	"description": "zax-util",
 	"main": "./libs/umd",
@@ -26,13 +24,22 @@
 		"doc:string": "jsdoc2md --files ./src/string/*.ts --configure ./jsdoc2md.json > ./docs/string/README.md",
 		"doc:types": "jsdoc2md --files ./src/types/*.ts --configure ./jsdoc2md.json > ./docs/types/README.md",
 		"doc:index": "jsdoc2md --files ./src/index.ts --configure ./jsdoc2md.json > ./docs/README.md",
-		"doc": "npm-run-all -p doc:**",
-		"build": "npm-run-all -p doc:** build:**",
-		"server": "NODE_ENV=production  GATEWAY=outer    node ./server/index.js",
+		"docs": "npm-run-all -p doc:**",
+		"build": "npm-run-all -p build:**",
+		"server": "NODE_ENV=production  GATEWAY=outer  node ./server/index.js",
 		"clean": "node ./build/scripts/clean",
-		"release": "node ./build/scripts/release",
+		"release": "node ./build/scripts/release $RELEASE_LOG",
 		"report": "codecov -t $CODECOV_TOKEN",
 		"test": "jest --coverage=true"
+	},
+	"zax": {
+		"innerModule": false,
+		"needBuild": true,
+		"test": true,
+		"docs": true,
+		"cleanDirs": [
+			"libs/**"
+		]
 	},
 	"keywords": [
 		"zax-util",

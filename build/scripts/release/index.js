@@ -1,58 +1,76 @@
 /*
- * @Author: jsonchou 
- * @Date: 2019-08-01 18:04:40 
+ * @Author: jsonchou
+ * @Date: 2019-08-01 18:04:40
  * @Last Modified by: jsonchou
- * @Last Modified time: 2019-08-01 18:45:33
+ * @Last Modified time: 2019-10-22 11:41:28
  */
 const path = require('path')
+const chalk = require('chalk')
 const doneRainbow = require('done-rainbow')
 const execSync = require('child_process').execSync
-const { version, innerModule } = require('../../../package.json')
+const { version, zax } = require('../../../package.json')
 const checkNpm = require('./checkNpm')
+const RELEASE_LOG = process.argv[2] || ''
+
+const { innerModule, needBuild, test, docs, cleanDirs } = zax
 
 let increaseVersion = () => {
-    let prefix = version.slice(0, version.lastIndexOf('.'))
-    let suffix = version.slice(version.lastIndexOf('.') + 1)
-    return prefix + '.' + (parseInt(suffix) + 1)
+	let prefix = version.slice(0, version.lastIndexOf('.'))
+	let suffix = version.slice(version.lastIndexOf('.') + 1)
+	return prefix + '.' + (parseInt(suffix) + 1)
+}
+
+let doRun = async cmd => {
+	try {
+		execSync(`npm run ${cmd}`, { stdio: 'inherit' })
+	} catch (err) {
+		console.log(`npm run ${cmd}`, err)
+		throw err
+	}
 }
 
 let doPublish = async () => {
-    let safeNpm = checkNpm(innerModule)
+	let safeNpm = checkNpm(innerModule)
 
-    if (!safeNpm) {
-        return
-    }
+	if (!safeNpm) {
+		return
+	}
 
-    let version = increaseVersion()
+	let version = increaseVersion()
 
-    try {
-        execSync(`npm run build`, { stdio: 'inherit' })
-    } catch (err) {
-        console.log('build', err)
-        throw err
-    }
+	cleanDirs && cleanDirs.length && await doRun('clean')
 
-    try {
-        execSync(`git add .`, { stdio: 'inherit' })
-        execSync(`git commit -am "release: v${version}"`, { stdio: 'inherit' })
-        execSync(`git push`, { stdio: 'inherit' })
-    } catch (err) {
-        console.log('git', err)
-        throw err
-    }
+	test && await doRun('test')
 
-    try {
-        execSync(`npm version ${version} `, { stdio: 'inherit' })
-        execSync(`npm publish`, { stdio: 'inherit' })
-    } catch (err) {
-        console.log('znpm', err)
-        throw err
-    }
+	docs && await doRun('docs')
 
-    execSync(`git status`, { stdio: 'inherit' })
-    execSync(`git push`, { stdio: 'inherit' })
+	needBuild && await doRun('build')
 
-    doneRainbow(`version ${version} published!`)
+	try {
+		execSync(`git add .`, { stdio: 'inherit' })
+		let logInfo = RELEASE_LOG ? `release: v${version} ${RELEASE_LOG}` : `release: v${version}`
+
+		console.log(chalk.bold.green(logInfo))
+
+		execSync(`git commit -am "${logInfo}"`, { stdio: 'inherit' })
+		execSync(`git push`, { stdio: 'inherit' })
+	} catch (err) {
+		console.log('git', err)
+		throw err
+	}
+
+	try {
+		execSync(`npm version ${version} `, { stdio: 'inherit' })
+		execSync(`npm publish`, { stdio: 'inherit' })
+	} catch (err) {
+		console.log('znpm', err)
+		throw err
+	}
+
+	execSync(`git status`, { stdio: 'inherit' })
+	execSync(`git push`, { stdio: 'inherit' })
+
+	doneRainbow(`version ${version} published!`)
 }
 
 doPublish()
