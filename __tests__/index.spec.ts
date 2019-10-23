@@ -208,6 +208,31 @@ describe('zaxObject', () => {
 			expect(zaxObject[par]).toBeInstanceOf(Function)
 		})
 	})
+
+	it(`hasDiff`, () => {
+		expect(zaxObject.hasDiff({ k: 1 }, { k: 2 })).toEqual(true)
+		expect(zaxObject.hasDiff({ k: 1, v: 3 }, { k: 1, v: 3 })).toEqual(false)
+		expect(zaxObject.hasDiff({ k: 1, arr: [1] }, { k: 1, arr: [1] })).toEqual(true)
+
+		expect(zaxObject.hasDiff({ k: 1 }, { v: 1 })).toEqual(true)
+		expect(zaxObject.hasDiff({ k: 1 }, { v: 1 })).toEqual(true)
+
+		expect(() => {
+			zaxObject.hasDiff([{ k: 1 }], [{ k: 2 }])
+		}).toThrow(TypeError)
+
+		expect(() => {
+			zaxObject.hasDiff([{ k: 1 }], [{ k: 1 }])
+		}).toThrow(TypeError)
+
+		expect(() => {
+			zaxObject.hasDiff([1], [2])
+		}).toThrow(TypeError)
+
+		expect(() => {
+			zaxObject.hasDiff([1], [1])
+		}).toThrow(TypeError)
+	})
 })
 
 describe('zaxRegexForm', () => {
@@ -296,6 +321,9 @@ describe('zaxCases', () => {
 	it(`should be correct pascalcase function result `, () => {
 		expect(zaxCases.pascalcase(' qq-ww_ee.rr ')).toEqual('QqWwEeRr')
 		expect(zaxCases.pascalcase('foo bar baz')).toEqual('FooBarBaz')
+		expect(zaxCases.camelcase(`set_server_${zaxCases.pascalcase('pageName')}`)).toEqual('setServerPageName')
+		expect(zaxCases.camelcase(`set_${zaxCases.pascalcase('page_Name')}`)).toEqual('setPageName')
+		expect(zaxCases.camelcase(`set_${zaxCases.pascalcase('page_name')}`)).toEqual('setPageName')
 		expect(zaxCases.pascalcase('q')).toEqual('Q')
 	})
 	it(`should be correct snakecase function result `, () => {
