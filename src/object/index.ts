@@ -46,9 +46,10 @@ type Nothing2 = {}
  * ```
  *
  * @see https://github.com/tkh44/shallow-compare/blob/master/src/index.js
- * @param num {Number} number
- * @param locale {daysKeys} locale
- * @returns {String} day of number
+ * @param instance {Object} react this
+ * @param nextProps {Object} nextProps
+ * @param nextState {Object} nextState
+ * @returns {Boolean} result
  */
 
 const shallowCompare = (instance: any, nextProps: Record<string, any>, nextState: Record<string, any>): boolean => {
