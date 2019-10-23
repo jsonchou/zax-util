@@ -39,6 +39,7 @@ type Nothing1 = {}
  * number to english word.
  * 0 - 10
  *
+ * @example
  * ```js
  * toWord(1)
  * //=> one
@@ -58,6 +59,7 @@ type Nothing2 = {}
  * number to day.
  * Sunday - Saturday : 0 - 6
  *
+ * @example
  * ```js
  * toDay(0)
  * //=> 日
@@ -77,6 +79,7 @@ type Nothing3 = {}
  * number to month.
  * Jan - Dec : 1 - 12
  *
+ * @example
  * ```js
  * toMonth(12)
  * //=> 十二
@@ -95,6 +98,7 @@ type Nothing4 = {}
 /**
  * cut & ellipsis string.
  *
+ * @example
  * ```js
  * ellipsis("qwertyuiop", 5, '*', 3)
  * //=> qwert***

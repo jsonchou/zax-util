@@ -119,4 +119,3 @@ declare const _default: {
     dashcase: typeof dashcase;
 };
 export default _default;
-//# sourceMappingURL=index.d.ts.map

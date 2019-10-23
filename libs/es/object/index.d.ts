@@ -8,4 +8,3 @@ declare const _default: {
     isObject: typeof isObject;
 };
 export default _default;
-//# sourceMappingURL=index.d.ts.map

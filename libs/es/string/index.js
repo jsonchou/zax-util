@@ -24,6 +24,7 @@ const months = {
  * number to english word.
  * 0 - 10
  *
+ * @example
  * ```js
  * toWord(1)
  * //=> one
@@ -40,6 +41,7 @@ const toWord = (num, locale = 'en-us') => {
  * number to day.
  * Sunday - Saturday : 0 - 6
  *
+ * @example
  * ```js
  * toDay(0)
  * //=> 日
@@ -56,6 +58,7 @@ const toDay = (num, locale = 'zh-cn') => {
  * number to month.
  * Jan - Dec : 1 - 12
  *
+ * @example
  * ```js
  * toMonth(12)
  * //=> 十二
@@ -71,6 +74,7 @@ const toMonth = (num, locale = 'zh-cn') => {
 /**
  * cut & ellipsis string.
  *
+ * @example
  * ```js
  * ellipsis("qwertyuiop", 5, '*', 3)
  * //=> qwert***

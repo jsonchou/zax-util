@@ -12,4 +12,3 @@ import zaxRegexForm from './regexForm';
 import zaxTypes from './types';
 import zaxCases from './cases';
 export { zaxString, zaxFunc, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes, zaxCases };
-//# sourceMappingURL=index.d.ts.map

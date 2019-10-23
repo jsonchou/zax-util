@@ -40,6 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
      * number to english word.
      * 0 - 10
      *
+     * @example
      * ```js
      * toWord(1)
      * //=> one
@@ -58,6 +59,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
      * number to day.
      * Sunday - Saturday : 0 - 6
      *
+     * @example
      * ```js
      * toDay(0)
      * //=> 日
@@ -76,6 +78,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
      * number to month.
      * Jan - Dec : 1 - 12
      *
+     * @example
      * ```js
      * toMonth(12)
      * //=> 十二
@@ -93,6 +96,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     /**
      * cut & ellipsis string.
      *
+     * @example
      * ```js
      * ellipsis("qwertyuiop", 5, '*', 3)
      * //=> qwert***

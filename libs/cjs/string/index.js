@@ -31,6 +31,7 @@ var months = {
  * number to english word.
  * 0 - 10
  *
+ * @example
  * ```js
  * toWord(1)
  * //=> one
@@ -49,6 +50,7 @@ exports.toWord = toWord;
  * number to day.
  * Sunday - Saturday : 0 - 6
  *
+ * @example
  * ```js
  * toDay(0)
  * //=> 日
@@ -67,6 +69,7 @@ exports.toDay = toDay;
  * number to month.
  * Jan - Dec : 1 - 12
  *
+ * @example
  * ```js
  * toMonth(12)
  * //=> 十二
@@ -84,6 +87,7 @@ exports.toMonth = toMonth;
 /**
  * cut & ellipsis string.
  *
+ * @example
  * ```js
  * ellipsis("qwertyuiop", 5, '*', 3)
  * //=> qwert***

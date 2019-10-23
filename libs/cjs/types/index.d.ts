@@ -96,4 +96,3 @@ declare const _default: {
  * export all type modules
  */
 export default _default;
-//# sourceMappingURL=index.d.ts.map

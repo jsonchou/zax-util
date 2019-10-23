@@ -71,4 +71,3 @@ declare const _default: {
     diff: typeof diff;
 };
 export default _default;
-//# sourceMappingURL=index.d.ts.map

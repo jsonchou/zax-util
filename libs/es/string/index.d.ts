@@ -28,6 +28,7 @@ declare type MonthKeys = keyof typeof months;
  * number to english word.
  * 0 - 10
  *
+ * @example
  * ```js
  * toWord(1)
  * //=> one
@@ -42,6 +43,7 @@ declare const toWord: (num: 0 | 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3, locale?:
  * number to day.
  * Sunday - Saturday : 0 - 6
  *
+ * @example
  * ```js
  * toDay(0)
  * //=> 日
@@ -56,6 +58,7 @@ declare const toDay: (num: 0 | 1 | 2 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us"
  * number to month.
  * Jan - Dec : 1 - 12
  *
+ * @example
  * ```js
  * toMonth(12)
  * //=> 十二
@@ -69,6 +72,7 @@ declare const toMonth: (num: 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 11 | 12, l
 /**
  * cut & ellipsis string.
  *
+ * @example
  * ```js
  * ellipsis("qwertyuiop", 5, '*', 3)
  * //=> qwert***
@@ -91,4 +95,3 @@ declare const expData: {
 };
 export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, isString };
 export default expData;
-//# sourceMappingURL=index.d.ts.map

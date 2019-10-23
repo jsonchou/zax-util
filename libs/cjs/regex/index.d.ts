@@ -20,4 +20,3 @@ declare const _default: {
     PHONNE: string;
 };
 export default _default;
-//# sourceMappingURL=index.d.ts.map
