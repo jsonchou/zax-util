@@ -57,8 +57,12 @@ const shallowCompare = (instance: any, nextProps: Record<string, any>, nextState
 }
 
 /* istanbul ignore next */
-export default {
-	isObject,
+const expData = {
 	hasDiff,
-	shallowCompare
+	shallowCompare,
+	isObject
 }
+
+export { hasDiff, shallowCompare, isObject }
+
+export default expData

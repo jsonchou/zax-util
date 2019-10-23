@@ -15,6 +15,7 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var index_1 = require("../types/index");
+    exports.isObject = index_1.isObject;
     /**
      * has diff between objects.
      *
@@ -41,6 +42,7 @@
                 return true;
         return false;
     };
+    exports.hasDiff = hasDiff;
     /* istanbul ignore next */
     /**
      * shallow compare react props & states.
@@ -52,18 +54,21 @@
      * ```
      *
      * @see https://github.com/tkh44/shallow-compare/blob/master/src/index.js
-     * @param num {Number} number
-     * @param locale {daysKeys} locale
-     * @returns {String} day of number
+     * @param instance {Object} react this
+     * @param nextProps {Object} nextProps
+     * @param nextState {Object} nextState
+     * @returns {Boolean} result
      */
     var shallowCompare = function (instance, nextProps, nextState) {
         return hasDiff(instance.props, nextProps) || hasDiff(instance.state, nextState);
     };
+    exports.shallowCompare = shallowCompare;
     /* istanbul ignore next */
-    exports.default = {
-        isObject: index_1.isObject,
+    var expData = {
         hasDiff: hasDiff,
-        shallowCompare: shallowCompare
+        shallowCompare: shallowCompare,
+        isObject: index_1.isObject
     };
+    exports.default = expData;
 });
 //# sourceMappingURL=index.js.map

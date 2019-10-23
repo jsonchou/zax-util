@@ -7,7 +7,7 @@
 
 * [zaxObject](#module_zaxObject)
     * [~hasDiff(a, b)](#module_zaxObject..hasDiff) ⇒ <code>Boolean</code>
-    * [~shallowCompare(num, locale)](#module_zaxObject..shallowCompare) ⇒ <code>String</code>
+    * [~shallowCompare(instance, nextProps, nextState)](#module_zaxObject..shallowCompare) ⇒ <code>Boolean</code>
 
 <a name="module_zaxObject..hasDiff"></a>
 
@@ -30,17 +30,18 @@ hasDiff({ k: 1, v: 3 }, { k: 1, v: 3 })
 ```
 <a name="module_zaxObject..shallowCompare"></a>
 
-### zaxObject~shallowCompare(num, locale) ⇒ <code>String</code>
+### zaxObject~shallowCompare(instance, nextProps, nextState) ⇒ <code>Boolean</code>
 <p>shallow compare react props &amp; states.</p>
 
 **Kind**: inner method of [<code>zaxObject</code>](#module_zaxObject)  
-**Returns**: <code>String</code> - <p>day of number</p>  
+**Returns**: <code>Boolean</code> - <p>result</p>  
 **See**: https://github.com/tkh44/shallow-compare/blob/master/src/index.js  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| num | <code>Number</code> | <p>number</p> |
-| locale | <code>daysKeys</code> | <p>locale</p> |
+| instance | <code>Object</code> | <p>react this</p> |
+| nextProps | <code>Object</code> | <p>nextProps</p> |
+| nextState | <code>Object</code> | <p>nextState</p> |
 
 **Example**  
 ```js
