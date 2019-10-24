@@ -122,6 +122,57 @@ const ellipsis = (str: string, limit: number = 10, tail: SpecialCharType = '.', 
 	return striptags(str).substr(0, limit) + tail.repeat(tailRepeatTime)
 }
 
+type Nothing5 = {}
+/**
+ * left pad with char.
+ *
+ * @example
+ * ```js
+ * lpad(5)
+ * //=> 05
+ * ```
+ *
+ * @param str {String} target
+ * @param limit {Number} limit
+ * @param repeatWith {String} repeatWith
+ * @returns {String} string of result
+ */
+
+const lpad = (str: string | number, limit: 2, repeatWith: '0'): string => {
+	str = String(str)
+	let strLen = str.length
+	if (strLen < limit) {
+		return repeatWith.repeat(limit - strLen) + str
+	}
+	return str
+}
+
+
+type Nothing6 = {}
+/**
+ * right pad with char.
+ *
+ * @example
+ * ```js
+ * rpad(5)
+ * //=> 50
+ * ```
+ *
+ * @param str {String} target
+ * @param limit {Number} limit
+ * @param repeatWith {String} repeatWith
+ * @returns {String} string of result
+ */
+
+const rpad = (str: string | number, limit: 2, repeatWith: '0'): string => {
+	str = String(str)
+	let strLen = str.length
+	if (strLen < limit) {
+		return str + repeatWith.repeat(limit - strLen)
+	}
+	return str
+}
+
 /* istanbul ignore next */
 const expData = {
 	toWord,
@@ -129,9 +180,11 @@ const expData = {
 	toMonth,
 	ellipsis,
 	striptags,
+	lpad,
+	rpad,
 	isString
 }
 
-export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, isString }
+export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, lpad, rpad, isString }
 
 export default expData

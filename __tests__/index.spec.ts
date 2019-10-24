@@ -74,6 +74,21 @@ describe('zaxString', () => {
 		expect(zaxString.toWord(10)).toEqual('ten')
 	})
 
+	it(`should be lpad string`, () => {
+		expect(zaxString.lpad(3, 3, 'x')).toEqual('xx3')
+		expect(zaxString.lpad(3)).toEqual('03')
+		expect(zaxString.lpad(2, 4)).toEqual('0002')
+		expect(zaxString.lpad('d', 4)).toEqual('000d')
+	})
+
+	it(`should be rpad string`, () => {
+		expect(zaxString.rpad(3, 3, 'x')).toEqual('3xx')
+		expect(zaxString.rpad(3)).toEqual('30')
+		expect(zaxString.rpad(2, 4)).toEqual('2000')
+		expect(zaxString.rpad('d', 4)).toEqual('d000')
+
+	})
+
 	it(`should be striptags html`, () => {
 		expect(zaxString.striptags('qwer<a>ddd</a>ty<strong>xxx</strong>uiop', ['a'])).toEqual('qwer<a>ddd</a>tyxxxuiop')
 	})

@@ -113,6 +113,52 @@ var ellipsis = function (str, limit, tail, tailRepeatTime) {
     return striptags_1.default(str).substr(0, limit) + tail.repeat(tailRepeatTime);
 };
 exports.ellipsis = ellipsis;
+/**
+ * left pad with char.
+ *
+ * @example
+ * ```js
+ * lpad(5)
+ * //=> 05
+ * ```
+ *
+ * @param str {String} target
+ * @param limit {Number} limit
+ * @param repeatWith {String} repeatWith
+ * @returns {String} string of result
+ */
+var lpad = function (str, limit, repeatWith) {
+    str = String(str);
+    var strLen = str.length;
+    if (strLen < limit) {
+        return repeatWith.repeat(limit - strLen) + str;
+    }
+    return str;
+};
+exports.lpad = lpad;
+/**
+ * right pad with char.
+ *
+ * @example
+ * ```js
+ * rpad(5)
+ * //=> 05
+ * ```
+ *
+ * @param str {String} target
+ * @param limit {Number} limit
+ * @param repeatWith {String} repeatWith
+ * @returns {String} string of result
+ */
+var rpad = function (str, limit, repeatWith) {
+    str = String(str);
+    var strLen = str.length;
+    if (strLen < limit) {
+        return str + repeatWith.repeat(limit - strLen);
+    }
+    return str;
+};
+exports.rpad = rpad;
 /* istanbul ignore next */
 var expData = {
     toWord: toWord,
@@ -120,6 +166,8 @@ var expData = {
     toMonth: toMonth,
     ellipsis: ellipsis,
     striptags: striptags_1.default,
+    lpad: lpad,
+    rpad: rpad,
     isString: index_1.isString
 };
 exports.default = expData;

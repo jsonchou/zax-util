@@ -15,6 +15,8 @@
     * [~toDay(num, locale)](#module_zaxString..toDay) ⇒ <code>String</code>
     * [~toMonth(num, locale)](#module_zaxString..toMonth) ⇒ <code>String</code>
     * [~ellipsis(str, limit, tail, tailRepeatTime)](#module_zaxString..ellipsis) ⇒ <code>String</code>
+    * [~lpad(str, limit, repeatWith)](#module_zaxString..lpad) ⇒ <code>String</code>
+    * [~rpad(str, limit, repeatWith)](#module_zaxString..rpad) ⇒ <code>String</code>
 
 <a name="module_zaxString..toWord"></a>
 
@@ -92,4 +94,42 @@ toMonth(12)
 ```js
 ellipsis("qwertyuiop", 5, '*', 3)
 //=> qwert***
+```
+<a name="module_zaxString..lpad"></a>
+
+### zaxString~lpad(str, limit, repeatWith) ⇒ <code>String</code>
+<p>left pad with char.</p>
+
+**Kind**: inner method of [<code>zaxString</code>](#module_zaxString)  
+**Returns**: <code>String</code> - <p>string of result</p>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| str | <code>String</code> | <p>target</p> |
+| limit | <code>Number</code> | <p>limit</p> |
+| repeatWith | <code>String</code> | <p>repeatWith</p> |
+
+**Example**  
+```js
+lpad(5)
+//=> 05
+```
+<a name="module_zaxString..rpad"></a>
+
+### zaxString~rpad(str, limit, repeatWith) ⇒ <code>String</code>
+<p>right pad with char.</p>
+
+**Kind**: inner method of [<code>zaxString</code>](#module_zaxString)  
+**Returns**: <code>String</code> - <p>string of result</p>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| str | <code>String</code> | <p>target</p> |
+| limit | <code>Number</code> | <p>limit</p> |
+| repeatWith | <code>String</code> | <p>repeatWith</p> |
+
+**Example**  
+```js
+rpad(5)
+//=> 05
 ```

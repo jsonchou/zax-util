@@ -96,6 +96,50 @@ const ellipsis = (str, limit = 10, tail = '.', tailRepeatTime = 3) => {
     }
     return striptags(str).substr(0, limit) + tail.repeat(tailRepeatTime);
 };
+/**
+ * left pad with char.
+ *
+ * @example
+ * ```js
+ * lpad(5)
+ * //=> 05
+ * ```
+ *
+ * @param str {String} target
+ * @param limit {Number} limit
+ * @param repeatWith {String} repeatWith
+ * @returns {String} string of result
+ */
+const lpad = (str, limit, repeatWith) => {
+    str = String(str);
+    let strLen = str.length;
+    if (strLen < limit) {
+        return repeatWith.repeat(limit - strLen) + str;
+    }
+    return str;
+};
+/**
+ * right pad with char.
+ *
+ * @example
+ * ```js
+ * rpad(5)
+ * //=> 05
+ * ```
+ *
+ * @param str {String} target
+ * @param limit {Number} limit
+ * @param repeatWith {String} repeatWith
+ * @returns {String} string of result
+ */
+const rpad = (str, limit, repeatWith) => {
+    str = String(str);
+    let strLen = str.length;
+    if (strLen < limit) {
+        return str + repeatWith.repeat(limit - strLen);
+    }
+    return str;
+};
 /* istanbul ignore next */
 const expData = {
     toWord,
@@ -103,8 +147,10 @@ const expData = {
     toMonth,
     ellipsis,
     striptags,
+    lpad,
+    rpad,
     isString
 };
-export { toWord, toDay, toMonth, ellipsis, striptags, isString };
+export { toWord, toDay, toMonth, ellipsis, striptags, lpad, rpad, isString };
 export default expData;
 //# sourceMappingURL=index.js.map

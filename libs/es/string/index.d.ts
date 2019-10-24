@@ -85,13 +85,45 @@ declare const toMonth: (num: 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 11 | 12, l
  * @returns {String} string of result
  */
 declare const ellipsis: (str: string, limit?: number, tail?: "]" | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "_" | "+" | "{" | "}" | "|" | ":" | "<" | ">" | "?" | "-" | "=" | "[" | ";" | "'" | "," | "." | "/" | "\"" | "`" | " ", tailRepeatTime?: number) => string;
+/**
+ * left pad with char.
+ *
+ * @example
+ * ```js
+ * lpad(5)
+ * //=> 05
+ * ```
+ *
+ * @param str {String} target
+ * @param limit {Number} limit
+ * @param repeatWith {String} repeatWith
+ * @returns {String} string of result
+ */
+declare const lpad: (str: string | number, limit: 2, repeatWith: "0") => string;
+/**
+ * right pad with char.
+ *
+ * @example
+ * ```js
+ * rpad(5)
+ * //=> 05
+ * ```
+ *
+ * @param str {String} target
+ * @param limit {Number} limit
+ * @param repeatWith {String} repeatWith
+ * @returns {String} string of result
+ */
+declare const rpad: (str: string | number, limit: 2, repeatWith: "0") => string;
 declare const expData: {
     toWord: (num: 0 | 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
     toDay: (num: 0 | 1 | 2 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
     toMonth: (num: 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 11 | 12, locale?: "zh-cn" | "en-us") => string;
     ellipsis: (str: string, limit?: number, tail?: "]" | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "_" | "+" | "{" | "}" | "|" | ":" | "<" | ">" | "?" | "-" | "=" | "[" | ";" | "'" | "," | "." | "/" | "\"" | "`" | " ", tailRepeatTime?: number) => string;
     striptags: typeof striptags;
+    lpad: (str: string | number, limit: 2, repeatWith: "0") => string;
+    rpad: (str: string | number, limit: 2, repeatWith: "0") => string;
     isString: typeof isString;
 };
-export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, isString };
+export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, lpad, rpad, isString };
 export default expData;
