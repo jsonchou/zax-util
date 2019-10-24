@@ -138,7 +138,7 @@ type Nothing5 = {}
  * @returns {String} string of result
  */
 
-const lpad = (str: string | number, limit: 2, repeatWith: '0'): string => {
+const lpad = (str: string | number, limit = 2, repeatWith = '0'): string => {
 	str = String(str)
 	let strLen = str.length
 	if (strLen < limit) {
@@ -164,7 +164,7 @@ type Nothing6 = {}
  * @returns {String} string of result
  */
 
-const rpad = (str: string | number, limit: 2, repeatWith: '0'): string => {
+const rpad = (str: string | number, limit = 2, repeatWith = '0'): string => {
 	str = String(str)
 	let strLen = str.length
 	if (strLen < limit) {

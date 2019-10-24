@@ -77,15 +77,19 @@ describe('zaxString', () => {
 	it(`should be lpad string`, () => {
 		expect(zaxString.lpad(3, 3, 'x')).toEqual('xx3')
 		expect(zaxString.lpad(3)).toEqual('03')
+		expect(zaxString.lpad(30)).toEqual('30')
 		expect(zaxString.lpad(2, 4)).toEqual('0002')
 		expect(zaxString.lpad('d', 4)).toEqual('000d')
+		expect(zaxString.lpad('d', 3, 'dax')).toEqual('daxdaxdaxd3')
 	})
 
 	it(`should be rpad string`, () => {
 		expect(zaxString.rpad(3, 3, 'x')).toEqual('3xx')
 		expect(zaxString.rpad(3)).toEqual('30')
+		expect(zaxString.rpad(30)).toEqual('30')
 		expect(zaxString.rpad(2, 4)).toEqual('2000')
 		expect(zaxString.rpad('d', 4)).toEqual('d000')
+		expect(zaxString.rpad('d', 3, 'dax')).toEqual('2ddaxdaxdax')
 
 	})
 
