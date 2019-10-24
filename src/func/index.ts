@@ -35,20 +35,20 @@ export function wait(parentObj: object, key: string, ticker: number = 30, expire
 		let timer: any
 		/* istanbul ignore next */
 		if (parentObj && parentObj[key] != 'undefined' && parentObj[key] != null) {
-			timer && window.clearInterval(timer)
+			timer && clearInterval(timer)
 			resolve(true)
 		} else {
 			/* istanbul ignore next */
-			timer = window.setInterval(() => {
+			timer = setInterval(() => {
 				if (parentObj && parentObj[key] != 'undefined' && parentObj[key] != null) {
-					timer && window.clearInterval(timer)
+					timer && clearInterval(timer)
 					resolve(true)
 				}
 			}, ticker)
 		}
 		/* istanbul ignore next */
-		window.setTimeout(() => {
-			timer && window.clearInterval(timer)
+		setTimeout(() => {
+			timer && clearInterval(timer)
 			resolve(true)
 		}, expiredTime)
 	})
@@ -61,7 +61,7 @@ export function wait(parentObj: object, key: string, ticker: number = 30, expire
 export function sleep(time: number = 200): Promise<boolean> {
 	return new Promise(resolve => {
 		/* istanbul ignore next */
-		window.setTimeout(() => {
+		setTimeout(() => {
 			resolve(true)
 		}, time)
 	})

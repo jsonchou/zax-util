@@ -96,7 +96,7 @@ describe('zaxString', () => {
 
 describe('zaxFunc', () => {
 	beforeEach(() => {
-		window.setTimeout(() => {
+		setTimeout(() => {
 			waitObj.k = 1
 		}, 1000)
 	})
