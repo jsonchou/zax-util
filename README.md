@@ -27,3 +27,4 @@ import ZaxUtil, { zaxString, zaxFunc, zaxArray, zaxObject, zaxRegex, zaxRegexFor
 
 ## More
 [Docs](https://github.com/jsonchou/zax-util/tree/master/docs)
+[Test](https://github.com/jsonchou/zax-util/blob/master/__tests__/index.spec.ts)
