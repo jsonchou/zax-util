@@ -191,11 +191,11 @@ const padEnd = (str: string | number, limit = 2, repeatWith = '0'): string => {
 
 type Nothing7 = {}
 /**
- * trim first or last letter.
+ * trim first & last letter.
  *
  * @example
  * ```js
- * trim('/pages/index/')
+ * trim('/pages/index/','/')
  * //=> pages/index
  * ```
  *
