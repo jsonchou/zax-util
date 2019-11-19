@@ -94,6 +94,24 @@ const toMonth = (num: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12, locale: 
 	return months[locale][num - 1]
 }
 
+type Nothing31 = {}
+/**
+ * http to https
+ *
+ * @example
+ * ```js
+ * toHttps('http://m.baidu.com')
+ * //=> https://m.baidu.com
+ * ```
+ *
+ * @param str {Number} target url
+ * @returns {String} https url
+ */
+
+const toHttps = (str: string): string => {
+	return str.indexOf('http') === 0 ? str.replace('http', 'https') : str
+}
+
 type Nothing4 = {}
 /**
  * cut & ellipsis string.
@@ -128,7 +146,7 @@ type Nothing5 = {}
  *
  * @example
  * ```js
- * lpad(5)
+ * padStart(5)
  * //=> 05
  * ```
  *
@@ -137,8 +155,7 @@ type Nothing5 = {}
  * @param repeatWith {String} repeatWith
  * @returns {String} string of result
  */
-
-const lpad = (str: string | number, limit = 2, repeatWith = '0'): string => {
+const padStart = (str: string | number, limit = 2, repeatWith = '0'): string => {
 	str = String(str)
 	let strLen = str.length
 	if (strLen < limit) {
@@ -147,14 +164,13 @@ const lpad = (str: string | number, limit = 2, repeatWith = '0'): string => {
 	return str
 }
 
-
 type Nothing6 = {}
 /**
  * right pad with char.
  *
  * @example
  * ```js
- * rpad(5)
+ * padEnd(5)
  * //=> 50
  * ```
  *
@@ -163,8 +179,7 @@ type Nothing6 = {}
  * @param repeatWith {String} repeatWith
  * @returns {String} string of result
  */
-
-const rpad = (str: string | number, limit = 2, repeatWith = '0'): string => {
+const padEnd = (str: string | number, limit = 2, repeatWith = '0'): string => {
 	str = String(str)
 	let strLen = str.length
 	if (strLen < limit) {
@@ -173,18 +188,84 @@ const rpad = (str: string | number, limit = 2, repeatWith = '0'): string => {
 	return str
 }
 
+type Nothing7 = {}
+/**
+ * trim first or last letter.
+ *
+ * @example
+ * ```js
+ * trim('/pages/index/')
+ * //=> pages/index
+ * ```
+ *
+ * @param str {String} target
+ * @param replaceWith {String} replace with
+ * @returns {String} string of result
+ */
+const trim = (str: string | number, tarChar = ' ', replaceWith = ''): string => {
+	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim
+	str = String(str).replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '')
+	if (!replaceWith) {
+		return str
+	}
+	let rex = new RegExp(`^${tarChar}|${tarChar}$`, 'gi')
+	return str.replace(rex, replaceWith)
+}
+
+type Nothing8 = {}
+/**
+ * trim start.
+ *
+ * @example
+ * ```js
+ * trimStart('/pages/index/')
+ * //=> pages/index/
+ * ```
+ *
+ * @param str {String} target
+ * @param replaceWith {String} replace with
+ * @returns {String} string of result
+ */
+const trimStart = (str: string | number, replaceWith = ''): string => {
+	str = trim(String(str))
+	return replaceWith + str
+}
+
+type Nothing9 = {}
+/**
+ * trim end.
+ *
+ * @example
+ * ```js
+ * trim('/pages/index/')
+ * //=> /pages/index
+ * ```
+ *
+ * @param str {String} target
+ * @param replaceWith {String} replace with
+ * @returns {String} string of result
+ */
+const trimEnd = (str: string | number, replaceWith = ''): string => {
+	str = trim(String(str))
+	return str + replaceWith
+}
+
 /* istanbul ignore next */
 const expData = {
 	toWord,
 	toDay,
 	toMonth,
+	toHttps,
 	ellipsis,
 	striptags,
-	lpad,
-	rpad,
+	padStart,
+	padEnd,
+	trim,
+	trimStart,
+	trimEnd,
 	isString
 }
 
-export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, lpad, rpad, isString }
+export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, toHttps, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString }
 
 export default expData

@@ -74,23 +74,43 @@ describe('zaxString', () => {
 		expect(zaxString.toWord(10)).toEqual('ten')
 	})
 
-	it(`should be lpad string`, () => {
-		expect(zaxString.lpad(3, 3, 'x')).toEqual('xx3')
-		expect(zaxString.lpad(3)).toEqual('03')
-		expect(zaxString.lpad(30)).toEqual('30')
-		expect(zaxString.lpad(2, 4)).toEqual('0002')
-		expect(zaxString.lpad('d', 4)).toEqual('000d')
-		expect(zaxString.lpad('d', 3, 'dax')).toEqual('daxdaxdaxd3')
+	it(`should be padStart string`, () => {
+		expect(zaxString.padStart(3, 3, 'x')).toEqual('xx3')
+		expect(zaxString.padStart(3)).toEqual('03')
+		expect(zaxString.padStart(30)).toEqual('30')
+		expect(zaxString.padStart(2, 4)).toEqual('0002')
+		expect(zaxString.padStart('d', 4)).toEqual('000d')
+		expect(zaxString.padStart('d', 3, 'dax')).toEqual('daxdaxd')
 	})
 
-	it(`should be rpad string`, () => {
-		expect(zaxString.rpad(3, 3, 'x')).toEqual('3xx')
-		expect(zaxString.rpad(3)).toEqual('30')
-		expect(zaxString.rpad(30)).toEqual('30')
-		expect(zaxString.rpad(2, 4)).toEqual('2000')
-		expect(zaxString.rpad('d', 4)).toEqual('d000')
-		expect(zaxString.rpad('d', 3, 'dax')).toEqual('2ddaxdaxdax')
+	it(`should be padEnd string`, () => {
+		expect(zaxString.padEnd(3, 3, 'x')).toEqual('3xx')
+		expect(zaxString.padEnd(3)).toEqual('30')
+		expect(zaxString.padEnd(30)).toEqual('30')
+		expect(zaxString.padEnd(2, 4)).toEqual('2000')
+		expect(zaxString.padEnd('d', 4)).toEqual('d000')
+		expect(zaxString.padEnd('d', 3, 'dax')).toEqual('ddaxdax')
+	})
 
+	it(`should be trim string`, () => {
+		expect(zaxString.trim(' #hello world# ')).toEqual('hello world')
+		expect(zaxString.trim(' #hello world# ', '-')).toEqual('-#hello world#-')
+		expect(zaxString.trim(3)).toEqual('3')
+		expect(zaxString.trim(3, '-')).toEqual('-3-')
+	})
+
+	it(`should be trimStart string`, () => {
+		expect(zaxString.trimStart(' hello world ')).toEqual('hello world ')
+		expect(zaxString.trimStart(' hello world ', '-')).toEqual('-hello world ')
+		expect(zaxString.trimStart(3)).toEqual('3')
+		expect(zaxString.trimStart(3, '-')).toEqual('-3-')
+	})
+
+	it(`should be trimEnd string`, () => {
+		expect(zaxString.trimEnd(' hello world ')).toEqual('hello world')
+		expect(zaxString.trimEnd(' hello world ', '-')).toEqual('-hello world-')
+		expect(zaxString.trimEnd(3)).toEqual('3')
+		expect(zaxString.trimEnd(3, '-')).toEqual('-3-')
 	})
 
 	it(`should be striptags html`, () => {
@@ -198,15 +218,54 @@ describe('zaxArray', () => {
 		expect(zaxArray.sort(['a', 'c', 'd', 'a'], 'ASC')).toEqual(['a', 'a', 'c', 'd'])
 		expect(zaxArray.sort([1, 2, 9, 3, 4, 3, 2, 3, 4, 5, 3], 'ASC')).toEqual([1, 2, 2, 3, 3, 3, 3, 4, 4, 5, 9])
 		expect(zaxArray.sort(['a', 'c', 'd', 'a'], 'DESC')).toEqual(['d', 'c', 'a', 'a'])
-		expect(zaxArray.sort([{ id: 2, v: 1 }, { id: 3, v: 4 }, { id: 1, v: 7 }], 'ASC', 'id')).toEqual([{ id: 1, v: 7 }, { id: 2, v: 1 }, { id: 3, v: 4 }])
-		expect(zaxArray.sort([{ id: 2, v: 1 }, { id: 3, v: 4 }, { id: 1, v: 7 }], 'DESC', 'id')).toEqual([{ id: 3, v: 4 }, { id: 2, v: 1 }, { id: 1, v: 7 }])
+		expect(
+			zaxArray.sort(
+				[
+					{ id: 2, v: 1 },
+					{ id: 3, v: 4 },
+					{ id: 1, v: 7 }
+				],
+				'ASC',
+				'id'
+			)
+		).toEqual([
+			{ id: 1, v: 7 },
+			{ id: 2, v: 1 },
+			{ id: 3, v: 4 }
+		])
+		expect(
+			zaxArray.sort(
+				[
+					{ id: 2, v: 1 },
+					{ id: 3, v: 4 },
+					{ id: 1, v: 7 }
+				],
+				'DESC',
+				'id'
+			)
+		).toEqual([
+			{ id: 3, v: 4 },
+			{ id: 2, v: 1 },
+			{ id: 1, v: 7 }
+		])
 	})
 
 	it(`should be correct unique function result `, () => {
 		expect(zaxArray.unique([])).toBeFalsy()
 		expect(zaxArray.unique([], 'id')).toBeFalsy()
 		expect(zaxArray.unique(['a', 'c', 'd', 'a'])).toEqual(['a', 'c', 'd'])
-		expect(zaxArray.unique([{ id: 1, v: 'a' }, { id: 2, v: 'c' }, { id: 3, v: 'd' }, { id: 1, v: 'a' }])).toEqual([{ id: 1, v: 'a' }, { id: 2, v: 'c' }, { id: 3, v: 'd' }])
+		expect(
+			zaxArray.unique([
+				{ id: 1, v: 'a' },
+				{ id: 2, v: 'c' },
+				{ id: 3, v: 'd' },
+				{ id: 1, v: 'a' }
+			])
+		).toEqual([
+			{ id: 1, v: 'a' },
+			{ id: 2, v: 'c' },
+			{ id: 3, v: 'd' }
+		])
 	})
 
 	it(`should be correct union function result `, () => {

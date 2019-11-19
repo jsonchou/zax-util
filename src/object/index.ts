@@ -42,7 +42,7 @@ type Nothing2 = {}
  * @example
  * ```js
  * shallowCompare(this,this.props,nextProps)
- * //=> 日
+ * //=> true
  * ```
  *
  * @see https://github.com/tkh44/shallow-compare/blob/master/src/index.js
