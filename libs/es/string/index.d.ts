@@ -103,7 +103,7 @@ declare const ellipsis: (str: string, limit?: number, tail?: "]" | "~" | "!" | "
  *
  * @example
  * ```js
- * padStart(5)
+ * padStart(5,2)
  * //=> 05
  * ```
  *
@@ -118,7 +118,7 @@ declare const padStart: (str: string | number, limit?: number, repeatWith?: stri
  *
  * @example
  * ```js
- * padEnd(5)
+ * padEnd(5,2)
  * //=> 50
  * ```
  *
@@ -138,6 +138,7 @@ declare const padEnd: (str: string | number, limit?: number, repeatWith?: string
  * ```
  *
  * @param str {String} target
+ * @param tarChar {String} target of replace string
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
@@ -147,11 +148,12 @@ declare const trim: (str: string | number, tarChar?: string, replaceWith?: strin
  *
  * @example
  * ```js
- * trimStart('/pages/index/')
+ * trimStart('/pages/index/','/')
  * //=> pages/index/
  * ```
  *
  * @param str {String} target
+ * @param tarChar {String} target of replace string
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
@@ -161,11 +163,12 @@ declare const trimStart: (str: string | number, tarChar?: string, replaceWith?: 
  *
  * @example
  * ```js
- * trim('/pages/index/')
+ * trimEnd('/pages/index/','/')
  * //=> /pages/index
  * ```
  *
  * @param str {String} target
+ * @param tarChar {String} target of replace string
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */

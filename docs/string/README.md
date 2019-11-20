@@ -18,9 +18,9 @@
     * [~ellipsis(str, limit, tail, tailRepeatTime)](#module_zaxString..ellipsis) ⇒ <code>String</code>
     * [~padStart(str, limit, repeatWith)](#module_zaxString..padStart) ⇒ <code>String</code>
     * [~padEnd(str, limit, repeatWith)](#module_zaxString..padEnd) ⇒ <code>String</code>
-    * [~trim(str, replaceWith)](#module_zaxString..trim) ⇒ <code>String</code>
-    * [~trimStart(str, replaceWith)](#module_zaxString..trimStart) ⇒ <code>String</code>
-    * [~trimEnd(str, replaceWith)](#module_zaxString..trimEnd) ⇒ <code>String</code>
+    * [~trim(str, tarChar, replaceWith)](#module_zaxString..trim) ⇒ <code>String</code>
+    * [~trimStart(str, tarChar, replaceWith)](#module_zaxString..trimStart) ⇒ <code>String</code>
+    * [~trimEnd(str, tarChar, replaceWith)](#module_zaxString..trimEnd) ⇒ <code>String</code>
 
 <a name="module_zaxString..toWord"></a>
 
@@ -132,7 +132,7 @@ ellipsis("qwertyuiop", 5, '*', 3)
 
 **Example**  
 ```js
-padStart(5)
+padStart(5,2)
 //=> 05
 ```
 <a name="module_zaxString..padEnd"></a>
@@ -151,21 +151,22 @@ padStart(5)
 
 **Example**  
 ```js
-padEnd(5)
+padEnd(5,2)
 //=> 50
 ```
 <a name="module_zaxString..trim"></a>
 
-### zaxString~trim(str, replaceWith) ⇒ <code>String</code>
+### zaxString~trim(str, tarChar, replaceWith) ⇒ <code>String</code>
 <p>trim first &amp; last letter.</p>
 
 **Kind**: inner method of [<code>zaxString</code>](#module_zaxString)  
 **Returns**: <code>String</code> - <p>string of result</p>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| str | <code>String</code> | <p>target</p> |
-| replaceWith | <code>String</code> | <p>replace with</p> |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| str | <code>String</code> |  | <p>target</p> |
+| tarChar | <code>String</code> | <code> </code> | <p>target of replace string</p> |
+| replaceWith | <code>String</code> |  | <p>replace with</p> |
 
 **Example**  
 ```js
@@ -174,37 +175,39 @@ trim('/pages/index/','/')
 ```
 <a name="module_zaxString..trimStart"></a>
 
-### zaxString~trimStart(str, replaceWith) ⇒ <code>String</code>
+### zaxString~trimStart(str, tarChar, replaceWith) ⇒ <code>String</code>
 <p>trim start.</p>
 
 **Kind**: inner method of [<code>zaxString</code>](#module_zaxString)  
 **Returns**: <code>String</code> - <p>string of result</p>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| str | <code>String</code> | <p>target</p> |
-| replaceWith | <code>String</code> | <p>replace with</p> |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| str | <code>String</code> |  | <p>target</p> |
+| tarChar | <code>String</code> | <code> </code> | <p>target of replace string</p> |
+| replaceWith | <code>String</code> |  | <p>replace with</p> |
 
 **Example**  
 ```js
-trimStart('/pages/index/')
+trimStart('/pages/index/','/')
 //=> pages/index/
 ```
 <a name="module_zaxString..trimEnd"></a>
 
-### zaxString~trimEnd(str, replaceWith) ⇒ <code>String</code>
+### zaxString~trimEnd(str, tarChar, replaceWith) ⇒ <code>String</code>
 <p>trim end.</p>
 
 **Kind**: inner method of [<code>zaxString</code>](#module_zaxString)  
 **Returns**: <code>String</code> - <p>string of result</p>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| str | <code>String</code> | <p>target</p> |
-| replaceWith | <code>String</code> | <p>replace with</p> |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| str | <code>String</code> |  | <p>target</p> |
+| tarChar | <code>String</code> | <code> </code> | <p>target of replace string</p> |
+| replaceWith | <code>String</code> |  | <p>replace with</p> |
 
 **Example**  
 ```js
-trim('/pages/index/')
+trimEnd('/pages/index/','/')
 //=> /pages/index
 ```

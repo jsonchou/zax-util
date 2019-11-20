@@ -36,6 +36,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         'zh-cn': ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
         'en-us': ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
     };
+    function charEscape(str) {
+        return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    }
     /**
      * number to english word.
      * 0 - 10
@@ -143,7 +146,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
      *
      * @example
      * ```js
-     * padStart(5)
+     * padStart(5,2)
      * //=> 05
      * ```
      *
@@ -168,7 +171,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
      *
      * @example
      * ```js
-     * padEnd(5)
+     * padEnd(5,2)
      * //=> 50
      * ```
      *
@@ -198,6 +201,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
      * ```
      *
      * @param str {String} target
+     * @param tarChar {String} target of replace string
      * @param replaceWith {String} replace with
      * @returns {String} string of result
      */
@@ -206,10 +210,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         if (replaceWith === void 0) { replaceWith = ''; }
         //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim
         str = String(str).replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
-        if (!replaceWith) {
-            return str;
+        if (!tarChar) {
+            tarChar = ' ';
         }
-        var rex = new RegExp("^" + tarChar + "|" + tarChar + "$", 'gi');
+        if (!replaceWith) {
+            replaceWith = '';
+        }
+        // fix with special quote
+        tarChar = charEscape(tarChar);
+        var rex = new RegExp("^" + tarChar + "|" + tarChar + "$", 'g');
         return str.replace(rex, replaceWith);
     };
     exports.trim = trim;
@@ -218,11 +227,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
      *
      * @example
      * ```js
-     * trimStart('/pages/index/')
+     * trimStart('/pages/index/','/')
      * //=> pages/index/
      * ```
      *
      * @param str {String} target
+     * @param tarChar {String} target of replace string
      * @param replaceWith {String} replace with
      * @returns {String} string of result
      */
@@ -230,7 +240,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         if (tarChar === void 0) { tarChar = ' '; }
         if (replaceWith === void 0) { replaceWith = ''; }
         str = trim(String(str));
-        var rex = new RegExp("^" + tarChar, 'gi');
+        if (!tarChar) {
+            tarChar = ' ';
+        }
+        if (!replaceWith) {
+            replaceWith = '';
+        }
+        tarChar = charEscape(tarChar);
+        var rex = new RegExp("^" + tarChar, 'g');
         return str.replace(rex, replaceWith);
     };
     exports.trimStart = trimStart;
@@ -239,11 +256,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
      *
      * @example
      * ```js
-     * trim('/pages/index/')
+     * trimEnd('/pages/index/','/')
      * //=> /pages/index
      * ```
      *
      * @param str {String} target
+     * @param tarChar {String} target of replace string
      * @param replaceWith {String} replace with
      * @returns {String} string of result
      */
@@ -251,7 +269,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         if (tarChar === void 0) { tarChar = ' '; }
         if (replaceWith === void 0) { replaceWith = ''; }
         str = trim(String(str));
-        var rex = new RegExp(tarChar + "$", 'gi');
+        if (!tarChar) {
+            tarChar = ' ';
+        }
+        if (!replaceWith) {
+            replaceWith = '';
+        }
+        tarChar = charEscape(tarChar);
+        var rex = new RegExp(tarChar + "$", 'g');
         return str.replace(rex, replaceWith);
     };
     exports.trimEnd = trimEnd;

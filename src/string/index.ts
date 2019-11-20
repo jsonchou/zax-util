@@ -29,6 +29,10 @@ const months = {
 	'en-us': ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
 }
 
+function charEscape(str: string): string {
+	return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+}
+
 type NumberKeys = keyof typeof numbers
 type daysKeys = keyof typeof days
 type MonthKeys = keyof typeof months
@@ -147,7 +151,7 @@ type Nothing5 = {}
  *
  * @example
  * ```js
- * padStart(5)
+ * padStart(5,2)
  * //=> 05
  * ```
  *
@@ -171,7 +175,7 @@ type Nothing6 = {}
  *
  * @example
  * ```js
- * padEnd(5)
+ * padEnd(5,2)
  * //=> 50
  * ```
  *
@@ -200,16 +204,22 @@ type Nothing7 = {}
  * ```
  *
  * @param str {String} target
+ * @param tarChar {String} target of replace string
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
 const trim = (str: string | number, tarChar = ' ', replaceWith = ''): string => {
 	//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim
 	str = String(str).replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '')
-	if (!replaceWith) {
-		return str
+	if (!tarChar) {
+		tarChar = ' '
 	}
-	let rex = new RegExp(`^${tarChar}|${tarChar}$`, 'gi')
+	if (!replaceWith) {
+		replaceWith = ''
+	}
+	// fix with special quote
+	tarChar = charEscape(tarChar)
+	let rex = new RegExp(`^${tarChar}|${tarChar}$`, 'g')
 	return str.replace(rex, replaceWith)
 }
 
@@ -219,17 +229,25 @@ type Nothing8 = {}
  *
  * @example
  * ```js
- * trimStart('/pages/index/')
+ * trimStart('/pages/index/','/')
  * //=> pages/index/
  * ```
  *
  * @param str {String} target
+ * @param tarChar {String} target of replace string
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
 const trimStart = (str: string | number, tarChar = ' ', replaceWith = ''): string => {
 	str = trim(String(str))
-	let rex = new RegExp(`^${tarChar}`, 'gi')
+	if (!tarChar) {
+		tarChar = ' '
+	}
+	if (!replaceWith) {
+		replaceWith = ''
+	}
+	tarChar = charEscape(tarChar)
+	let rex = new RegExp(`^${tarChar}`, 'g')
 	return str.replace(rex, replaceWith)
 }
 
@@ -239,17 +257,25 @@ type Nothing9 = {}
  *
  * @example
  * ```js
- * trim('/pages/index/')
+ * trimEnd('/pages/index/','/')
  * //=> /pages/index
  * ```
  *
  * @param str {String} target
+ * @param tarChar {String} target of replace string
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
 const trimEnd = (str: string | number, tarChar = ' ', replaceWith = ''): string => {
 	str = trim(String(str))
-	let rex = new RegExp(`${tarChar}$`, 'gi')
+	if (!tarChar) {
+		tarChar = ' '
+	}
+	if (!replaceWith) {
+		replaceWith = ''
+	}
+	tarChar = charEscape(tarChar)
+	let rex = new RegExp(`${tarChar}$`, 'g')
 	return str.replace(rex, replaceWith)
 }
 

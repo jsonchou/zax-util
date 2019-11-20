@@ -104,20 +104,42 @@ describe('zaxString', () => {
 		expect(zaxString.trim(' ##hello world## ', '#', '-')).toEqual('-#hello world#-')
 		expect(zaxString.trim(' ##hello world## ', '##', '--')).toEqual('--hello world--')
 		expect(zaxString.trim(' ##hello # world## ', '#', '-')).toEqual('-#hello # world#-')
+
+		// fix special charactor
+		expect(zaxString.trim(' *path/71/31* ', '*')).toEqual('path/71/31')
+		expect(zaxString.trim(' **path//71/31** ', '*')).toEqual('*path//71/31*')
+		expect(zaxString.trim(' *path/71/31* ', '*', '-')).toEqual('-path/71/31-')
+
+		expect(zaxString.trim(' /path/71/31/ ', '/')).toEqual('path/71/31')
+		expect(zaxString.trim(' //path//71/31// ', '/')).toEqual('/path//71/31/')
+		expect(zaxString.trim(' /path/71/31/ ', '/', '-')).toEqual('-path/71/31-')
+
 		expect(zaxString.trim(3)).toEqual('3')
-		expect(zaxString.trim(3, '', '-')).toEqual('-3-')
+		expect(zaxString.trim(3, '')).toEqual('3')
+		expect(zaxString.trim(3, '', '-')).toEqual('3')
 	})
 
 	it(`should be trimStart string`, () => {
-		// /productlist/72/73/
+		// /path/72/73/
 		expect(zaxString.trimStart(' hello world ')).toEqual('hello world')
 		expect(zaxString.trimStart(' #hello world# ', '#', '-')).toEqual('-hello world#')
 		expect(zaxString.trimStart(' #hello world# ', '#', '--')).toEqual('--hello world#')
 		expect(zaxString.trimStart(' ##hello world## ', '#', '-')).toEqual('-#hello world##')
 		expect(zaxString.trimStart(' ##hello world## ', '##', '--')).toEqual('--hello world##')
 		expect(zaxString.trimStart(' ##hello # world## ', '#', '-')).toEqual('-#hello # world##')
+
+		// fix special charactor
+		expect(zaxString.trimStart(' *path/71/31* ', '*')).toEqual('path/71/31*')
+		expect(zaxString.trimStart(' **path//71/31** ', '*')).toEqual('*path//71/31**')
+		expect(zaxString.trimStart(' *path/71/31* ', '*', '-')).toEqual('-path/71/31*')
+
+		expect(zaxString.trimStart(' /path/71/31/ ', '/')).toEqual('path/71/31/')
+		expect(zaxString.trimStart(' //path//71/31// ', '/')).toEqual('/path//71/31//')
+		expect(zaxString.trimStart(' /path/71/31/ ', '/', '-')).toEqual('-path/71/31/')
+
 		expect(zaxString.trimStart(3)).toEqual('3')
-		expect(zaxString.trimStart(3, '', '-')).toEqual('-3')
+		expect(zaxString.trimStart(3, '')).toEqual('3')
+		expect(zaxString.trimStart(3, '', '-')).toEqual('3')
 	})
 
 	it(`should be trimEnd string`, () => {
@@ -127,8 +149,19 @@ describe('zaxString', () => {
 		expect(zaxString.trimEnd(' ##hello world## ', '#', '-')).toEqual('##hello world#-')
 		expect(zaxString.trimEnd(' ##hello world## ', '##', '--')).toEqual('##hello world--')
 		expect(zaxString.trimEnd(' ##hello # world## ', '#', '-')).toEqual('##hello # world#-')
+
+		// fix special charactor
+		expect(zaxString.trimEnd(' *path/71/31* ', '*')).toEqual('*path/71/31')
+		expect(zaxString.trimEnd(' **path//71/31** ', '*')).toEqual('**path//71/31*')
+		expect(zaxString.trimEnd(' *path/71/31* ', '*', '-')).toEqual('*path/71/31-')
+
+		expect(zaxString.trimEnd(' /path/71/31/ ', '/')).toEqual('/path/71/31')
+		expect(zaxString.trimEnd(' //path//71/31// ', '/')).toEqual('//path//71/31/')
+		expect(zaxString.trimEnd(' /path/71/31/ ', '/', '-')).toEqual('/path/71/31-')
+
 		expect(zaxString.trimEnd(3)).toEqual('3')
-		expect(zaxString.trimEnd(3, '', '-')).toEqual('3-')
+		expect(zaxString.trimEnd(3, '')).toEqual('3')
+		expect(zaxString.trimEnd(3, '', '-')).toEqual('3')
 	})
 
 	it(`should be striptags html`, () => {
