@@ -1,6 +1,6 @@
 {
     "name": "zax-util",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "description": "zax-util",
     "main": "./libs/cjs",
     "directories": {
