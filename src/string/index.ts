@@ -227,9 +227,10 @@ type Nothing8 = {}
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
-const trimStart = (str: string | number, replaceWith = ''): string => {
+const trimStart = (str: string | number, tarChar = ' ', replaceWith = ''): string => {
 	str = trim(String(str))
-	return replaceWith + str
+	let rex = new RegExp(`^${tarChar}`, 'gi')
+	return str.replace(rex, replaceWith)
 }
 
 type Nothing9 = {}
@@ -246,9 +247,10 @@ type Nothing9 = {}
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
-const trimEnd = (str: string | number, replaceWith = ''): string => {
+const trimEnd = (str: string | number, tarChar = ' ', replaceWith = ''): string => {
 	str = trim(String(str))
-	return str + replaceWith
+	let rex = new RegExp(`${tarChar}$`, 'gi')
+	return str.replace(rex, replaceWith)
 }
 
 /* istanbul ignore next */

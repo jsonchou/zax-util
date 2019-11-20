@@ -217,10 +217,12 @@ exports.trim = trim;
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
-var trimStart = function (str, replaceWith) {
+var trimStart = function (str, tarChar, replaceWith) {
+    if (tarChar === void 0) { tarChar = ' '; }
     if (replaceWith === void 0) { replaceWith = ''; }
     str = trim(String(str));
-    return replaceWith + str;
+    var rex = new RegExp("^" + tarChar, 'gi');
+    return str.replace(rex, replaceWith);
 };
 exports.trimStart = trimStart;
 /**
@@ -236,10 +238,12 @@ exports.trimStart = trimStart;
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
-var trimEnd = function (str, replaceWith) {
+var trimEnd = function (str, tarChar, replaceWith) {
+    if (tarChar === void 0) { tarChar = ' '; }
     if (replaceWith === void 0) { replaceWith = ''; }
     str = trim(String(str));
-    return str + replaceWith;
+    var rex = new RegExp(tarChar + "$", 'gi');
+    return str.replace(rex, replaceWith);
 };
 exports.trimEnd = trimEnd;
 /* istanbul ignore next */

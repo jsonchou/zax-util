@@ -75,7 +75,7 @@ describe('zaxString', () => {
 	})
 
 	it(`should be toHttps string`, () => {
-		expect(zaxString.toHttps('http://zhongan.com')).toEqual('https://zhongan.com')
+		expect(zaxString.toHttps('http://demo.com')).toEqual('https://demo.com')
 		expect(zaxString.toHttps('')).toEqual('')
 	})
 
@@ -100,22 +100,35 @@ describe('zaxString', () => {
 	it(`should be trim string`, () => {
 		expect(zaxString.trim(' #hello world# ')).toEqual('#hello world#')
 		expect(zaxString.trim(' #hello world# ', '#', '-')).toEqual('-hello world-')
+		expect(zaxString.trim(' #hello world# ', '#', '--')).toEqual('--hello world--')
+		expect(zaxString.trim(' ##hello world## ', '#', '-')).toEqual('-#hello world#-')
+		expect(zaxString.trim(' ##hello world## ', '##', '--')).toEqual('--hello world--')
+		expect(zaxString.trim(' ##hello # world## ', '#', '-')).toEqual('-#hello # world#-')
 		expect(zaxString.trim(3)).toEqual('3')
 		expect(zaxString.trim(3, '', '-')).toEqual('-3-')
 	})
 
 	it(`should be trimStart string`, () => {
+		// /productlist/72/73/
 		expect(zaxString.trimStart(' hello world ')).toEqual('hello world')
-		expect(zaxString.trimStart(' hello world ', '-')).toEqual('-hello world')
+		expect(zaxString.trimStart(' #hello world# ', '#', '-')).toEqual('-hello world#')
+		expect(zaxString.trimStart(' #hello world# ', '#', '--')).toEqual('--hello world#')
+		expect(zaxString.trimStart(' ##hello world## ', '#', '-')).toEqual('-#hello world##')
+		expect(zaxString.trimStart(' ##hello world## ', '##', '--')).toEqual('--hello world##')
+		expect(zaxString.trimStart(' ##hello # world## ', '#', '-')).toEqual('-#hello # world##')
 		expect(zaxString.trimStart(3)).toEqual('3')
-		expect(zaxString.trimStart(3, '-')).toEqual('-3')
+		expect(zaxString.trimStart(3, '', '-')).toEqual('-3')
 	})
 
 	it(`should be trimEnd string`, () => {
 		expect(zaxString.trimEnd(' hello world ')).toEqual('hello world')
-		expect(zaxString.trimEnd(' hello world ', '-')).toEqual('hello world-')
+		expect(zaxString.trimEnd(' #hello world# ', '#', '-')).toEqual('#hello world-')
+		expect(zaxString.trimEnd(' #hello world# ', '#', '--')).toEqual('#hello world--')
+		expect(zaxString.trimEnd(' ##hello world## ', '#', '-')).toEqual('##hello world#-')
+		expect(zaxString.trimEnd(' ##hello world## ', '##', '--')).toEqual('##hello world--')
+		expect(zaxString.trimEnd(' ##hello # world## ', '#', '-')).toEqual('##hello # world#-')
 		expect(zaxString.trimEnd(3)).toEqual('3')
-		expect(zaxString.trimEnd(3, '-')).toEqual('3-')
+		expect(zaxString.trimEnd(3, '', '-')).toEqual('3-')
 	})
 
 	it(`should be striptags html`, () => {

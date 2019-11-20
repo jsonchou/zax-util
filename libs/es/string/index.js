@@ -190,9 +190,10 @@ const trim = (str, tarChar = ' ', replaceWith = '') => {
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
-const trimStart = (str, replaceWith = '') => {
+const trimStart = (str, tarChar = ' ', replaceWith = '') => {
     str = trim(String(str));
-    return replaceWith + str;
+    let rex = new RegExp(`^${tarChar}`, 'gi');
+    return str.replace(rex, replaceWith);
 };
 /**
  * trim end.
@@ -207,9 +208,10 @@ const trimStart = (str, replaceWith = '') => {
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
-const trimEnd = (str, replaceWith = '') => {
+const trimEnd = (str, tarChar = ' ', replaceWith = '') => {
     str = trim(String(str));
-    return str + replaceWith;
+    let rex = new RegExp(`${tarChar}$`, 'gi');
+    return str.replace(rex, replaceWith);
 };
 /* istanbul ignore next */
 const expData = {

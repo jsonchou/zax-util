@@ -155,7 +155,7 @@ declare const trim: (str: string | number, tarChar?: string, replaceWith?: strin
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
-declare const trimStart: (str: string | number, replaceWith?: string) => string;
+declare const trimStart: (str: string | number, tarChar?: string, replaceWith?: string) => string;
 /**
  * trim end.
  *
@@ -169,7 +169,7 @@ declare const trimStart: (str: string | number, replaceWith?: string) => string;
  * @param replaceWith {String} replace with
  * @returns {String} string of result
  */
-declare const trimEnd: (str: string | number, replaceWith?: string) => string;
+declare const trimEnd: (str: string | number, tarChar?: string, replaceWith?: string) => string;
 declare const expData: {
     toWord: (num: 0 | 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
     toDay: (num: 0 | 1 | 2 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
@@ -180,8 +180,8 @@ declare const expData: {
     padStart: (str: string | number, limit?: number, repeatWith?: string) => string;
     padEnd: (str: string | number, limit?: number, repeatWith?: string) => string;
     trim: (str: string | number, tarChar?: string, replaceWith?: string) => string;
-    trimStart: (str: string | number, replaceWith?: string) => string;
-    trimEnd: (str: string | number, replaceWith?: string) => string;
+    trimStart: (str: string | number, tarChar?: string, replaceWith?: string) => string;
+    trimEnd: (str: string | number, tarChar?: string, replaceWith?: string) => string;
     isString: typeof isString;
 };
 export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, toHttps, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString };
