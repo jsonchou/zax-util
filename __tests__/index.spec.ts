@@ -319,13 +319,26 @@ describe('zaxArray', () => {
 		])
 	})
 
-	it(`should be correct union function result `, () => {
-		expect(zaxArray.union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f'])).toEqual(['a', 'b', 'c', 'd', 'e', 'f'])
-		expect(zaxArray.union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f'])).toEqual(['a', 'b', 'c', 'd', 'e', 'f'])
-	})
-
 	it(`should be correct diff function result `, () => {
 		expect(zaxArray.diff(['a', 'b', 'c'], ['a'], ['b'], ['g'])).toEqual(['c'])
+	})
+
+	it(`should be correct intersect function result `, () => {
+		expect(zaxArray.intersect([1, 2, 3, 4, 5], [2, 4, 6, 8, 10])).toEqual([2, 4])
+	})
+	it(`should be correct minus function result `, () => {
+		expect(zaxArray.minus([1, 2, 3, 4, 5], [2, 4, 6, 8, 10])).toEqual([1, 3, 5])
+	})
+	it(`should be correct complement function result `, () => {
+		expect(zaxArray.complement([1, 2, 3, 4, 5], [2, 4, 6, 8, 10])).toEqual([1, 3, 5, 6, 8, 10])
+	})
+	it(`should be correct union function result `, () => {
+		expect(zaxArray.union([1, 2, 3, 4, 5], [2, 4, 6, 8, 10])).toEqual([1, 2, 3, 4, 5, 6, 8, 10])
+	})
+
+	it(`should be correct unionPro function result `, () => {
+		expect(zaxArray.unionPro(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f'])).toEqual(['a', 'b', 'c', 'd', 'e', 'f'])
+		expect(zaxArray.unionPro(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f'])).toEqual(['a', 'b', 'c', 'd', 'e', 'f'])
 	})
 })
 
