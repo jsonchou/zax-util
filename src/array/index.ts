@@ -154,7 +154,7 @@ export function diff(...arr: TypeArray[]): TypeArray {
  * @param b {TypeArray[]}
  * @returns {TypeArray}
  */
-export function intersect(a: TypeArray, b: TypeArray): TypeArray {
+export function intersect<T>(a: Array<T>, b: Array<T>): Array<T> {
 	let sa = new Set(a)
 	let sb = new Set(b)
 	return a.filter(x => sb.has(x))
@@ -172,7 +172,7 @@ export function intersect(a: TypeArray, b: TypeArray): TypeArray {
  * @param b {TypeArray[]}
  * @returns {TypeArray}
  */
-export function minus(a: TypeArray, b: TypeArray): TypeArray {
+export function minus<T>(a: Array<T>, b: Array<T>): Array<T> {
 	let sa = new Set(a)
 	let sb = new Set(b)
 	return a.filter(x => !sb.has(x))
@@ -190,7 +190,7 @@ export function minus(a: TypeArray, b: TypeArray): TypeArray {
  * @param b {TypeArray[]}
  * @returns {TypeArray}
  */
-export function complement(a: TypeArray, b: TypeArray): TypeArray {
+export function complement<T>(a: Array<T>, b: Array<T>): Array<T> {
 	let sa = new Set(a)
 	let sb = new Set(b)
 	return [...a.filter(x => !sb.has(x)), ...b.filter(x => !sa.has(x))]
@@ -208,7 +208,7 @@ export function complement(a: TypeArray, b: TypeArray): TypeArray {
  * @param b {TypeArray[]}
  * @returns {TypeArray}
  */
-export function union(a: TypeArray, b: TypeArray): TypeArray {
+export function union<T>(a: Array<T>, b: Array<T>): Array<T> {
 	return Array.from(new Set([...a, ...b]))
 }
 

@@ -5,12 +5,12 @@
  * @see partial from https://github.com/jonschlinkert/arr-diff
  */
 import { isArray } from '../types/index';
-declare type TypeObject = {
+export declare type TypeObject = {
     [key: string]: any;
 };
-declare type TypeArray = string[] | number[];
-declare type ObjectArray = TypeObject[];
-declare type MixArray = TypeArray | ObjectArray;
+export declare type TypeArray = string[] | number[];
+export declare type ObjectArray = TypeObject[];
+export declare type MixArray = TypeArray | ObjectArray;
 export declare type TypeOrderBy = 'ASC' | 'DESC';
 /**
  * sort array.
@@ -40,18 +40,6 @@ export declare function sort(arr: MixArray, orderBy?: TypeOrderBy, key?: string)
  */
 export declare function unique(arr: MixArray, key?: string): MixArray | void;
 /**
- * union the array of simple.
- *
- * ```js
- * union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f']);
- * //=> ['a', 'b', 'c', 'd', 'e', 'f']
- * ```
- *
- * @param arr {TypeArray[]}
- * @returns {TypeArray}
- */
-export declare function union(...arr: TypeArray[]): TypeArray;
-/**
  * diff the first array of simple.
  *
  * ```js
@@ -63,11 +51,79 @@ export declare function union(...arr: TypeArray[]): TypeArray;
  * @returns {TypeArray}
  */
 export declare function diff(...arr: TypeArray[]): TypeArray;
+/**
+ * intersect array.
+ *
+ * ```js
+ * intersect([1,2,3,4,5], [2,4,6,8,10])
+ * //=> [2,4] //交集
+ * ```
+ *
+ * @param a {TypeArray[]}
+ * @param b {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export declare function intersect<T>(a: Array<T>, b: Array<T>): Array<T>;
+/**
+ * minus array.
+ *
+ * ```js
+ * minus([1,2,3,4,5], [2,4,6,8,10])
+ * //=> [1,3,5] //差集
+ * ```
+ *
+ * @param a {TypeArray[]}
+ * @param b {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export declare function minus<T>(a: Array<T>, b: Array<T>): Array<T>;
+/**
+ * complement array.
+ *
+ * ```js
+ * complement([1,2,3,4,5], [2,4,6,8,10])
+ * //=> [1,3,5,6,8,10] //补集
+ * ```
+ *
+ * @param a {TypeArray[]}
+ * @param b {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export declare function complement<T>(a: Array<T>, b: Array<T>): Array<T>;
+/**
+ * union array.
+ *
+ * ```js
+ * union([1,2,3,4,5], [2,4,6,8,10])
+ * //=> [1,2,3,4,5,6,8,10] //交集
+ * ```
+ *
+ * @param a {TypeArray[]}
+ * @param b {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export declare function union<T>(a: Array<T>, b: Array<T>): Array<T>;
+/**
+ * union the array of simple with high performane.
+ *
+ * ```js
+ * unionPro(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f']);
+ * //=> ['a', 'b', 'c', 'd', 'e', 'f']
+ * ```
+ *
+ * @param arr {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export declare function unionPro(...arr: TypeArray[]): TypeArray;
 declare const _default: {
     isArray: typeof isArray;
     sort: typeof sort;
     unique: typeof unique;
-    union: typeof union;
     diff: typeof diff;
+    intersect: typeof intersect;
+    minus: typeof minus;
+    complement: typeof complement;
+    union: typeof union;
+    unionPro: typeof unionPro;
 };
 export default _default;

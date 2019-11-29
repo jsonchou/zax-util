@@ -139,44 +139,6 @@ var __values = (this && this.__values) || function(o) {
     }
     exports.unique = unique;
     /**
-     * union the array of simple.
-     *
-     * ```js
-     * union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f']);
-     * //=> ['a', 'b', 'c', 'd', 'e', 'f']
-     * ```
-     *
-     * @param arr {TypeArray[]}
-     * @returns {TypeArray}
-     */
-    function union() {
-        var arr = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            arr[_i] = arguments[_i];
-        }
-        var len = arr.length;
-        var i = 0;
-        var first = arr[0];
-        while (++i < len) {
-            var arg = arr[i];
-            /* istanbul ignore next */
-            if (!arg)
-                continue;
-            /* istanbul ignore next */
-            if (!Array.isArray(arg)) {
-                arg = [arg];
-            }
-            for (var j = 0; j < arg.length; j++) {
-                var ele = arg[j];
-                if (first.includes(ele))
-                    continue;
-                first.push(ele);
-            }
-        }
-        return first;
-    }
-    exports.union = union;
-    /**
      * diff the first array of simple.
      *
      * ```js
@@ -226,13 +188,125 @@ var __values = (this && this.__values) || function(o) {
         return first;
     }
     exports.diff = diff;
+    /**
+     * intersect array.
+     *
+     * ```js
+     * intersect([1,2,3,4,5], [2,4,6,8,10])
+     * //=> [2,4] //交集
+     * ```
+     *
+     * @param a {TypeArray[]}
+     * @param b {TypeArray[]}
+     * @returns {TypeArray}
+     */
+    function intersect(a, b) {
+        var sa = new Set(a);
+        var sb = new Set(b);
+        return a.filter(function (x) { return sb.has(x); });
+    }
+    exports.intersect = intersect;
+    /**
+     * minus array.
+     *
+     * ```js
+     * minus([1,2,3,4,5], [2,4,6,8,10])
+     * //=> [1,3,5] //差集
+     * ```
+     *
+     * @param a {TypeArray[]}
+     * @param b {TypeArray[]}
+     * @returns {TypeArray}
+     */
+    function minus(a, b) {
+        var sa = new Set(a);
+        var sb = new Set(b);
+        return a.filter(function (x) { return !sb.has(x); });
+    }
+    exports.minus = minus;
+    /**
+     * complement array.
+     *
+     * ```js
+     * complement([1,2,3,4,5], [2,4,6,8,10])
+     * //=> [1,3,5,6,8,10] //补集
+     * ```
+     *
+     * @param a {TypeArray[]}
+     * @param b {TypeArray[]}
+     * @returns {TypeArray}
+     */
+    function complement(a, b) {
+        var sa = new Set(a);
+        var sb = new Set(b);
+        return __spread(a.filter(function (x) { return !sb.has(x); }), b.filter(function (x) { return !sa.has(x); }));
+    }
+    exports.complement = complement;
+    /**
+     * union array.
+     *
+     * ```js
+     * union([1,2,3,4,5], [2,4,6,8,10])
+     * //=> [1,2,3,4,5,6,8,10] //交集
+     * ```
+     *
+     * @param a {TypeArray[]}
+     * @param b {TypeArray[]}
+     * @returns {TypeArray}
+     */
+    function union(a, b) {
+        return Array.from(new Set(__spread(a, b)));
+    }
+    exports.union = union;
+    /**
+     * union the array of simple with high performane.
+     *
+     * ```js
+     * unionPro(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f']);
+     * //=> ['a', 'b', 'c', 'd', 'e', 'f']
+     * ```
+     *
+     * @param arr {TypeArray[]}
+     * @returns {TypeArray}
+     */
+    function unionPro() {
+        var arr = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            arr[_i] = arguments[_i];
+        }
+        var len = arr.length;
+        var i = 0;
+        var first = arr[0];
+        while (++i < len) {
+            var arg = arr[i];
+            /* istanbul ignore next */
+            if (!arg)
+                continue;
+            /* istanbul ignore next */
+            if (!Array.isArray(arg)) {
+                arg = [arg];
+            }
+            for (var j = 0; j < arg.length; j++) {
+                var ele = arg[j];
+                if (first.includes(ele))
+                    continue;
+                first.push(ele);
+            }
+        }
+        return first;
+    }
+    exports.unionPro = unionPro;
     exports.default = {
         /* istanbul ignore next */
         isArray: index_1.isArray,
         sort: sort,
         unique: unique,
+        diff: diff,
+        intersect: intersect,
+        minus: minus,
+        complement: complement,
         union: union,
-        diff: diff
+        unionPro: unionPro,
     };
 });
 //# sourceMappingURL=index.js.map

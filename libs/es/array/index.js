@@ -82,39 +82,6 @@ export function unique(arr, key = 'id') {
     }
 }
 /**
- * union the array of simple.
- *
- * ```js
- * union(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f']);
- * //=> ['a', 'b', 'c', 'd', 'e', 'f']
- * ```
- *
- * @param arr {TypeArray[]}
- * @returns {TypeArray}
- */
-export function union(...arr) {
-    var len = arr.length;
-    var i = 0;
-    var first = arr[0];
-    while (++i < len) {
-        var arg = arr[i];
-        /* istanbul ignore next */
-        if (!arg)
-            continue;
-        /* istanbul ignore next */
-        if (!Array.isArray(arg)) {
-            arg = [arg];
-        }
-        for (var j = 0; j < arg.length; j++) {
-            var ele = arg[j];
-            if (first.includes(ele))
-                continue;
-            first.push(ele);
-        }
-    }
-    return first;
-}
-/**
  * diff the first array of simple.
  *
  * ```js
@@ -159,12 +126,115 @@ export function diff(...arr) {
     }
     return first;
 }
+/**
+ * intersect array.
+ *
+ * ```js
+ * intersect([1,2,3,4,5], [2,4,6,8,10])
+ * //=> [2,4] //交集
+ * ```
+ *
+ * @param a {TypeArray[]}
+ * @param b {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export function intersect(a, b) {
+    let sa = new Set(a);
+    let sb = new Set(b);
+    return a.filter(x => sb.has(x));
+}
+/**
+ * minus array.
+ *
+ * ```js
+ * minus([1,2,3,4,5], [2,4,6,8,10])
+ * //=> [1,3,5] //差集
+ * ```
+ *
+ * @param a {TypeArray[]}
+ * @param b {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export function minus(a, b) {
+    let sa = new Set(a);
+    let sb = new Set(b);
+    return a.filter(x => !sb.has(x));
+}
+/**
+ * complement array.
+ *
+ * ```js
+ * complement([1,2,3,4,5], [2,4,6,8,10])
+ * //=> [1,3,5,6,8,10] //补集
+ * ```
+ *
+ * @param a {TypeArray[]}
+ * @param b {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export function complement(a, b) {
+    let sa = new Set(a);
+    let sb = new Set(b);
+    return [...a.filter(x => !sb.has(x)), ...b.filter(x => !sa.has(x))];
+}
+/**
+ * union array.
+ *
+ * ```js
+ * union([1,2,3,4,5], [2,4,6,8,10])
+ * //=> [1,2,3,4,5,6,8,10] //交集
+ * ```
+ *
+ * @param a {TypeArray[]}
+ * @param b {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export function union(a, b) {
+    return Array.from(new Set([...a, ...b]));
+}
+/**
+ * union the array of simple with high performane.
+ *
+ * ```js
+ * unionPro(['a'], ['b', 'c'], ['a'], ['b', 'c'], ['d', 'e', 'f']);
+ * //=> ['a', 'b', 'c', 'd', 'e', 'f']
+ * ```
+ *
+ * @param arr {TypeArray[]}
+ * @returns {TypeArray}
+ */
+export function unionPro(...arr) {
+    var len = arr.length;
+    var i = 0;
+    var first = arr[0];
+    while (++i < len) {
+        var arg = arr[i];
+        /* istanbul ignore next */
+        if (!arg)
+            continue;
+        /* istanbul ignore next */
+        if (!Array.isArray(arg)) {
+            arg = [arg];
+        }
+        for (var j = 0; j < arg.length; j++) {
+            var ele = arg[j];
+            if (first.includes(ele))
+                continue;
+            first.push(ele);
+        }
+    }
+    return first;
+}
 export default {
     /* istanbul ignore next */
     isArray,
     sort,
     unique,
+    diff,
+    intersect,
+    minus,
+    complement,
     union,
-    diff
+    unionPro,
 };
 //# sourceMappingURL=index.js.map
