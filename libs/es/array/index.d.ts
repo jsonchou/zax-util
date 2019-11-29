@@ -9,6 +9,7 @@ export declare type TypeObject = {
     [key: string]: any;
 };
 export declare type TypeArray = string[] | number[];
+export declare type TypeParam = string | number;
 export declare type ObjectArray = TypeObject[];
 export declare type MixArray = TypeArray | ObjectArray;
 export declare type TypeOrderBy = 'ASC' | 'DESC';
@@ -63,7 +64,7 @@ export declare function diff(...arr: TypeArray[]): TypeArray;
  * @param b {Array<T>}
  * @returns {Array<T>}
  */
-export declare function intersect<T>(a: Array<T>, b: Array<T>): Array<T>;
+export declare function intersect<T extends TypeParam>(a: Array<T>, b: Array<T>): Array<T>;
 /**
  * minus array.
  *
@@ -76,7 +77,7 @@ export declare function intersect<T>(a: Array<T>, b: Array<T>): Array<T>;
  * @param b {Array<T>}
  * @returns {Array<T>}
  */
-export declare function minus<T>(a: Array<T>, b: Array<T>): Array<T>;
+export declare function minus<T extends TypeParam>(a: Array<T>, b: Array<T>): Array<T>;
 /**
  * complement array.
  *
@@ -89,7 +90,7 @@ export declare function minus<T>(a: Array<T>, b: Array<T>): Array<T>;
  * @param b {Array<T>}
  * @returns {Array<T>}
  */
-export declare function complement<T>(a: Array<T>, b: Array<T>): Array<T>;
+export declare function complement<T extends TypeParam>(a: Array<T>, b: Array<T>): Array<T>;
 /**
  * union array.
  *
@@ -102,7 +103,7 @@ export declare function complement<T>(a: Array<T>, b: Array<T>): Array<T>;
  * @param b {Array<T>}
  * @returns {Array<T>}
  */
-export declare function union<T>(a: Array<T>, b: Array<T>): Array<T>;
+export declare function union<T extends TypeParam>(a: Array<T>, b: Array<T>): Array<T>;
 /**
  * union the array of simple with high performane.
  *

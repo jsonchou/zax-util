@@ -325,6 +325,7 @@ describe('zaxArray', () => {
 
 	it(`should be correct intersect function result `, () => {
 		expect(zaxArray.intersect([1, 2, 3, 4, 5], [2, 4, 6, 8, 10])).toEqual([2, 4])
+		expect(zaxArray.intersect(['1', '2', '3', '4', '5'], ['2', '4', '6', '8', '10'])).toEqual(['2', '4'])
 	})
 	it(`should be correct minus function result `, () => {
 		expect(zaxArray.minus([1, 2, 3, 4, 5], [2, 4, 6, 8, 10])).toEqual([1, 3, 5])

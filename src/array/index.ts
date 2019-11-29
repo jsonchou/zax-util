@@ -9,6 +9,7 @@ import { isArray, isNumber, isString, isObject } from '../types/index'
 
 export type TypeObject = { [key: string]: any }
 export type TypeArray = string[] | number[]
+export type TypeParam = string | number
 export type ObjectArray = TypeObject[]
 export type MixArray = TypeArray | ObjectArray
 
@@ -154,7 +155,7 @@ export function diff(...arr: TypeArray[]): TypeArray {
  * @param b {Array<T>}
  * @returns {Array<T>}
  */
-export function intersect<T>(a: Array<T>, b: Array<T>): Array<T> {
+export function intersect<T extends TypeParam>(a: Array<T>, b: Array<T>): Array<T> {
 	let sa = new Set(a)
 	let sb = new Set(b)
 	return a.filter(x => sb.has(x))
@@ -172,7 +173,7 @@ export function intersect<T>(a: Array<T>, b: Array<T>): Array<T> {
  * @param b {Array<T>}
  * @returns {Array<T>}
  */
-export function minus<T>(a: Array<T>, b: Array<T>): Array<T> {
+export function minus<T extends TypeParam>(a: Array<T>, b: Array<T>): Array<T> {
 	let sa = new Set(a)
 	let sb = new Set(b)
 	return a.filter(x => !sb.has(x))
@@ -190,7 +191,7 @@ export function minus<T>(a: Array<T>, b: Array<T>): Array<T> {
  * @param b {Array<T>}
  * @returns {Array<T>}
  */
-export function complement<T>(a: Array<T>, b: Array<T>): Array<T> {
+export function complement<T extends TypeParam>(a: Array<T>, b: Array<T>): Array<T> {
 	let sa = new Set(a)
 	let sb = new Set(b)
 	return [...a.filter(x => !sb.has(x)), ...b.filter(x => !sa.has(x))]
@@ -208,7 +209,7 @@ export function complement<T>(a: Array<T>, b: Array<T>): Array<T> {
  * @param b {Array<T>}
  * @returns {Array<T>}
  */
-export function union<T>(a: Array<T>, b: Array<T>): Array<T> {
+export function union<T extends TypeParam>(a: Array<T>, b: Array<T>): Array<T> {
 	return Array.from(new Set([...a, ...b]))
 }
 
