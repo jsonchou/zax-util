@@ -13,10 +13,10 @@
     * [~sort(arr, orderBy, key)](#module_zaxArray..sort)
     * [~unique(arr, key)](#module_zaxArray..unique)
     * [~diff(...arr)](#module_zaxArray..diff) ⇒ <code>TypeArray</code>
-    * [~intersect(a, b)](#module_zaxArray..intersect) ⇒ <code>TypeArray</code>
-    * [~minus(a, b)](#module_zaxArray..minus) ⇒ <code>TypeArray</code>
-    * [~complement(a, b)](#module_zaxArray..complement) ⇒ <code>TypeArray</code>
-    * [~union(a, b)](#module_zaxArray..union) ⇒ <code>TypeArray</code>
+    * [~intersect(a, b)](#module_zaxArray..intersect) ⇒ <code>Array.&lt;T&gt;</code>
+    * [~minus(a, b)](#module_zaxArray..minus) ⇒ <code>Array.&lt;T&gt;</code>
+    * [~complement(a, b)](#module_zaxArray..complement) ⇒ <code>Array.&lt;T&gt;</code>
+    * [~union(a, b)](#module_zaxArray..union) ⇒ <code>Array.&lt;T&gt;</code>
     * [~unionPro(...arr)](#module_zaxArray..unionPro) ⇒ <code>TypeArray</code>
 
 <a name="module_zaxArray..sort"></a>
@@ -68,7 +68,7 @@
 
 <a name="module_zaxArray..intersect"></a>
 
-### zaxArray~intersect(a, b) ⇒ <code>TypeArray</code>
+### zaxArray~intersect(a, b) ⇒ <code>Array.&lt;T&gt;</code>
 <p>intersect array.</p>
 <pre class="prettyprint source lang-js"><code>intersect([1,2,3,4,5], [2,4,6,8,10])
 //=> [2,4] //交集
@@ -78,12 +78,12 @@
 
 | Param | Type |
 | --- | --- |
-| a | <code>Array.&lt;TypeArray&gt;</code> | 
-| b | <code>Array.&lt;TypeArray&gt;</code> | 
+| a | <code>Array.&lt;T&gt;</code> | 
+| b | <code>Array.&lt;T&gt;</code> | 
 
 <a name="module_zaxArray..minus"></a>
 
-### zaxArray~minus(a, b) ⇒ <code>TypeArray</code>
+### zaxArray~minus(a, b) ⇒ <code>Array.&lt;T&gt;</code>
 <p>minus array.</p>
 <pre class="prettyprint source lang-js"><code>minus([1,2,3,4,5], [2,4,6,8,10])
 //=> [1,3,5] //差集
@@ -93,12 +93,12 @@
 
 | Param | Type |
 | --- | --- |
-| a | <code>Array.&lt;TypeArray&gt;</code> | 
-| b | <code>Array.&lt;TypeArray&gt;</code> | 
+| a | <code>Array.&lt;T&gt;</code> | 
+| b | <code>Array.&lt;T&gt;</code> | 
 
 <a name="module_zaxArray..complement"></a>
 
-### zaxArray~complement(a, b) ⇒ <code>TypeArray</code>
+### zaxArray~complement(a, b) ⇒ <code>Array.&lt;T&gt;</code>
 <p>complement array.</p>
 <pre class="prettyprint source lang-js"><code>complement([1,2,3,4,5], [2,4,6,8,10])
 //=> [1,3,5,6,8,10] //补集
@@ -108,12 +108,12 @@
 
 | Param | Type |
 | --- | --- |
-| a | <code>Array.&lt;TypeArray&gt;</code> | 
-| b | <code>Array.&lt;TypeArray&gt;</code> | 
+| a | <code>Array.&lt;T&gt;</code> | 
+| b | <code>Array.&lt;T&gt;</code> | 
 
 <a name="module_zaxArray..union"></a>
 
-### zaxArray~union(a, b) ⇒ <code>TypeArray</code>
+### zaxArray~union(a, b) ⇒ <code>Array.&lt;T&gt;</code>
 <p>union array.</p>
 <pre class="prettyprint source lang-js"><code>union([1,2,3,4,5], [2,4,6,8,10])
 //=> [1,2,3,4,5,6,8,10] //交集
@@ -123,8 +123,8 @@
 
 | Param | Type |
 | --- | --- |
-| a | <code>Array.&lt;TypeArray&gt;</code> | 
-| b | <code>Array.&lt;TypeArray&gt;</code> | 
+| a | <code>Array.&lt;T&gt;</code> | 
+| b | <code>Array.&lt;T&gt;</code> | 
 
 <a name="module_zaxArray..unionPro"></a>
 

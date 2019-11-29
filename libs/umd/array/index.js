@@ -196,9 +196,9 @@ var __values = (this && this.__values) || function(o) {
      * //=> [2,4] //交集
      * ```
      *
-     * @param a {TypeArray[]}
-     * @param b {TypeArray[]}
-     * @returns {TypeArray}
+     * @param a {Array<T>}
+     * @param b {Array<T>}
+     * @returns {Array<T>}
      */
     function intersect(a, b) {
         var sa = new Set(a);
@@ -214,9 +214,9 @@ var __values = (this && this.__values) || function(o) {
      * //=> [1,3,5] //差集
      * ```
      *
-     * @param a {TypeArray[]}
-     * @param b {TypeArray[]}
-     * @returns {TypeArray}
+     * @param a {Array<T>}
+     * @param b {Array<T>}
+     * @returns {Array<T>}
      */
     function minus(a, b) {
         var sa = new Set(a);
@@ -232,9 +232,9 @@ var __values = (this && this.__values) || function(o) {
      * //=> [1,3,5,6,8,10] //补集
      * ```
      *
-     * @param a {TypeArray[]}
-     * @param b {TypeArray[]}
-     * @returns {TypeArray}
+     * @param a {Array<T>}
+     * @param b {Array<T>}
+     * @returns {Array<T>}
      */
     function complement(a, b) {
         var sa = new Set(a);
@@ -250,9 +250,9 @@ var __values = (this && this.__values) || function(o) {
      * //=> [1,2,3,4,5,6,8,10] //交集
      * ```
      *
-     * @param a {TypeArray[]}
-     * @param b {TypeArray[]}
-     * @returns {TypeArray}
+     * @param a {Array<T>}
+     * @param b {Array<T>}
+     * @returns {Array<T>}
      */
     function union(a, b) {
         return Array.from(new Set(__spread(a, b)));

@@ -59,9 +59,9 @@ export declare function diff(...arr: TypeArray[]): TypeArray;
  * //=> [2,4] //交集
  * ```
  *
- * @param a {TypeArray[]}
- * @param b {TypeArray[]}
- * @returns {TypeArray}
+ * @param a {Array<T>}
+ * @param b {Array<T>}
+ * @returns {Array<T>}
  */
 export declare function intersect<T>(a: Array<T>, b: Array<T>): Array<T>;
 /**
@@ -72,9 +72,9 @@ export declare function intersect<T>(a: Array<T>, b: Array<T>): Array<T>;
  * //=> [1,3,5] //差集
  * ```
  *
- * @param a {TypeArray[]}
- * @param b {TypeArray[]}
- * @returns {TypeArray}
+ * @param a {Array<T>}
+ * @param b {Array<T>}
+ * @returns {Array<T>}
  */
 export declare function minus<T>(a: Array<T>, b: Array<T>): Array<T>;
 /**
@@ -85,9 +85,9 @@ export declare function minus<T>(a: Array<T>, b: Array<T>): Array<T>;
  * //=> [1,3,5,6,8,10] //补集
  * ```
  *
- * @param a {TypeArray[]}
- * @param b {TypeArray[]}
- * @returns {TypeArray}
+ * @param a {Array<T>}
+ * @param b {Array<T>}
+ * @returns {Array<T>}
  */
 export declare function complement<T>(a: Array<T>, b: Array<T>): Array<T>;
 /**
@@ -98,9 +98,9 @@ export declare function complement<T>(a: Array<T>, b: Array<T>): Array<T>;
  * //=> [1,2,3,4,5,6,8,10] //交集
  * ```
  *
- * @param a {TypeArray[]}
- * @param b {TypeArray[]}
- * @returns {TypeArray}
+ * @param a {Array<T>}
+ * @param b {Array<T>}
+ * @returns {Array<T>}
  */
 export declare function union<T>(a: Array<T>, b: Array<T>): Array<T>;
 /**

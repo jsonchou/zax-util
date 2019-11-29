@@ -150,9 +150,9 @@ export function diff(...arr: TypeArray[]): TypeArray {
  * //=> [2,4] //交集
  * ```
  *
- * @param a {TypeArray[]}
- * @param b {TypeArray[]}
- * @returns {TypeArray}
+ * @param a {Array<T>}
+ * @param b {Array<T>}
+ * @returns {Array<T>}
  */
 export function intersect<T>(a: Array<T>, b: Array<T>): Array<T> {
 	let sa = new Set(a)
@@ -168,9 +168,9 @@ export function intersect<T>(a: Array<T>, b: Array<T>): Array<T> {
  * //=> [1,3,5] //差集
  * ```
  *
- * @param a {TypeArray[]}
- * @param b {TypeArray[]}
- * @returns {TypeArray}
+ * @param a {Array<T>}
+ * @param b {Array<T>}
+ * @returns {Array<T>}
  */
 export function minus<T>(a: Array<T>, b: Array<T>): Array<T> {
 	let sa = new Set(a)
@@ -186,9 +186,9 @@ export function minus<T>(a: Array<T>, b: Array<T>): Array<T> {
  * //=> [1,3,5,6,8,10] //补集
  * ```
  *
- * @param a {TypeArray[]}
- * @param b {TypeArray[]}
- * @returns {TypeArray}
+ * @param a {Array<T>}
+ * @param b {Array<T>}
+ * @returns {Array<T>}
  */
 export function complement<T>(a: Array<T>, b: Array<T>): Array<T> {
 	let sa = new Set(a)
@@ -204,9 +204,9 @@ export function complement<T>(a: Array<T>, b: Array<T>): Array<T> {
  * //=> [1,2,3,4,5,6,8,10] //交集
  * ```
  *
- * @param a {TypeArray[]}
- * @param b {TypeArray[]}
- * @returns {TypeArray}
+ * @param a {Array<T>}
+ * @param b {Array<T>}
+ * @returns {Array<T>}
  */
 export function union<T>(a: Array<T>, b: Array<T>): Array<T> {
 	return Array.from(new Set([...a, ...b]))
