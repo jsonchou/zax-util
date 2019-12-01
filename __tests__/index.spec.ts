@@ -265,7 +265,9 @@ describe('zaxArray', () => {
 	})
 
 	it(`should be correct sort function result `, () => {
-		expect(zaxArray.sort([])).toBeFalsy()
+		expect(() => {
+			zaxArray.sort([])
+		}).toThrow('Invalid array length');
 		expect(zaxArray.sort(['a', 'c', 'd', 'a'], 'ASC')).toEqual(['a', 'a', 'c', 'd'])
 		expect(zaxArray.sort([1, 2, 9, 3, 4, 3, 2, 3, 4, 5, 3], 'ASC')).toEqual([1, 2, 2, 3, 3, 3, 3, 4, 4, 5, 9])
 		expect(zaxArray.sort(['a', 'c', 'd', 'a'], 'DESC')).toEqual(['d', 'c', 'a', 'a'])
@@ -302,8 +304,18 @@ describe('zaxArray', () => {
 	})
 
 	it(`should be correct unique function result `, () => {
-		expect(zaxArray.unique([])).toBeFalsy()
-		expect(zaxArray.unique([], 'id')).toBeFalsy()
+		expect(() => {
+			zaxArray.unique([])
+		}).toThrow('Invalid array length');
+
+		expect(() => {
+			zaxArray.unique([], 'id')
+		}).toThrow('Invalid array length');
+
+		expect(() => {
+			zaxArray.unique([new RegExp(/\s/, 'gi')], 'id')
+		}).toThrow('Not correct type');
+
 		expect(zaxArray.unique(['a', 'c', 'd', 'a'])).toEqual(['a', 'c', 'd'])
 		expect(
 			zaxArray.unique([
@@ -317,6 +329,9 @@ describe('zaxArray', () => {
 			{ id: 2, v: 'c' },
 			{ id: 3, v: 'd' }
 		])
+
+
+
 	})
 
 	it(`should be correct diff function result `, () => {

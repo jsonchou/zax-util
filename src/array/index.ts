@@ -8,7 +8,7 @@
 import { isArray, isNumber, isString, isObject } from '../types/index'
 
 export type TypeObject = { [key: string]: any }
-export type TypeArray = string[] | number[]
+export type TypeArray = Array<number | string>
 export type TypeParam = string | number
 export type ObjectArray = TypeObject[]
 export type MixArray = TypeArray | ObjectArray
@@ -28,10 +28,9 @@ export type TypeOrderBy = 'ASC' | 'DESC'
  * @param key {String}
  * @readonly {MixArray | void}
  */
-export function sort(arr: MixArray, orderBy: TypeOrderBy = 'ASC', key?: string): MixArray | void {
+export function sort(arr: MixArray, orderBy: TypeOrderBy = 'ASC', key?: string): MixArray | never {
 	if (!arr.length) {
-		console.error('arr is null')
-		return
+		throw new RangeError('Invalid array length')
 	}
 	let func
 	if (!key) {
@@ -60,13 +59,12 @@ export function sort(arr: MixArray, orderBy: TypeOrderBy = 'ASC', key?: string):
  *
  * @param arr {MixArray}
  * @param key
- * @readonly {MixArray | void}
+ * @readonly {MixArray | never}
  */
 
-export function unique(arr: MixArray, key: string = 'id'): MixArray | void {
+export function unique(arr: MixArray, key: string = 'id'): MixArray | never {
 	if (!arr.length) {
-		console.error('arr is null')
-		return
+		throw new RangeError('Invalid array length')
 	}
 	let first = arr[0]
 
@@ -88,6 +86,7 @@ export function unique(arr: MixArray, key: string = 'id'): MixArray | void {
 		}
 		return [...Array.from(tmp)]
 	}
+	throw new TypeError('Not correct type')
 }
 
 /**

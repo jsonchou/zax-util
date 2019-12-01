@@ -54,8 +54,7 @@ var index_1 = require("../types/index");
 function sort(arr, orderBy, key) {
     if (orderBy === void 0) { orderBy = 'ASC'; }
     if (!arr.length) {
-        console.error('arr is null');
-        return;
+        throw new RangeError('Invalid array length');
     }
     var func;
     if (!key) {
@@ -87,14 +86,13 @@ exports.sort = sort;
  *
  * @param arr {MixArray}
  * @param key
- * @readonly {MixArray | void}
+ * @readonly {MixArray | never}
  */
 function unique(arr, key) {
     var e_1, _a;
     if (key === void 0) { key = 'id'; }
     if (!arr.length) {
-        console.error('arr is null');
-        return;
+        throw new RangeError('Invalid array length');
     }
     var first = arr[0];
     /* istanbul ignore next */
@@ -127,6 +125,7 @@ function unique(arr, key) {
         }
         return __spread(Array.from(tmp));
     }
+    throw new TypeError('Not correct type');
 }
 exports.unique = unique;
 /**

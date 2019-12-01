@@ -20,8 +20,7 @@ import { isArray, isObject } from '../types/index';
  */
 export function sort(arr, orderBy = 'ASC', key) {
     if (!arr.length) {
-        console.error('arr is null');
-        return;
+        throw new RangeError('Invalid array length');
     }
     let func;
     if (!key) {
@@ -52,12 +51,11 @@ export function sort(arr, orderBy = 'ASC', key) {
  *
  * @param arr {MixArray}
  * @param key
- * @readonly {MixArray | void}
+ * @readonly {MixArray | never}
  */
 export function unique(arr, key = 'id') {
     if (!arr.length) {
-        console.error('arr is null');
-        return;
+        throw new RangeError('Invalid array length');
     }
     let first = arr[0];
     /* istanbul ignore next */
@@ -80,6 +78,7 @@ export function unique(arr, key = 'id') {
         }
         return [...Array.from(tmp)];
     }
+    throw new TypeError('Not correct type');
 }
 /**
  * diff the first array of simple.

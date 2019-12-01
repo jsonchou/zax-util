@@ -8,7 +8,7 @@ import { isArray } from '../types/index';
 export declare type TypeObject = {
     [key: string]: any;
 };
-export declare type TypeArray = string[] | number[];
+export declare type TypeArray = Array<number | string>;
 export declare type TypeParam = string | number;
 export declare type ObjectArray = TypeObject[];
 export declare type MixArray = TypeArray | ObjectArray;
@@ -26,7 +26,7 @@ export declare type TypeOrderBy = 'ASC' | 'DESC';
  * @param key {String}
  * @readonly {MixArray | void}
  */
-export declare function sort(arr: MixArray, orderBy?: TypeOrderBy, key?: string): MixArray | void;
+export declare function sort(arr: MixArray, orderBy?: TypeOrderBy, key?: string): MixArray | never;
 /**
  * unique array.
  *
@@ -37,9 +37,9 @@ export declare function sort(arr: MixArray, orderBy?: TypeOrderBy, key?: string)
  *
  * @param arr {MixArray}
  * @param key
- * @readonly {MixArray | void}
+ * @readonly {MixArray | never}
  */
-export declare function unique(arr: MixArray, key?: string): MixArray | void;
+export declare function unique(arr: MixArray, key?: string): MixArray | never;
 /**
  * diff the first array of simple.
  *
