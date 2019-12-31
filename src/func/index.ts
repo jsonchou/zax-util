@@ -5,7 +5,6 @@
  */
 
 import { isFunction, isObject } from '../types/index'
-import { resolve } from 'path'
 
 type Nothing = {} // jsdoc2md bugs, do not remove this line
 

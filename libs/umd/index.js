@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./string", "./func", "./array", "./object", "./regex", "./regexForm", "./types", "./cases"], factory);
+        define(["require", "exports", "./string", "./func", "./files", "./array", "./object", "./regex", "./regexForm", "./types", "./cases"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -21,6 +21,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     exports.zaxString = string_1.default;
     var func_1 = __importDefault(require("./func"));
     exports.zaxFunc = func_1.default;
+    var files_1 = __importDefault(require("./files"));
+    exports.zaxFiles = files_1.default;
     var array_1 = __importDefault(require("./array"));
     exports.zaxArray = array_1.default;
     var object_1 = __importDefault(require("./object"));

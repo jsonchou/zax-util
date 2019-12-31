@@ -1,2 +1,6 @@
 declare var wx: any
-declare var getCurrentPages: any
+interface HTMLScriptElement {
+	onreadystatechange: any;
+	readyState:any;
+}
+
