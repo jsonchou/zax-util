@@ -3,11 +3,7 @@
 ## zaxFiles
 <p>Files module.</p>
 
-**See**
-
-- https://github.com/jsonchou/zax-util/tree/master/docs/files
-- https://github.com/eldargab/load-script/blob/master/index.js
-
+**See**: https://github.com/jsonchou/zax-util/tree/master/docs/files  
 
 * [zaxFiles](#module_zaxFiles)
     * [~loadScripts(src, options)](#module_zaxFiles..loadScripts) ⇒ <code>Promise.&lt;Array.&lt;HTMLScriptElement&gt;&gt;</code>
