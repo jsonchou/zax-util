@@ -2,7 +2,6 @@
  * Files module.
  * @module zaxFiles
  * @see https://github.com/jsonchou/zax-util/tree/master/docs/files
- * @see https://github.com/eldargab/load-script/blob/master/index.js
  */
 import { isObject } from '../types/index'
 
@@ -42,32 +41,6 @@ type HTMLElementMix = Pick<HTMLLinkElement & HTMLStyleElement, 'rel' | 'media' |
  * @returns  { Promise<HTMLScriptElement[]> } Promise value
  */
 export function loadScripts(src: string | Array<string>, options?: ScriptOptions): Promise<(HTMLScriptElement | Error)[]> {
-	function stdOnEnd(script: HTMLScriptElement, resolve: any, reject: any) {
-		/* istanbul ignore next */
-		script.onload = function() {
-			this.onerror = this.onload = null
-			resolve(script)
-		}
-		/* istanbul ignore next */
-		script.onerror = function() {
-			// this.onload = null here is necessary
-			// because even IE9 works not like others
-			this.onerror = this.onload = null
-			reject(new Error('Failed to load ' + this.src))
-		}
-	}
-
-	/* istanbul ignore next */
-	function ieOnEnd(script: HTMLScriptElement, resolve: any, reject: any) {
-		script.onreadystatechange = function() {
-			if (this.readyState != 'complete' && this.readyState != 'loaded') {
-				return
-			}
-			this.onreadystatechange = null
-			resolve(script) // there is no way to catch loading errors in IE8
-		}
-	}
-
 	let arr: Array<string> = []
 
 	if (typeof src === 'string') {
