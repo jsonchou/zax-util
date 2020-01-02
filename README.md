@@ -22,7 +22,7 @@ yarn add zax-util --save
 ## Usage
 
 ```tsx
-import ZaxUtil, { zaxString, zaxFunc, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes, zaxCases } from 'zax-util'
+import ZaxUtil, { zaxString, zaxFunc, zaxFiles, zaxArray, zaxObject, zaxRegex, zaxRegexForm, zaxTypes, zaxCases } from 'zax-util'
 ```
 
 ## More

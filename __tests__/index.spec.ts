@@ -1,5 +1,8 @@
+jest.setTimeout(30000)
+
 import zaxString from '../src/string'
 import zaxFunc from '../src/func'
+import zaxFiles from '../src/files'
 import zaxArray from '../src/array'
 import zaxObject from '../src/object'
 import zaxRegex from '../src/regex'
@@ -7,9 +10,12 @@ import zaxRegexForm from '../src/regexForm'
 import zaxTypes from '../src/types'
 import zaxCases from '../src/cases'
 
+import * as fs from 'fs'
+import * as path from 'path'
+
 import { log } from '../src/_utils/index'
 
-const stdTypeList = [1, 'a', { a: 1 }, [1], console.log, new Date(), null, undefined, /\ /gi]
+const html = fs.readFileSync(path.resolve(__dirname, '../__mocks__', 'index.html'), 'utf8')
 
 let waitObj = {
 	k: 0
@@ -187,28 +193,32 @@ describe('zaxFunc', () => {
 		let res = zaxFunc.wait(waitObj, 'k')
 		expect(res).toBeInstanceOf(Promise)
 		res.then(info => {
+			console.log('wait promise res:', info)
 			expect(info).toBeTruthy()
 		})
 
 		let res2 = zaxFunc.wait([], 'k')
 		expect(res2).toBeInstanceOf(Promise)
 		res2.then(info => {
+			console.log('wait promise res2:', info)
 			expect(info).toBeFalsy()
 		}).catch(err => {
-			console.error(err)
+			expect(err).toBeFalsy()
 		})
 
 		let res3 = zaxFunc.wait([], '')
 		expect(res3).toBeInstanceOf(Promise)
 		res3.then(info => {
+			console.log('wait promise res3:', info)
 			expect(info).toBeFalsy()
 		}).catch(err => {
-			console.error(err)
+			expect(err).toBeFalsy()
 		})
 
 		let res4 = zaxFunc.wait({}, 'k', 30)
 		expect(res4).toBeInstanceOf(Promise)
 		res4.then(info => {
+			console.log('wait promise res4:', info)
 			expect(info).toBeTruthy()
 		}).catch(err => {
 			console.error(err)
@@ -217,6 +227,7 @@ describe('zaxFunc', () => {
 		let res5 = zaxFunc.wait({}, 'k', 30, 3500)
 		expect(res5).toBeInstanceOf(Promise)
 		res5.then(info => {
+			console.log('wait promise res5:', info)
 			expect(info).toBeTruthy()
 		}).catch(err => {
 			console.error(err)
@@ -243,15 +254,198 @@ describe('zaxFunc', () => {
 
 	it('should be correct output', async () => {
 		let tmp = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-		let arr: string[] = []
-		console.log(1)
+		let arr: Array<string> = []
 		tmp.forEach(async (item, index) => {
 			await zaxFunc.sleep(Math.floor(Math.random() * (index + 1) * 300))
-			console.warn(item)
 			arr.push(item)
 		})
-		console.log(2)
 		expect(arr).toEqual([])
+	})
+})
+
+describe('zaxFiles', () => {
+	// beforeEach(() => {
+	// 	document.documentElement.innerHTML = html.toString()
+	// })
+
+	let keys = Object.keys(zaxFiles)
+	keys.forEach(par => {
+		it(`should have ${par} method`, () => {
+			expect(zaxFiles).toHaveProperty(par)
+			expect(zaxFiles[par]).toBeInstanceOf(Function)
+		})
+	})
+
+	it(`should be correct loadScripts function`, async () => {
+		let res = zaxFiles.loadScripts(['../__mocks__/a.js', '../__mocks__/b.js'])
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			console.log('loadScripts', info)
+			expect(info).toBeTruthy()
+		}).catch(err => {
+			console.error(2222, err)
+		})
+
+		await zaxFunc.sleep(1500)
+		res = zaxFiles.loadScripts(['../__mocks__/a.js', '../__mocks__/b.js'], {
+			inline: false,
+			async: true,
+			charset: 'utf-8',
+			type: 'text/javascript',
+			attrs: {
+				id: 'myScript'
+			}
+		})
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			console.log('loadScripts', info)
+			expect(info).toBeTruthy()
+		}).catch(err => {
+			console.error(2222, err)
+		})
+
+		await zaxFunc.sleep(1500)
+		res = zaxFiles.loadScripts(['../__mocks__/a.js', '../__mocks__/b.js'], { async: false })
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			console.log('loadScripts', info)
+			expect(info).toBeTruthy()
+		}).catch(err => {
+			console.error(2222, err)
+		})
+
+		await zaxFunc.sleep(1500)
+		res = zaxFiles.loadScripts('../__mocks__/a.js')
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			console.log(3333, info)
+			expect(info).toBeTruthy()
+		}).catch(err => {
+			console.error(4444, err)
+		})
+
+		await zaxFunc.sleep(1500)
+		res = zaxFiles.loadScripts(`console.log('inline script')`, {
+			inline: true
+		})
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			console.log(3333, info)
+			expect(info).toBeTruthy()
+		}).catch(err => {
+			console.error(4444, err)
+		})
+	})
+
+	it(`should be correct loadStyles function`, async () => {
+		// console.log(1111111, document.documentElement.innerHTML)
+		// console.log(1111111, document.getElementById('box'))
+
+		// reset
+		await zaxFunc.sleep(500)
+		document.documentElement.innerHTML = html.toString()
+		let res = zaxFiles.loadStyles(['../__mocks__/a.css', '../__mocks__/b.css'], { before: document.getElementById('box') })
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			expect(info).toBeTruthy()
+			// console.log('innerHTML', document.querySelector('body')!.innerHTML)
+		}).catch(err => {
+			console.error('loadStyles', err)
+		})
+
+		// reset
+		await zaxFunc.sleep(500)
+		document.documentElement.innerHTML = html.toString()
+		res = zaxFiles.loadStyles(['../__mocks__/a.css', '../__mocks__/b.css'], {
+			media: 'all',
+			attrs: {
+				id: 'myStyle'
+			}
+		})
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			expect(info).toBeTruthy()
+			// console.log('innerHTML', document.querySelector('body')!.innerHTML)
+		}).catch(err => {
+			console.error('loadStyles', err)
+		})
+
+		// reset
+		await zaxFunc.sleep(500)
+		document.documentElement.innerHTML = html.toString()
+		res = zaxFiles.loadStyles('../__mocks__/a.css', {
+			media: 'all',
+			attrs: {
+				id: 'myStyle'
+			}
+		})
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			expect(info).toBeTruthy()
+			// console.log('innerHTML', document.querySelector('body')!.innerHTML)
+		}).catch(err => {
+			console.error('loadStyles', err)
+		})
+
+		// reset
+		await zaxFunc.sleep(500)
+		document.documentElement.innerHTML = html.toString()
+		res = zaxFiles.loadStyles(`.test-inline{margin:10px;}`, {
+			inline: true,
+			media: 'all',
+			before: document.getElementById('box')
+		})
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			expect(info).toBeTruthy()
+			// console.log('innerHTML', document.querySelector('body')!.innerHTML)
+		}).catch(err => {
+			console.error('loadStyles', err)
+		})
+
+		// reset
+		await zaxFunc.sleep(500)
+		document.documentElement.innerHTML = html.toString()
+		res = zaxFiles.loadStyles(`.test-inline{margin:10px;}`, {
+			inline: true,
+			before: document.getElementById('box')
+		})
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			expect(info).toBeTruthy()
+			// console.log('innerHTML', document.querySelector('body')!.innerHTML)
+		}).catch(err => {
+			console.error('loadStyles', err)
+		})
+
+		// reset
+		await zaxFunc.sleep(500)
+		document.documentElement.innerHTML = html.toString()
+		res = zaxFiles.loadStyles(`.test-inline{margin:10px;}`)
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			expect(info).toBeTruthy()
+			// console.log('innerHTML', document.querySelector('body')!.innerHTML)
+		}).catch(err => {
+			console.error('loadStyles', err)
+		})
+
+		// reset
+		await zaxFunc.sleep(500)
+		document.documentElement.innerHTML = html.toString()
+		res = zaxFiles.loadStyles('../__mocks__/notexits.css', {
+			attrs: {
+				foo: '1',
+				bar: '2'
+			}
+		})
+		expect(res).toBeInstanceOf(Promise)
+		res.then(info => {
+			expect(info).toBeTruthy()
+			// console.log('innerHTML', document.querySelector('body')!.innerHTML)
+		}).catch(err => {
+			console.error('loadStyles', err)
+		})
 	})
 })
 
@@ -267,7 +461,7 @@ describe('zaxArray', () => {
 	it(`should be correct sort function result `, () => {
 		expect(() => {
 			zaxArray.sort([])
-		}).toThrow('Invalid array length');
+		}).toThrow('Invalid array length')
 		expect(zaxArray.sort(['a', 'c', 'd', 'a'], 'ASC')).toEqual(['a', 'a', 'c', 'd'])
 		expect(zaxArray.sort([1, 2, 9, 3, 4, 3, 2, 3, 4, 5, 3], 'ASC')).toEqual([1, 2, 2, 3, 3, 3, 3, 4, 4, 5, 9])
 		expect(zaxArray.sort(['a', 'c', 'd', 'a'], 'DESC')).toEqual(['d', 'c', 'a', 'a'])
@@ -306,15 +500,15 @@ describe('zaxArray', () => {
 	it(`should be correct unique function result `, () => {
 		expect(() => {
 			zaxArray.unique([])
-		}).toThrow('Invalid array length');
+		}).toThrow('Invalid array length')
 
 		expect(() => {
 			zaxArray.unique([], 'id')
-		}).toThrow('Invalid array length');
+		}).toThrow('Invalid array length')
 
 		expect(() => {
 			zaxArray.unique([new RegExp(/\s/, 'gi')], 'id')
-		}).toThrow('Not correct type');
+		}).toThrow('Not correct type')
 
 		expect(zaxArray.unique(['a', 'c', 'd', 'a'])).toEqual(['a', 'c', 'd'])
 		expect(
@@ -329,9 +523,6 @@ describe('zaxArray', () => {
 			{ id: 2, v: 'c' },
 			{ id: 3, v: 'd' }
 		])
-
-
-
 	})
 
 	it(`should be correct diff function result `, () => {

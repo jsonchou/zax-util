@@ -1,126 +1,130 @@
 {
-    "name": "zax-util",
-    "version": "1.0.16",
-    "description": "zax-util",
-    "main": "./libs/cjs",
-    "directories": {
-        "test": "test",
-        "lib": "libs",
-        "doc": "docs"
-    },
-    "typings": "./libs/umd/index.d.ts",
-    "scripts": {
-        "lint": "eslint --ext .ts src/",
-        "lint:fix": "eslint --fix --ext .ts src/",
-        "build:cjs": "rimraf './libs/cjs' && tsc -t 'ES5' -m 'CommonJS' --outDir './libs/cjs' ",
-        "build:es": "rimraf './libs/es' && tsc -t 'ES6' -m 'ESNext' --outDir './libs/es' ",
-        "build:umd": "rimraf './libs/umd' && tsc -t 'ES5' -m 'UMD' --outDir './libs/umd' ",
-        "doc:array": "rimraf './docs/array/*.md' && jsdoc2md --files ./src/array/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/array/README.md",
-        "doc:cases": "rimraf './docs/cases/*.md' && jsdoc2md --files ./src/cases/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/cases/README.md",
+	"name": "zax-util",
+	"version": "1.0.16",
+	"description": "zax-util",
+	"main": "./libs/cjs",
+	"directories": {
+		"test": "test",
+		"lib": "libs",
+		"doc": "docs"
+	},
+	"typings": "./libs/umd/index.d.ts",
+	"scripts": {
+		"lint": "eslint --ext .ts src/",
+		"lint:fix": "eslint --fix --ext .ts src/",
+		"build:cjs": "rimraf './libs/cjs' && tsc -t 'ES5' -m 'CommonJS' --outDir './libs/cjs' ",
+		"build:es": "rimraf './libs/es' && tsc -t 'ES6' -m 'ESNext' --outDir './libs/es' ",
+		"build:umd": "rimraf './libs/umd' && tsc -t 'ES5' -m 'UMD' --outDir './libs/umd' ",
+		"doc:array": "rimraf './docs/array/*.md' && jsdoc2md --files ./src/array/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/array/README.md",
+		"doc:cases": "rimraf './docs/cases/*.md' && jsdoc2md --files ./src/cases/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/cases/README.md",
 		"doc:func": "rimraf './docs/func/*.md' && jsdoc2md --files ./src/func/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/func/README.md",
-        "doc:files": "rimraf './docs/files/*.md' && jsdoc2md --files ./src/files/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/files/README.md",
-        "doc:object": "rimraf './docs/object/*.md' && jsdoc2md --files ./src/object/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/object/README.md",
-        "doc:regex": "rimraf './docs/regex/*.md' && jsdoc2md --files ./src/regex/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/regex/README.md",
-        "doc:regexForm": "rimraf './docs/regexForm/*.md' && jsdoc2md --files ./src/regexForm/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/regexForm/README.md",
-        "doc:string": "rimraf './docs/string/*.md' && jsdoc2md --files ./src/string/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/string/README.md",
-        "doc:types": "rimraf './docs/types/*.md' && jsdoc2md --files ./src/types/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/types/README.md",
-        "doc:index": "rimraf './docs/*.md' && jsdoc2md --files ./src/index.ts --no-cache --configure ./jsdoc2md.json > ./docs/README.md",
-        "docs": "npm-run-all -p doc:**",
-        "build": "npm-run-all -p build:**",
-        "server": "NODE_ENV=production  GATEWAY=outer  node ./server/index.js",
-        "clean": "node ./build/scripts/clean",
-        "release": "node ./build/scripts/release $RELEASE_LOG",
-        "report": "codecov -t $CODECOV_TOKEN",
-        "test": "jest --coverage=true"
-    },
-    "zax": {
-        "innerModule": false,
-        "needBuild": true,
-        "test": true,
-        "docs": true,
-        "cleanDirs": [
-            "libs/**",
-            "docs/*/*.md"
-        ]
-    },
-    "keywords": [
-        "zax-util",
-        "urlUtils"
-    ],
-    "files": [
-        "libs/*",
-        "types/*"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jsonchou/zax-util.git"
-    },
-    "browserslist": [
-        "last 2 versions",
-        "Firefox ESR",
-        "> 1%",
-        "ie >= 9",
-        "iOS >= 9",
-        "Android >= 4.3"
-    ],
-    "homepage": "https://github.com/jsonchou/zax-util",
-    "author": "jsonchou",
-    "license": "MIT",
-    "private": false,
-    "types": "types/index.d.ts",
-    "devDependencies": {
-        "@babel/cli": "^7.6.4",
-        "@babel/core": "^7.6.4",
-        "@babel/plugin-proposal-class-properties": "^7.5.5",
-        "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
-        "@babel/plugin-transform-runtime": "^7.1.0",
-        "@babel/preset-env": "^7.6.3",
-        "@babel/preset-typescript": "^7.6.0",
-        "@types/jest": "^24.0.18",
-        "@types/node": "^12.7.12",
-        "chalk": "^2.4.2",
-        "codecov": "^3.6.1",
-        "done-rainbow": "^0.1.2",
-        "fs-extra": "^8.1.0",
-        "glob": "^7.1.4",
-        "jest": "^24.9.0",
-        "jsdoc-babel": "^0.5.0",
-        "jsdoc-to-markdown": "^5.0.2",
-        "npm-run-all": "^4.1.5",
-        "rimraf": "^3.0.0",
-        "ts-jest": "^24.1.0",
-        "tslib": "^1.10.0",
-        "typescript": "^3.6.4"
-    },
-    "jest": {
-        "transform": {
-            ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-        },
-        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ],
-        "coveragePathIgnorePatterns": [
-            "/node_modules/",
-            "/coverage/",
-            "/build/",
-            "/types/",
-            "/test/",
-            "/libs/"
-        ],
-        "coverageThreshold": {
-            "global": {
-                "statements": 95,
-                "branches": 75,
-                "functions": 95,
-                "lines": 95
-            }
-        },
-        "collectCoverage": true
-    },
-    "dependencies": {
-        "striptags": "^3.1.1"
-    }
+		"doc:files": "rimraf './docs/files/*.md' && jsdoc2md --files ./src/files/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/files/README.md",
+		"doc:object": "rimraf './docs/object/*.md' && jsdoc2md --files ./src/object/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/object/README.md",
+		"doc:regex": "rimraf './docs/regex/*.md' && jsdoc2md --files ./src/regex/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/regex/README.md",
+		"doc:regexForm": "rimraf './docs/regexForm/*.md' && jsdoc2md --files ./src/regexForm/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/regexForm/README.md",
+		"doc:string": "rimraf './docs/string/*.md' && jsdoc2md --files ./src/string/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/string/README.md",
+		"doc:types": "rimraf './docs/types/*.md' && jsdoc2md --files ./src/types/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/types/README.md",
+		"doc:index": "rimraf './docs/*.md' && jsdoc2md --files ./src/index.ts --no-cache --configure ./jsdoc2md.json > ./docs/README.md",
+		"docs": "npm-run-all -p doc:**",
+		"build": "npm-run-all -p build:**",
+		"server": "NODE_ENV=production  GATEWAY=outer  node ./server/index.js",
+		"clean": "node ./build/scripts/clean",
+		"release": "node ./build/scripts/release $RELEASE_LOG",
+		"report": "codecov -t $CODECOV_TOKEN",
+		"test": "jest --coverage=true"
+	},
+	"zax": {
+		"innerModule": false,
+		"needBuild": true,
+		"test": true,
+		"docs": true,
+		"cleanDirs": [
+			"libs/**",
+			"docs/*/*.md"
+		]
+	},
+	"keywords": [
+		"zax-util",
+		"urlUtils"
+	],
+	"files": [
+		"libs/*",
+		"types/*"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jsonchou/zax-util.git"
+	},
+	"browserslist": [
+		"last 2 versions",
+		"Firefox ESR",
+		"> 1%",
+		"ie >= 9",
+		"iOS >= 9",
+		"Android >= 4.3"
+	],
+	"homepage": "https://github.com/jsonchou/zax-util",
+	"author": "jsonchou",
+	"license": "MIT",
+	"private": false,
+	"types": "types/index.d.ts",
+	"devDependencies": {
+		"@babel/cli": "^7.6.4",
+		"@babel/core": "^7.6.4",
+		"@babel/plugin-proposal-class-properties": "^7.5.5",
+		"@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+		"@babel/plugin-transform-runtime": "^7.1.0",
+		"@babel/preset-env": "^7.6.3",
+		"@babel/preset-typescript": "^7.6.0",
+		"@types/jest": "^24.0.18",
+		"@types/node": "^12.7.12",
+		"chalk": "^2.4.2",
+		"codecov": "^3.6.1",
+		"done-rainbow": "^0.1.2",
+		"fs-extra": "^8.1.0",
+		"glob": "^7.1.4",
+		"jest": "^24.9.0",
+		"jsdoc-babel": "^0.5.0",
+		"jsdoc-to-markdown": "^5.0.2",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^3.0.0",
+		"ts-jest": "^24.1.0",
+		"tslib": "^1.10.0",
+		"typescript": "^3.6.4"
+	},
+	"jest": {
+		"testEnvironment": "jest-environment-jsdom",
+		"setupFiles": [
+			"./__mocks__/client.js"
+		],
+		"transform": {
+			".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+		},
+		"testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js"
+		],
+		"coveragePathIgnorePatterns": [
+			"/node_modules/",
+			"/coverage/",
+			"/build/",
+			"/types/",
+			"/test/",
+			"/libs/"
+		],
+		"coverageThreshold": {
+			"global": {
+				"statements": 95,
+				"branches": 75,
+				"functions": 95,
+				"lines": 95
+			}
+		},
+		"collectCoverage": true
+	},
+	"dependencies": {
+		"striptags": "^3.1.1"
+	}
 }
