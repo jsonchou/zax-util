@@ -31,8 +31,10 @@ type HTMLElementMix = Pick<HTMLLinkElement & HTMLStyleElement, 'rel' | 'media' |
  * load scripts
  *
  * ```js
- * let foo = loadScripts(["a.js",'b.js']);
- * //=> Promise
+ * let foo = await loadScripts(["a.js",'b.js']);
+ * //=> scripts[]
+ * let bar = await loadScripts(`console.log(111)`,{inline:true});
+ * //=> scripts[]
  * ```
  *
  * @param src { String | Array<String> } script array
@@ -132,8 +134,10 @@ type Nothing2 = {} // jsdoc2md bugs, do not remove this line
  * load styles
  *
  * ```js
- * let foo = loadStyles(["a.css",'b.css']);
- * //=> Promise
+ * let foo = await loadStyles(["a.css",'b.css']);
+ * //=> styles[]
+ * let bar = await loadStyles(`.a{margin-right:10px}`,{inline:true});
+ * //=> styles[]
  * ```
  *
  * @param src { String | Array<String> } remote css file or css segment array
