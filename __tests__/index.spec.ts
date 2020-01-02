@@ -286,7 +286,6 @@ describe('zaxFiles', () => {
 			console.error(2222, err)
 		})
 
-		await zaxFunc.sleep(1500)
 		res = zaxFiles.loadScripts(['../__mocks__/a.js', '../__mocks__/b.js'], {
 			inline: false,
 			async: true,
@@ -304,17 +303,15 @@ describe('zaxFiles', () => {
 			console.error(2222, err)
 		})
 
-		await zaxFunc.sleep(1500)
 		res = zaxFiles.loadScripts(['../__mocks__/a.js', '../__mocks__/b.js'], { async: false })
 		expect(res).toBeInstanceOf(Promise)
 		res.then(info => {
-			console.log('loadScripts', info)
+			// console.log('loadScripts', info)
 			expect(info).toBeTruthy()
 		}).catch(err => {
 			console.error(2222, err)
 		})
 
-		await zaxFunc.sleep(1500)
 		res = zaxFiles.loadScripts('../__mocks__/a.js')
 		expect(res).toBeInstanceOf(Promise)
 		res.then(info => {
@@ -324,13 +321,12 @@ describe('zaxFiles', () => {
 			console.error(4444, err)
 		})
 
-		await zaxFunc.sleep(1500)
 		res = zaxFiles.loadScripts(`console.log('inline script')`, {
 			inline: true
 		})
 		expect(res).toBeInstanceOf(Promise)
 		res.then(info => {
-			console.log(3333, info)
+			console.log('log:inline script', info)
 			expect(info).toBeTruthy()
 		}).catch(err => {
 			console.error(4444, err)
@@ -342,7 +338,6 @@ describe('zaxFiles', () => {
 		// console.log(1111111, document.getElementById('box'))
 
 		// reset
-		await zaxFunc.sleep(500)
 		document.documentElement.innerHTML = html.toString()
 		let res = zaxFiles.loadStyles(['../__mocks__/a.css', '../__mocks__/b.css'], { before: document.getElementById('box') })
 		expect(res).toBeInstanceOf(Promise)
@@ -354,7 +349,6 @@ describe('zaxFiles', () => {
 		})
 
 		// reset
-		await zaxFunc.sleep(500)
 		document.documentElement.innerHTML = html.toString()
 		res = zaxFiles.loadStyles(['../__mocks__/a.css', '../__mocks__/b.css'], {
 			media: 'all',
@@ -371,7 +365,6 @@ describe('zaxFiles', () => {
 		})
 
 		// reset
-		await zaxFunc.sleep(500)
 		document.documentElement.innerHTML = html.toString()
 		res = zaxFiles.loadStyles('../__mocks__/a.css', {
 			media: 'all',
@@ -388,7 +381,6 @@ describe('zaxFiles', () => {
 		})
 
 		// reset
-		await zaxFunc.sleep(500)
 		document.documentElement.innerHTML = html.toString()
 		res = zaxFiles.loadStyles(`.test-inline{margin:10px;}`, {
 			inline: true,
@@ -404,7 +396,6 @@ describe('zaxFiles', () => {
 		})
 
 		// reset
-		await zaxFunc.sleep(500)
 		document.documentElement.innerHTML = html.toString()
 		res = zaxFiles.loadStyles(`.test-inline{margin:10px;}`, {
 			inline: true,
@@ -419,7 +410,6 @@ describe('zaxFiles', () => {
 		})
 
 		// reset
-		await zaxFunc.sleep(500)
 		document.documentElement.innerHTML = html.toString()
 		res = zaxFiles.loadStyles(`.test-inline{margin:10px;}`)
 		expect(res).toBeInstanceOf(Promise)
@@ -431,7 +421,6 @@ describe('zaxFiles', () => {
 		})
 
 		// reset
-		await zaxFunc.sleep(500)
 		document.documentElement.innerHTML = html.toString()
 		res = zaxFiles.loadStyles('../__mocks__/notexits.css', {
 			attrs: {

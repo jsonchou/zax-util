@@ -91,7 +91,7 @@ export function loadScripts(src: string | Array<string>, options?: ScriptOptions
 				script.async = opts.async === false ? false : true
 
 				if (opts.inline) {
-					script.text = '' + item
+					script.text = item
 				} else {
 					script.src = item
 				}
@@ -104,23 +104,27 @@ export function loadScripts(src: string | Array<string>, options?: ScriptOptions
 					})
 				}
 
+				/* istanbul ignore next */
+				script.addEventListener(
+					'load',
+					() => {
+						script.onerror = script.onload = null
+						resolve(script)
+					},
+					false
+				)
+
+				/* istanbul ignore next */
+				script.addEventListener(
+					'error',
+					() => {
+						script.onerror = script.onload = null
+						reject(new Error('Failed to load ' + script.src))
+					},
+					false
+				)
+
 				head.appendChild(script)
-
-				/* istanbul ignore next */
-				if ('onload' in script) {
-					stdOnEnd(script, resolve, reject)
-				} else {
-					/* istanbul ignore next */
-					ieOnEnd(script, resolve, reject)
-				}
-				// some good legacy browsers (firefox) fail the 'in' detection above
-				// so as a fallback we always set onload
-				// old IE will ignore this and new IE will set onload
-
-				/* istanbul ignore next */
-				if (!script.onload) {
-					stdOnEnd(script, resolve, reject)
-				}
 			})
 		)
 	})
