@@ -39,7 +39,7 @@ type HTMLElementMix = Pick<HTMLLinkElement & HTMLStyleElement, 'rel' | 'media' |
  *
  * @param src { String | Array<String> } script array
  * @param options { ScriptOptions } script options
- * @returns  { Promise<(HTMLScriptElement | Error)[]> } Promise value
+ * @returns  { Promise<HTMLScriptElement[]> } Promise value
  */
 export function loadScripts(src: string | Array<string>, options?: ScriptOptions): Promise<(HTMLScriptElement | Error)[]> {
 	function stdOnEnd(script: HTMLScriptElement, resolve: any, reject: any) {

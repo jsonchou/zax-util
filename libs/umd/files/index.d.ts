@@ -2,14 +2,15 @@ export declare type ScriptOptions = {
     type?: string;
     charset?: string;
     async?: boolean;
-    text?: string;
+    inline?: boolean;
+    media?: string;
     attrs?: Record<string, string>;
 };
 export declare type StyleOptions = {
     inline?: boolean;
     media?: string;
     charset?: string;
-    before?: HTMLElement | HTMLLinkElement;
+    before?: HTMLElement | null;
     attrs?: Record<string, string>;
 };
 declare type HTMLElementMix = Pick<HTMLLinkElement & HTMLStyleElement, 'rel' | 'media' | 'innerHTML' | 'type' | 'href' | 'charset' | 'setAttribute'>;
@@ -17,28 +18,32 @@ declare type HTMLElementMix = Pick<HTMLLinkElement & HTMLStyleElement, 'rel' | '
  * load scripts
  *
  * ```js
- * let foo = loadScripts(["a.js",'b.js']);
- * //=> Promise
+ * let foo = await loadScripts(["a.js",'b.js']);
+ * //=> scripts[]
+ * let bar = await loadScripts(`console.log(111)`,{inline:true});
+ * //=> scripts[]
  * ```
  *
  * @param src { String | Array<String> } script array
- * @param opts { ScriptOptions } script options
- * @returns  { Promise<Array<HTMLScriptElement | Error>> } Promise value
+ * @param options { ScriptOptions } script options
+ * @returns  { Promise<HTMLScriptElement[]> } Promise value
  */
-export declare function loadScripts(src: string | Array<string>, opts: ScriptOptions): Promise<Array<HTMLScriptElement> | Array<Error>>;
+export declare function loadScripts(src: string | Array<string>, options?: ScriptOptions): Promise<(HTMLScriptElement | Error)[]>;
 /**
- * load scripts
+ * load styles
  *
  * ```js
- * let foo = loadStyles(["a.css",'b.css']);
- * //=> Promise
+ * let foo = await loadStyles(["a.css",'b.css']);
+ * //=> styles[]
+ * let bar = await loadStyles(`.a{margin-right:10px}`,{inline:true});
+ * //=> styles[]
  * ```
  *
  * @param src { String | Array<String> } remote css file or css segment array
- * @param opts { StyleOptions } style options
- * @returns  { Promise<Array<HTMLElementMix>> } Promise value
+ * @param options { StyleOptions } style options
+ * @returns  { Array<Promise<Partial<HTMLElementMix> | Error>> } Promise value
  */
-export declare function loadStyles(src: string | Array<string>, opts: StyleOptions): Promise<Array<Partial<HTMLElementMix> | Error>>;
+export declare function loadStyles(src: string | Array<string>, options?: StyleOptions): Promise<(Partial<HTMLElementMix> | Error)[]>;
 declare const _default: {
     loadScripts: typeof loadScripts;
     loadStyles: typeof loadStyles;

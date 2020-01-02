@@ -10,38 +10,42 @@
 
 
 * [zaxFiles](#module_zaxFiles)
-    * [~loadScripts(src, opts)](#module_zaxFiles..loadScripts) ⇒ <code>Promise.&lt;Array.&lt;(HTMLScriptElement\|Error)&gt;&gt;</code>
-    * [~loadStyles(src, opts)](#module_zaxFiles..loadStyles) ⇒ <code>Promise.&lt;Array.&lt;HTMLElementMix&gt;&gt;</code>
+    * [~loadScripts(src, options)](#module_zaxFiles..loadScripts) ⇒ <code>Promise.&lt;Array.&lt;HTMLScriptElement&gt;&gt;</code>
+    * [~loadStyles(src, options)](#module_zaxFiles..loadStyles) ⇒ <code>Array.&lt;Promise.&lt;(Partial.&lt;HTMLElementMix&gt;\|Error)&gt;&gt;</code>
 
 <a name="module_zaxFiles..loadScripts"></a>
 
-### zaxFiles~loadScripts(src, opts) ⇒ <code>Promise.&lt;Array.&lt;(HTMLScriptElement\|Error)&gt;&gt;</code>
+### zaxFiles~loadScripts(src, options) ⇒ <code>Promise.&lt;Array.&lt;HTMLScriptElement&gt;&gt;</code>
 <p>load scripts</p>
-<pre class="prettyprint source lang-js"><code>let foo = loadScripts([&quot;a.js&quot;,'b.js']);
-//=> Promise
+<pre class="prettyprint source lang-js"><code>let foo = await loadScripts([&quot;a.js&quot;,'b.js']);
+//=> scripts[]
+let bar = await loadScripts(`console.log(111)`,{inline:true});
+//=> scripts[]
 </code></pre>
 
 **Kind**: inner method of [<code>zaxFiles</code>](#module_zaxFiles)  
-**Returns**: <code>Promise.&lt;Array.&lt;(HTMLScriptElement\|Error)&gt;&gt;</code> - <p>Promise value</p>  
+**Returns**: <code>Promise.&lt;Array.&lt;HTMLScriptElement&gt;&gt;</code> - <p>Promise value</p>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | src | <code>String</code> \| <code>Array.&lt;String&gt;</code> | <p>script array</p> |
-| opts | <code>ScriptOptions</code> | <p>script options</p> |
+| options | <code>ScriptOptions</code> | <p>script options</p> |
 
 <a name="module_zaxFiles..loadStyles"></a>
 
-### zaxFiles~loadStyles(src, opts) ⇒ <code>Promise.&lt;Array.&lt;HTMLElementMix&gt;&gt;</code>
-<p>load scripts</p>
-<pre class="prettyprint source lang-js"><code>let foo = loadStyles([&quot;a.css&quot;,'b.css']);
-//=> Promise
+### zaxFiles~loadStyles(src, options) ⇒ <code>Array.&lt;Promise.&lt;(Partial.&lt;HTMLElementMix&gt;\|Error)&gt;&gt;</code>
+<p>load styles</p>
+<pre class="prettyprint source lang-js"><code>let foo = await loadStyles([&quot;a.css&quot;,'b.css']);
+//=> styles[]
+let bar = await loadStyles(`.a{margin-right:10px}`,{inline:true});
+//=> styles[]
 </code></pre>
 
 **Kind**: inner method of [<code>zaxFiles</code>](#module_zaxFiles)  
-**Returns**: <code>Promise.&lt;Array.&lt;HTMLElementMix&gt;&gt;</code> - <p>Promise value</p>  
+**Returns**: <code>Array.&lt;Promise.&lt;(Partial.&lt;HTMLElementMix&gt;\|Error)&gt;&gt;</code> - <p>Promise value</p>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | src | <code>String</code> \| <code>Array.&lt;String&gt;</code> | <p>remote css file or css segment array</p> |
-| opts | <code>StyleOptions</code> | <p>style options</p> |
+| options | <code>StyleOptions</code> | <p>style options</p> |
 
