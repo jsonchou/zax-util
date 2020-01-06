@@ -13,9 +13,9 @@
 
 ### zaxFiles~loadScripts(src, options) ⇒ <code>Promise.&lt;Array.&lt;HTMLScriptElement&gt;&gt;</code>
 <p>load scripts</p>
-<pre class="prettyprint source lang-js"><code>let foo = await loadScripts([&quot;a.js&quot;,'b.js']);
+<pre class="prettyprint source lang-js"><code>let foo = await loadScripts([&quot;//demo.com/a.js&quot;,'https://demo.com/b.js']);
 //=> scripts[]
-let bar = await loadScripts(`console.log(111)`,{inline:true});
+let bar = await loadScripts(`console.log(111)`);
 //=> scripts[]
 </code></pre>
 
@@ -31,9 +31,9 @@ let bar = await loadScripts(`console.log(111)`,{inline:true});
 
 ### zaxFiles~loadStyles(src, options) ⇒ <code>Array.&lt;Promise.&lt;(Partial.&lt;HTMLElementMix&gt;\|Error)&gt;&gt;</code>
 <p>load styles</p>
-<pre class="prettyprint source lang-js"><code>let foo = await loadStyles([&quot;a.css&quot;,'b.css']);
+<pre class="prettyprint source lang-js"><code>let foo = await loadStyles([&quot;//demo.com/a.css&quot;,'https://demo.com/b.css']);
 //=> styles[]
-let bar = await loadStyles(`.a{margin-right:10px}`,{inline:true});
+let bar = await loadStyles(`.a{margin-right:10px}`);
 //=> styles[]
 </code></pre>
 

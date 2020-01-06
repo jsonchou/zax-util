@@ -11,13 +11,11 @@ export type ScriptOptions = {
 	type?: string
 	charset?: string
 	async?: boolean
-	inline?: boolean
 	media?: string //'screen' | 'tty' | 'tv' | 'projection' | 'handheld' | 'print' | 'braille' | 'aural' | 'all'
 	attrs?: Record<string, string>
 }
 
 export type StyleOptions = {
-	inline?: boolean //is inline css segment default false
 	media?: string //'screen' | 'tty' | 'tv' | 'projection' | 'handheld' | 'print' | 'braille' | 'aural' | 'all'
 	charset?: string
 	before?: HTMLElement | null
@@ -26,13 +24,21 @@ export type StyleOptions = {
 
 type HTMLElementMix = Pick<HTMLLinkElement & HTMLStyleElement, 'rel' | 'media' | 'innerHTML' | 'type' | 'href' | 'charset' | 'setAttribute'>
 
+function isFile(item: string) {
+	// 不要用 .css .js 判断是否为文件类型
+	if (item.startsWith('//') || item.startsWith('https://') || item.startsWith('http://') || item.startsWith('../') || item.startsWith('./')) {
+		return true
+	}
+	return false
+}
+
 /**
  * load scripts
  *
  * ```js
- * let foo = await loadScripts(["a.js",'b.js']);
+ * let foo = await loadScripts(["//demo.com/a.js",'https://demo.com/b.js']);
  * //=> scripts[]
- * let bar = await loadScripts(`console.log(111)`,{inline:true});
+ * let bar = await loadScripts(`console.log(111)`);
  * //=> scripts[]
  * ```
  *
@@ -41,6 +47,10 @@ type HTMLElementMix = Pick<HTMLLinkElement & HTMLStyleElement, 'rel' | 'media' |
  * @returns  { Promise<HTMLScriptElement[]> } Promise value
  */
 export function loadScripts(src: string | Array<string>, options?: ScriptOptions): Promise<(HTMLScriptElement | Error)[]> {
+	if (typeof document === 'undefined') {
+		return Promise.reject(new Error('env error'))
+	}
+
 	let arr: Array<string> = []
 
 	if (typeof src === 'string') {
@@ -63,10 +73,10 @@ export function loadScripts(src: string | Array<string>, options?: ScriptOptions
 				script.charset = opts.charset || 'utf8'
 				script.async = opts.async === false ? false : true
 
-				if (opts.inline) {
-					script.text = item
-				} else {
+				if (isFile(item)) {
 					script.src = item
+				} else {
+					script.text = item
 				}
 
 				if (opts.attrs && isObject(opts.attrs)) {
@@ -111,9 +121,9 @@ type Nothing2 = {} // jsdoc2md bugs, do not remove this line
  * load styles
  *
  * ```js
- * let foo = await loadStyles(["a.css",'b.css']);
+ * let foo = await loadStyles(["//demo.com/a.css",'https://demo.com/b.css']);
  * //=> styles[]
- * let bar = await loadStyles(`.a{margin-right:10px}`,{inline:true});
+ * let bar = await loadStyles(`.a{margin-right:10px}`);
  * //=> styles[]
  * ```
  *
@@ -122,6 +132,10 @@ type Nothing2 = {} // jsdoc2md bugs, do not remove this line
  * @returns  { Array<Promise<Partial<HTMLElementMix> | Error>> } Promise value
  */
 export function loadStyles(src: string | Array<string>, options?: StyleOptions): Promise<(Partial<HTMLElementMix> | Error)[]> {
+	if (typeof document === 'undefined') {
+		return Promise.reject(new Error('env error'))
+	}
+
 	let opts = options || {}
 	let arr: Array<string> = []
 
@@ -138,14 +152,8 @@ export function loadStyles(src: string | Array<string>, options?: StyleOptions):
 		proms.push(
 			new Promise<Partial<HTMLElementMix> | Error>((resolve, reject) => {
 				let tag: Partial<HTMLElementMix>
-				if (opts.inline) {
-					tag = document.createElement('style')
-					tag.innerHTML = item
-					if (opts.media) {
-						tag.media = opts.media
-					}
-					tag.type = 'text/css'
-				} else {
+
+				if (isFile(item)) {
 					tag = document.createElement('link')
 					tag.rel = 'stylesheet'
 					tag.href = item
@@ -153,6 +161,13 @@ export function loadStyles(src: string | Array<string>, options?: StyleOptions):
 						tag.media = opts.media
 					}
 					tag.charset = opts.charset || 'utf8'
+				} else {
+					tag = document.createElement('style')
+					tag.innerHTML = item
+					if (opts.media) {
+						tag.media = opts.media
+					}
+					tag.type = 'text/css'
 				}
 
 				let before = opts.before

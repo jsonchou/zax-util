@@ -2,12 +2,10 @@ export declare type ScriptOptions = {
     type?: string;
     charset?: string;
     async?: boolean;
-    inline?: boolean;
     media?: string;
     attrs?: Record<string, string>;
 };
 export declare type StyleOptions = {
-    inline?: boolean;
     media?: string;
     charset?: string;
     before?: HTMLElement | null;
@@ -18,9 +16,9 @@ declare type HTMLElementMix = Pick<HTMLLinkElement & HTMLStyleElement, 'rel' | '
  * load scripts
  *
  * ```js
- * let foo = await loadScripts(["a.js",'b.js']);
+ * let foo = await loadScripts(["//demo.com/a.js",'https://demo.com/b.js']);
  * //=> scripts[]
- * let bar = await loadScripts(`console.log(111)`,{inline:true});
+ * let bar = await loadScripts(`console.log(111)`);
  * //=> scripts[]
  * ```
  *
@@ -33,9 +31,9 @@ export declare function loadScripts(src: string | Array<string>, options?: Scrip
  * load styles
  *
  * ```js
- * let foo = await loadStyles(["a.css",'b.css']);
+ * let foo = await loadStyles(["//demo.com/a.css",'https://demo.com/b.css']);
  * //=> styles[]
- * let bar = await loadStyles(`.a{margin-right:10px}`,{inline:true});
+ * let bar = await loadStyles(`.a{margin-right:10px}`);
  * //=> styles[]
  * ```
  *

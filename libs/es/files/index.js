@@ -2,16 +2,22 @@
  * Files module.
  * @module zaxFiles
  * @see https://github.com/jsonchou/zax-util/tree/master/docs/files
- * @see https://github.com/eldargab/load-script/blob/master/index.js
  */
 import { isObject } from '../types/index';
+function isFile(item) {
+    // 不要用 .css .js 判断是否为文件类型
+    if (item.startsWith('//') || item.startsWith('https://') || item.startsWith('http://') || item.startsWith('../') || item.startsWith('./')) {
+        return true;
+    }
+    return false;
+}
 /**
  * load scripts
  *
  * ```js
- * let foo = await loadScripts(["a.js",'b.js']);
+ * let foo = await loadScripts(["//demo.com/a.js",'https://demo.com/b.js']);
  * //=> scripts[]
- * let bar = await loadScripts(`console.log(111)`,{inline:true});
+ * let bar = await loadScripts(`console.log(111)`);
  * //=> scripts[]
  * ```
  *
@@ -20,29 +26,8 @@ import { isObject } from '../types/index';
  * @returns  { Promise<HTMLScriptElement[]> } Promise value
  */
 export function loadScripts(src, options) {
-    function stdOnEnd(script, resolve, reject) {
-        /* istanbul ignore next */
-        script.onload = function () {
-            this.onerror = this.onload = null;
-            resolve(script);
-        };
-        /* istanbul ignore next */
-        script.onerror = function () {
-            // this.onload = null here is necessary
-            // because even IE9 works not like others
-            this.onerror = this.onload = null;
-            reject(new Error('Failed to load ' + this.src));
-        };
-    }
-    /* istanbul ignore next */
-    function ieOnEnd(script, resolve, reject) {
-        script.onreadystatechange = function () {
-            if (this.readyState != 'complete' && this.readyState != 'loaded') {
-                return;
-            }
-            this.onreadystatechange = null;
-            resolve(script); // there is no way to catch loading errors in IE8
-        };
+    if (typeof document === 'undefined') {
+        return Promise.reject(new Error('env error'));
     }
     let arr = [];
     if (typeof src === 'string') {
@@ -62,11 +47,11 @@ export function loadScripts(src, options) {
             script.type = opts.type || 'text/javascript';
             script.charset = opts.charset || 'utf8';
             script.async = opts.async === false ? false : true;
-            if (opts.inline) {
-                script.text = item;
+            if (isFile(item)) {
+                script.src = item;
             }
             else {
-                script.src = item;
+                script.text = item;
             }
             if (opts.attrs && isObject(opts.attrs)) {
                 Object.keys(opts.attrs).map(sub => {
@@ -94,9 +79,9 @@ export function loadScripts(src, options) {
  * load styles
  *
  * ```js
- * let foo = await loadStyles(["a.css",'b.css']);
+ * let foo = await loadStyles(["//demo.com/a.css",'https://demo.com/b.css']);
  * //=> styles[]
- * let bar = await loadStyles(`.a{margin-right:10px}`,{inline:true});
+ * let bar = await loadStyles(`.a{margin-right:10px}`);
  * //=> styles[]
  * ```
  *
@@ -105,6 +90,9 @@ export function loadScripts(src, options) {
  * @returns  { Array<Promise<Partial<HTMLElementMix> | Error>> } Promise value
  */
 export function loadStyles(src, options) {
+    if (typeof document === 'undefined') {
+        return Promise.reject(new Error('env error'));
+    }
     let opts = options || {};
     let arr = [];
     if (typeof src === 'string') {
@@ -118,15 +106,7 @@ export function loadStyles(src, options) {
     arr.forEach((item, index) => {
         proms.push(new Promise((resolve, reject) => {
             let tag;
-            if (opts.inline) {
-                tag = document.createElement('style');
-                tag.innerHTML = item;
-                if (opts.media) {
-                    tag.media = opts.media;
-                }
-                tag.type = 'text/css';
-            }
-            else {
+            if (isFile(item)) {
                 tag = document.createElement('link');
                 tag.rel = 'stylesheet';
                 tag.href = item;
@@ -134,6 +114,14 @@ export function loadStyles(src, options) {
                     tag.media = opts.media;
                 }
                 tag.charset = opts.charset || 'utf8';
+            }
+            else {
+                tag = document.createElement('style');
+                tag.innerHTML = item;
+                if (opts.media) {
+                    tag.media = opts.media;
+                }
+                tag.type = 'text/css';
             }
             let before = opts.before;
             if (!before) {

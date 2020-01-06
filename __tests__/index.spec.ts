@@ -264,9 +264,10 @@ describe('zaxFunc', () => {
 })
 
 describe('zaxFiles', () => {
-	// beforeEach(() => {
-	// 	document.documentElement.innerHTML = html.toString()
-	// })
+
+	beforeEach(() => {
+		// Object.defineProperty(window, 'document', { value: window.document, configurable: true, writable: true })
+	})
 
 	let keys = Object.keys(zaxFiles)
 	keys.forEach(par => {
@@ -287,7 +288,6 @@ describe('zaxFiles', () => {
 		})
 
 		res = zaxFiles.loadScripts(['../__mocks__/a.js', '../__mocks__/b.js'], {
-			inline: false,
 			async: true,
 			charset: 'utf-8',
 			type: 'text/javascript',
@@ -321,9 +321,7 @@ describe('zaxFiles', () => {
 			console.error(4444, err)
 		})
 
-		res = zaxFiles.loadScripts(`console.log('inline script')`, {
-			inline: true
-		})
+		res = zaxFiles.loadScripts(`console.log('inline script')`)
 		expect(res).toBeInstanceOf(Promise)
 		res.then(info => {
 			console.log('log:inline script', info)
@@ -383,7 +381,6 @@ describe('zaxFiles', () => {
 		// reset
 		document.documentElement.innerHTML = html.toString()
 		res = zaxFiles.loadStyles(`.test-inline{margin:10px;}`, {
-			inline: true,
 			media: 'all',
 			before: document.getElementById('box')
 		})
@@ -398,7 +395,6 @@ describe('zaxFiles', () => {
 		// reset
 		document.documentElement.innerHTML = html.toString()
 		res = zaxFiles.loadStyles(`.test-inline{margin:10px;}`, {
-			inline: true,
 			before: document.getElementById('box')
 		})
 		expect(res).toBeInstanceOf(Promise)
@@ -436,6 +432,25 @@ describe('zaxFiles', () => {
 			console.error('loadStyles', err)
 		})
 	})
+
+	it(`simulation server side `, () => {
+		Object.defineProperty(window, 'document', { value: undefined, configurable: true, writable: true })
+
+		let res = zaxFiles.loadScripts(['../__mocks__/a.js', '../__mocks__/b.js'])
+		expect(res).toBeInstanceOf(Promise)
+		res.catch(err => {
+			expect(err).toThrowError('env error');
+		})
+
+		let res2 = zaxFiles.loadStyles(['../__mocks__/a.css', '../__mocks__/b.css'])
+		expect(res2).toBeInstanceOf(Promise)
+		res2.catch(err => {
+			expect(err).toThrowError('env error');
+		})
+
+	})
+
+
 })
 
 describe('zaxArray', () => {
