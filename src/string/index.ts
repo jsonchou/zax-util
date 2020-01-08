@@ -7,7 +7,7 @@
  */
 
 import { isString } from '../types/index'
-import striptags from 'striptags'
+import { striptags } from './striptags'
 
 type Nothing = {} // jsdoc2md bugs, do not remove this line
 

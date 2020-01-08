@@ -3,7 +3,6 @@
 	"version": "2.0.3",
 	"description": "zax-util",
 	"main": "./libs/cjs",
-	"browser": "./libs/es",
 	"sideEffects": false,
 	"directories": {
 		"test": "test",
@@ -79,7 +78,7 @@
 		"@babel/preset-env": "^7.6.3",
 		"@babel/preset-typescript": "^7.6.0",
 		"@types/jest": "^24.0.18",
-		"@types/node": "^12.7.12",
+		"@types/node": "^12.12.24",
 		"chalk": "^2.4.2",
 		"codecov": "^3.6.1",
 		"done-rainbow": "^0.1.2",

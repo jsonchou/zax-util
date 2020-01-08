@@ -5,24 +5,21 @@
  * @see striptags https://github.com/ericnorris/striptags
  * @see Locale-codes https://www.science.co.il/language/Locale-codes.php
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
         var v = factory(require, exports);
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../types/index", "striptags"], factory);
+        define(["require", "exports", "../types/index", "./striptags"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var index_1 = require("../types/index");
     exports.isString = index_1.isString;
-    var striptags_1 = __importDefault(require("striptags"));
-    exports.striptags = striptags_1.default;
+    var striptags_1 = require("./striptags");
+    exports.striptags = striptags_1.striptags;
     var SpecialChar = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '<', '>', '?', '-', '=', '[', ']', ';', "'", ',', '.', '/', "\"", '`', ' '];
     var numbers = {
         'zh-cn': ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
@@ -134,11 +131,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         if (!str) {
             return '';
         }
-        str = striptags_1.default(str);
+        str = striptags_1.striptags(str);
         if (str.length <= limit) {
             return str;
         }
-        return striptags_1.default(str).substr(0, limit) + tail.repeat(tailRepeatTime);
+        return striptags_1.striptags(str).substr(0, limit) + tail.repeat(tailRepeatTime);
     };
     exports.ellipsis = ellipsis;
     /**
@@ -287,7 +284,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         toMonth: toMonth,
         toHttps: toHttps,
         ellipsis: ellipsis,
-        striptags: striptags_1.default,
+        striptags: striptags_1.striptags,
         padStart: padStart,
         padEnd: padEnd,
         trim: trim,
