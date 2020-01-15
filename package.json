@@ -19,7 +19,6 @@
 		"doc:array": "rimraf './docs/array/*.md' && jsdoc2md --files ./src/array/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/array/README.md",
 		"doc:cases": "rimraf './docs/cases/*.md' && jsdoc2md --files ./src/cases/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/cases/README.md",
 		"doc:func": "rimraf './docs/func/*.md' && jsdoc2md --files ./src/func/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/func/README.md",
-		"doc:files": "rimraf './docs/files/*.md' && jsdoc2md --files ./src/files/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/files/README.md",
 		"doc:object": "rimraf './docs/object/*.md' && jsdoc2md --files ./src/object/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/object/README.md",
 		"doc:regex": "rimraf './docs/regex/*.md' && jsdoc2md --files ./src/regex/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/regex/README.md",
 		"doc:regexForm": "rimraf './docs/regexForm/*.md' && jsdoc2md --files ./src/regexForm/*.ts --no-cache --configure ./jsdoc2md.json > ./docs/regexForm/README.md",
