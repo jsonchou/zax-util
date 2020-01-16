@@ -56,13 +56,18 @@ const shallowCompare = (instance: any, nextProps: Record<string, any>, nextState
 	return hasDiff(instance.props, nextProps) || hasDiff(instance.state, nextState)
 }
 
+const isEmptyObject = (obj: object):boolean => {
+	return Object.keys(obj).length === 0 && obj.constructor === Object
+}
+
 /* istanbul ignore next */
 const expData = {
 	hasDiff,
 	shallowCompare,
-	isObject
+	isObject,
+	isEmptyObject
 }
 
-export { hasDiff, shallowCompare, isObject }
+export { hasDiff, shallowCompare, isObject, isEmptyObject }
 
 export default expData

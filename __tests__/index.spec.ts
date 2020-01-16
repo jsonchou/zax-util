@@ -262,7 +262,6 @@ describe('zaxFunc', () => {
 	})
 })
 
-
 describe('zaxArray', () => {
 	let keys = Object.keys(zaxArray)
 	keys.forEach(par => {
@@ -395,6 +394,13 @@ describe('zaxObject', () => {
 		expect(() => {
 			zaxObject.hasDiff([1], [1])
 		}).toThrow(TypeError)
+	})
+
+	it(`isEmptyObject`, () => {
+		expect(zaxObject.isEmptyObject({ k: 1 })).toEqual(false)
+		expect(zaxObject.isEmptyObject({})).toEqual(true)
+		expect(zaxObject.isEmptyObject({ k: 0 })).toEqual(false)
+		expect(zaxObject.isEmptyObject({ k: false })).toEqual(false)
 	})
 })
 
