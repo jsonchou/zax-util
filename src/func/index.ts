@@ -12,7 +12,6 @@ type Nothing = {} // jsdoc2md bugs, do not remove this line
 /**
  * wait function loaded
  * @param parentObj { Object } target object
- * @param key { String } key of object
  * @param ticker { Number } ticker of setInterval
  * @param expiredTime { Number } expired time
  * @returns {Promise}
