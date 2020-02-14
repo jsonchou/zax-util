@@ -9,12 +9,13 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "../types/index"], factory);
+        define(["require", "exports", "../types/index", "../object/index"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var index_1 = require("../types/index");
+    var index_2 = require("../object/index");
     /**
      * wait function loaded
      * @param parentObj { Object } target object
@@ -23,37 +24,31 @@
      * @param expiredTime { Number } expired time
      * @returns {Promise}
      */
-    function wait(parentObj, key, ticker, expiredTime) {
+    function wait(parentObj, ticker, expiredTime) {
         if (ticker === void 0) { ticker = 30; }
         if (expiredTime === void 0) { expiredTime = 3000; }
         return new Promise(function (resolve, reject) {
-            /* istanbul ignore next */
-            if (!index_1.isObject(parentObj)) {
-                console.error('please input a correct object');
-                reject(false);
-                return;
-            }
-            /* istanbul ignore next */
-            if (!key) {
-                console.error('please input a correct key');
-                resolve(false);
-                return;
-            }
             var timer;
             /* istanbul ignore next */
-            if (parentObj && parentObj[key] != 'undefined' && parentObj[key] != null) {
-                timer && clearInterval(timer);
-                resolve(true);
-            }
-            else {
+            var unitFunc = function () {
+                if (parentObj && index_1.isArray(parentObj) && parentObj.length) {
+                    timer && clearInterval(timer);
+                    resolve(true);
+                }
+                else if (parentObj && index_1.isObject(parentObj) && !index_2.isEmptyObject(parentObj)) {
+                    timer && clearInterval(timer);
+                    resolve(true);
+                }
+                else {
+                    console.error('please input a correct object or array');
+                    reject(false);
+                    return;
+                }
+            };
+            timer = setInterval(function () {
                 /* istanbul ignore next */
-                timer = setInterval(function () {
-                    if (parentObj && parentObj[key] != 'undefined' && parentObj[key] != null) {
-                        timer && clearInterval(timer);
-                        resolve(true);
-                    }
-                }, ticker);
-            }
+                unitFunc();
+            }, ticker);
             /* istanbul ignore next */
             setTimeout(function () {
                 timer && clearInterval(timer);

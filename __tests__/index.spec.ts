@@ -189,14 +189,14 @@ describe('zaxFunc', () => {
 	})
 
 	it(`should be correct wait function`, () => {
-		let res = zaxFunc.wait(waitObj, 'k')
+		let res = zaxFunc.wait(waitObj)
 		expect(res).toBeInstanceOf(Promise)
 		res.then(info => {
 			console.log('wait promise res:', info)
 			expect(info).toBeTruthy()
 		})
 
-		let res2 = zaxFunc.wait([], 'k')
+		let res2 = zaxFunc.wait([])
 		expect(res2).toBeInstanceOf(Promise)
 		res2.then(info => {
 			console.log('wait promise res2:', info)
@@ -205,16 +205,7 @@ describe('zaxFunc', () => {
 			expect(err).toBeFalsy()
 		})
 
-		let res3 = zaxFunc.wait([], '')
-		expect(res3).toBeInstanceOf(Promise)
-		res3.then(info => {
-			console.log('wait promise res3:', info)
-			expect(info).toBeFalsy()
-		}).catch(err => {
-			expect(err).toBeFalsy()
-		})
-
-		let res4 = zaxFunc.wait({}, 'k', 30)
+		let res4 = zaxFunc.wait({}, 30)
 		expect(res4).toBeInstanceOf(Promise)
 		res4.then(info => {
 			console.log('wait promise res4:', info)
@@ -223,7 +214,7 @@ describe('zaxFunc', () => {
 			console.error(err)
 		})
 
-		let res5 = zaxFunc.wait({}, 'k', 30, 3500)
+		let res5 = zaxFunc.wait({}, 30, 3500)
 		expect(res5).toBeInstanceOf(Promise)
 		res5.then(info => {
 			console.log('wait promise res5:', info)

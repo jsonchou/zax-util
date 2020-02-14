@@ -3,7 +3,8 @@
  * @module zaxFunc
  * @see https://github.com/jsonchou/zax-util/tree/master/docs/func
  */
-import { isFunction, isObject } from '../types/index';
+import { isFunction, isObject, isArray } from '../types/index';
+import { isEmptyObject } from '../object/index';
 /**
  * wait function loaded
  * @param parentObj { Object } target object
@@ -12,35 +13,29 @@ import { isFunction, isObject } from '../types/index';
  * @param expiredTime { Number } expired time
  * @returns {Promise}
  */
-export function wait(parentObj, key, ticker = 30, expiredTime = 3000) {
+export function wait(parentObj, ticker = 30, expiredTime = 3000) {
     return new Promise((resolve, reject) => {
-        /* istanbul ignore next */
-        if (!isObject(parentObj)) {
-            console.error('please input a correct object');
-            reject(false);
-            return;
-        }
-        /* istanbul ignore next */
-        if (!key) {
-            console.error('please input a correct key');
-            resolve(false);
-            return;
-        }
         let timer;
         /* istanbul ignore next */
-        if (parentObj && parentObj[key] != 'undefined' && parentObj[key] != null) {
-            timer && clearInterval(timer);
-            resolve(true);
-        }
-        else {
+        let unitFunc = () => {
+            if (parentObj && isArray(parentObj) && parentObj.length) {
+                timer && clearInterval(timer);
+                resolve(true);
+            }
+            else if (parentObj && isObject(parentObj) && !isEmptyObject(parentObj)) {
+                timer && clearInterval(timer);
+                resolve(true);
+            }
+            else {
+                console.error('please input a correct object or array');
+                reject(false);
+                return;
+            }
+        };
+        timer = setInterval(() => {
             /* istanbul ignore next */
-            timer = setInterval(() => {
-                if (parentObj && parentObj[key] != 'undefined' && parentObj[key] != null) {
-                    timer && clearInterval(timer);
-                    resolve(true);
-                }
-            }, ticker);
-        }
+            unitFunc();
+        }, ticker);
         /* istanbul ignore next */
         setTimeout(() => {
             timer && clearInterval(timer);

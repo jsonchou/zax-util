@@ -16,12 +16,12 @@
 
 **Kind**: inner method of [<code>zaxFunc</code>](#module_zaxFunc)  
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| parentObj | <code>Object</code> |  | <p>target object</p> |
-| key | <code>String</code> |  | <p>key of object</p> |
-| ticker | <code>Number</code> | <code>30</code> | <p>ticker of setInterval</p> |
-| expiredTime | <code>Number</code> | <code>3000</code> | <p>expired time</p> |
+| Param | Type | Description |
+| --- | --- | --- |
+| parentObj | <code>Object</code> | <p>target object</p> |
+| key | <code>String</code> | <p>key of object</p> |
+| ticker | <code>Number</code> | <p>ticker of setInterval</p> |
+| expiredTime | <code>Number</code> | <p>expired time</p> |
 
 <a name="module_zaxFunc..sleep"></a>
 

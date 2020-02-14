@@ -49,12 +49,16 @@ const hasDiff = (a, b) => {
 const shallowCompare = (instance, nextProps, nextState) => {
     return hasDiff(instance.props, nextProps) || hasDiff(instance.state, nextState);
 };
+const isEmptyObject = (obj) => {
+    return Object.keys(obj).length === 0 && obj.constructor === Object;
+};
 /* istanbul ignore next */
 const expData = {
     hasDiff,
     shallowCompare,
-    isObject
+    isObject,
+    isEmptyObject
 };
-export { hasDiff, shallowCompare, isObject };
+export { hasDiff, shallowCompare, isObject, isEmptyObject };
 export default expData;
 //# sourceMappingURL=index.js.map

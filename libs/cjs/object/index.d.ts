@@ -35,10 +35,12 @@ declare const hasDiff: (a: Record<string, any>, b: Record<string, any>) => boole
  * @returns {Boolean} result
  */
 declare const shallowCompare: (instance: any, nextProps: Record<string, any>, nextState: Record<string, any>) => boolean;
+declare const isEmptyObject: (obj: object) => boolean;
 declare const expData: {
     hasDiff: (a: Record<string, any>, b: Record<string, any>) => boolean;
     shallowCompare: (instance: any, nextProps: Record<string, any>, nextState: Record<string, any>) => boolean;
     isObject: typeof isObject;
+    isEmptyObject: (obj: object) => boolean;
 };
-export { hasDiff, shallowCompare, isObject };
+export { hasDiff, shallowCompare, isObject, isEmptyObject };
 export default expData;

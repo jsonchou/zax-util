@@ -4,7 +4,8 @@
  * @see https://github.com/jsonchou/zax-util/tree/master/docs/func
  */
 
-import { isFunction, isObject } from '../types/index'
+import { isFunction, isObject, isArray } from '../types/index'
+import { isEmptyObject } from '../object/index'
 
 type Nothing = {} // jsdoc2md bugs, do not remove this line
 
@@ -16,35 +17,31 @@ type Nothing = {} // jsdoc2md bugs, do not remove this line
  * @param expiredTime { Number } expired time
  * @returns {Promise}
  */
-export function wait(parentObj: object, key: string, ticker: number = 30, expiredTime: number = 3000): Promise<boolean> {
+export function wait(parentObj: any, ticker: number = 30, expiredTime: number = 3000): Promise<boolean> {
 	return new Promise((resolve, reject) => {
-		/* istanbul ignore next */
-		if (!isObject(parentObj)) {
-			console.error('please input a correct object')
-			reject(false)
-			return
-		}
-		/* istanbul ignore next */
-		if (!key) {
-			console.error('please input a correct key')
-			resolve(false)
-			return
-		}
 
 		let timer: any
 		/* istanbul ignore next */
-		if (parentObj && parentObj[key] != 'undefined' && parentObj[key] != null) {
-			timer && clearInterval(timer)
-			resolve(true)
-		} else {
-			/* istanbul ignore next */
-			timer = setInterval(() => {
-				if (parentObj && parentObj[key] != 'undefined' && parentObj[key] != null) {
-					timer && clearInterval(timer)
-					resolve(true)
-				}
-			}, ticker)
+
+		let unitFunc = () => {
+			if (parentObj && isArray(parentObj) && parentObj.length) {
+				timer && clearInterval(timer)
+				resolve(true)
+			} else if (parentObj && isObject(parentObj) && !isEmptyObject(parentObj)) {
+				timer && clearInterval(timer)
+				resolve(true)
+			} else {
+				console.error('please input a correct object or array')
+				reject(false)
+				return
+			}
 		}
+
+		timer = setInterval(() => {
+			/* istanbul ignore next */
+			unitFunc()
+		}, ticker)
+
 		/* istanbul ignore next */
 		setTimeout(() => {
 			timer && clearInterval(timer)

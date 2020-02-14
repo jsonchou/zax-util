@@ -63,11 +63,16 @@
         return hasDiff(instance.props, nextProps) || hasDiff(instance.state, nextState);
     };
     exports.shallowCompare = shallowCompare;
+    var isEmptyObject = function (obj) {
+        return Object.keys(obj).length === 0 && obj.constructor === Object;
+    };
+    exports.isEmptyObject = isEmptyObject;
     /* istanbul ignore next */
     var expData = {
         hasDiff: hasDiff,
         shallowCompare: shallowCompare,
-        isObject: index_1.isObject
+        isObject: index_1.isObject,
+        isEmptyObject: isEmptyObject
     };
     exports.default = expData;
 });
