@@ -6,22 +6,21 @@
 **See**: https://github.com/jsonchou/zax-util/tree/master/docs/func  
 
 * [zaxFunc](#module_zaxFunc)
-    * [~wait(parentObj, key, ticker, expiredTime)](#module_zaxFunc..wait) ⇒ <code>Promise</code>
+    * [~wait(tar, ticker, expiredTime)](#module_zaxFunc..wait) ⇒ <code>Promise</code>
     * [~sleep(time)](#module_zaxFunc..sleep)
 
 <a name="module_zaxFunc..wait"></a>
 
-### zaxFunc~wait(parentObj, key, ticker, expiredTime) ⇒ <code>Promise</code>
+### zaxFunc~wait(tar, ticker, expiredTime) ⇒ <code>Promise</code>
 <p>wait function loaded</p>
 
 **Kind**: inner method of [<code>zaxFunc</code>](#module_zaxFunc)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| parentObj | <code>Object</code> | <p>target object</p> |
-| key | <code>String</code> | <p>key of object</p> |
-| ticker | <code>Number</code> | <p>ticker of setInterval</p> |
-| expiredTime | <code>Number</code> | <p>expired time</p> |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| tar | <code>Object</code> |  | <p>target object</p> |
+| ticker | <code>Number</code> | <code>30</code> | <p>ticker of setInterval</p> |
+| expiredTime | <code>Number</code> | <code>3000</code> | <p>expired time</p> |
 
 <a name="module_zaxFunc..sleep"></a>
 

@@ -7,27 +7,29 @@ import { isFunction, isObject, isArray } from '../types/index';
 import { isEmptyObject } from '../object/index';
 /**
  * wait function loaded
- * @param parentObj { Object } target object
- * @param key { String } key of object
+ * @param tar { Object } target object
  * @param ticker { Number } ticker of setInterval
  * @param expiredTime { Number } expired time
  * @returns {Promise}
  */
-export function wait(parentObj, ticker = 30, expiredTime = 3000) {
+export function wait(tar, ticker = 30, expiredTime = 3000) {
     return new Promise((resolve, reject) => {
         let timer;
         /* istanbul ignore next */
         let unitFunc = () => {
-            if (parentObj && isArray(parentObj) && parentObj.length) {
+            if (tar && isArray(tar) && tar.length) {
                 timer && clearInterval(timer);
                 resolve(true);
             }
-            else if (parentObj && isObject(parentObj) && !isEmptyObject(parentObj)) {
+            else if (tar && isObject(tar) && !isEmptyObject(tar)) {
+                timer && clearInterval(timer);
+                resolve(true);
+            }
+            else if (tar && tar !== '' && tar !== null && tar !== undefined) {
                 timer && clearInterval(timer);
                 resolve(true);
             }
             else {
-                console.error('please input a correct object or array');
                 reject(false);
                 return;
             }

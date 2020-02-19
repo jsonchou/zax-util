@@ -9,29 +9,31 @@ var index_1 = require("../types/index");
 var index_2 = require("../object/index");
 /**
  * wait function loaded
- * @param parentObj { Object } target object
- * @param key { String } key of object
+ * @param tar { Object } target object
  * @param ticker { Number } ticker of setInterval
  * @param expiredTime { Number } expired time
  * @returns {Promise}
  */
-function wait(parentObj, ticker, expiredTime) {
+function wait(tar, ticker, expiredTime) {
     if (ticker === void 0) { ticker = 30; }
     if (expiredTime === void 0) { expiredTime = 3000; }
     return new Promise(function (resolve, reject) {
         var timer;
         /* istanbul ignore next */
         var unitFunc = function () {
-            if (parentObj && index_1.isArray(parentObj) && parentObj.length) {
+            if (tar && index_1.isArray(tar) && tar.length) {
                 timer && clearInterval(timer);
                 resolve(true);
             }
-            else if (parentObj && index_1.isObject(parentObj) && !index_2.isEmptyObject(parentObj)) {
+            else if (tar && index_1.isObject(tar) && !index_2.isEmptyObject(tar)) {
+                timer && clearInterval(timer);
+                resolve(true);
+            }
+            else if (tar && tar !== '' && tar !== null && tar !== undefined) {
                 timer && clearInterval(timer);
                 resolve(true);
             }
             else {
-                console.error('please input a correct object or array');
                 reject(false);
                 return;
             }

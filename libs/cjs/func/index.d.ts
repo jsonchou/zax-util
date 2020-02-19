@@ -6,13 +6,12 @@
 import { isFunction } from '../types/index';
 /**
  * wait function loaded
- * @param parentObj { Object } target object
- * @param key { String } key of object
+ * @param tar { Object } target object
  * @param ticker { Number } ticker of setInterval
  * @param expiredTime { Number } expired time
  * @returns {Promise}
  */
-export declare function wait(parentObj: any, ticker?: number, expiredTime?: number): Promise<boolean>;
+export declare function wait(tar: any, ticker?: number, expiredTime?: number): Promise<boolean>;
 /**
  * wait some time and excute the next func
  * @param time {Number} sleep time
