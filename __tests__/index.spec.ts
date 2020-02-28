@@ -612,6 +612,11 @@ describe('zaxRegexForm', () => {
 		expect(zaxRegexForm.isIdcard(130324200106012652)).toEqual(true)
 	})
 
+	it(`should be correct isHKMobile function result `, () => {
+		expect(zaxRegexForm.isHKMobile(69047696)).toEqual(true)
+		expect(zaxRegexForm.isHKMobile('69047696')).toEqual(true)
+	})
+
 	it(`should be correct isMobile function result `, () => {
 		expect(zaxRegexForm.isMobile(13402938476)).toEqual(true)
 		expect(zaxRegexForm.isMobile('13402938476')).toEqual(true)
