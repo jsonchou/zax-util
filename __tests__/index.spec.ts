@@ -79,11 +79,6 @@ describe('zaxString', () => {
 		expect(zaxString.toWord(10)).toEqual('ten')
 	})
 
-	it(`should be toHttps string`, () => {
-		expect(zaxString.toHttps('http://demo.com')).toEqual('https://demo.com')
-		expect(zaxString.toHttps('')).toEqual('')
-	})
-
 	it(`should be padStart string`, () => {
 		expect(zaxString.padStart(3, 3, 'x')).toEqual('xx3')
 		expect(zaxString.padStart(3)).toEqual('03')

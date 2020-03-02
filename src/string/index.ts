@@ -99,24 +99,6 @@ const toMonth = (num: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12, locale: 
 	return months[locale][num - 1]
 }
 
-type Nothing31 = {}
-/**
- * http to https
- *
- * @example
- * ```js
- * toHttps('http://m.baidu.com')
- * //=> https://m.baidu.com
- * ```
- *
- * @param str {Number} target url
- * @returns {String} https url
- */
-
-const toHttps = (str: string): string => {
-	return str.indexOf('http') === 0 ? str.replace('http', 'https') : str
-}
-
 type Nothing4 = {}
 /**
  * cut & ellipsis string.
@@ -284,7 +266,6 @@ const expData = {
 	toWord,
 	toDay,
 	toMonth,
-	toHttps,
 	ellipsis,
 	striptags,
 	padStart,
@@ -295,6 +276,6 @@ const expData = {
 	isString
 }
 
-export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, toHttps, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString }
+export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString }
 
 export default expData
