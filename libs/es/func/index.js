@@ -3,7 +3,7 @@
  * @module zaxFunc
  * @see https://github.com/jsonchou/zax-util/tree/master/docs/func
  */
-import { isFunction, isObject, isArray } from '../types/index';
+import { isFunction, isObject, isArray, isDate, isString } from '../types/index';
 import { isEmptyObject } from '../object/index';
 /**
  * wait function loaded
@@ -25,13 +25,11 @@ export function wait(tar, ticker = 30, expiredTime = 3000) {
                 timer && clearInterval(timer);
                 resolve(true);
             }
-            else if (tar && tar !== '' && tar !== null && tar !== undefined) {
-                timer && clearInterval(timer);
-                resolve(true);
-            }
-            else {
-                reject(false);
-                return;
+            else if (tar !== '' && tar !== null && tar !== undefined) {
+                if (isString(tar) || isDate(tar)) {
+                    timer && clearInterval(timer);
+                    resolve(true);
+                }
             }
         };
         timer = setInterval(() => {

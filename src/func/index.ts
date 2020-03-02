@@ -4,7 +4,7 @@
  * @see https://github.com/jsonchou/zax-util/tree/master/docs/func
  */
 
-import { isFunction, isObject, isArray } from '../types/index'
+import { isFunction, isObject, isArray, isDate, isString, isNumber } from '../types/index'
 import { isEmptyObject } from '../object/index'
 
 type Nothing = {} // jsdoc2md bugs, do not remove this line
@@ -28,12 +28,11 @@ export function wait(tar: any, ticker: number = 30, expiredTime: number = 3000):
 			} else if (tar && isObject(tar) && !isEmptyObject(tar)) {
 				timer && clearInterval(timer)
 				resolve(true)
-			} else if (tar && tar !== '' && tar !== null && tar !== undefined) {
-				timer && clearInterval(timer)
-				resolve(true)
-			} else {
-				reject(false)
-				return
+			} else if (tar !== '' && tar !== null && tar !== undefined) {
+				if (isString(tar) || isDate(tar)) {
+					timer && clearInterval(timer)
+					resolve(true)
+				}
 			}
 		}
 

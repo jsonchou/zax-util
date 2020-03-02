@@ -29,13 +29,11 @@ function wait(tar, ticker, expiredTime) {
                 timer && clearInterval(timer);
                 resolve(true);
             }
-            else if (tar && tar !== '' && tar !== null && tar !== undefined) {
-                timer && clearInterval(timer);
-                resolve(true);
-            }
-            else {
-                reject(false);
-                return;
+            else if (tar !== '' && tar !== null && tar !== undefined) {
+                if (index_1.isString(tar) || index_1.isDate(tar)) {
+                    timer && clearInterval(timer);
+                    resolve(true);
+                }
             }
         };
         timer = setInterval(function () {
