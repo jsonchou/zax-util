@@ -75,21 +75,6 @@ const toMonth = (num, locale = 'zh-cn') => {
     return months[locale][num - 1];
 };
 /**
- * http to https
- *
- * @example
- * ```js
- * toHttps('http://m.baidu.com')
- * //=> https://m.baidu.com
- * ```
- *
- * @param str {Number} target url
- * @returns {String} https url
- */
-const toHttps = (str) => {
-    return str.indexOf('http') === 0 ? str.replace('http', 'https') : str;
-};
-/**
  * cut & ellipsis string.
  *
  * @example
@@ -243,7 +228,6 @@ const expData = {
     toWord,
     toDay,
     toMonth,
-    toHttps,
     ellipsis,
     striptags,
     padStart,
@@ -253,6 +237,6 @@ const expData = {
     trimEnd,
     isString
 };
-export { toWord, toDay, toMonth, toHttps, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString };
+export { toWord, toDay, toMonth, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString };
 export default expData;
 //# sourceMappingURL=index.js.map

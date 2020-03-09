@@ -414,20 +414,64 @@ describe('zaxRegexForm', () => {
 		expect(zaxRegexForm.isIdcard(130324200106012652)).toEqual(true)
 	})
 
-	it(`should be correct isHKMobile function result `, () => {
-		expect(zaxRegexForm.isHKMobile(69047696)).toEqual(true)
-		expect(zaxRegexForm.isHKMobile('69047696')).toEqual(true)
-	})
-
+	// 大陆手机
 	it(`should be correct isMobile function result `, () => {
 		expect(zaxRegexForm.isMobile(13402938476)).toEqual(true)
 		expect(zaxRegexForm.isMobile('13402938476')).toEqual(true)
+		expect(zaxRegexForm.isMobile('8613402938476')).toEqual(true)
+		expect(zaxRegexForm.isMobile('+8613402938476')).toEqual(true)
 	})
 
-	it(`should be correct isPhone function result `, () => {
-		expect(zaxRegexForm.isPhone(13402938476)).toEqual(true)
-		expect(zaxRegexForm.isPhone('13402938476')).toEqual(true)
+	//香港手机
+	it(`should be correct isMobileHongKong function result `, () => {
+		expect(zaxRegexForm.isMobileHongKong(94856780)).toEqual(true)
+		expect(zaxRegexForm.isMobileHongKong('94856780')).toEqual(true)
+		expect(zaxRegexForm.isMobileHongKong('85294856780')).toEqual(true)
+		expect(zaxRegexForm.isMobileHongKong('+85294856780')).toEqual(true)
+
+		expect(zaxRegexForm.isMobileHongKong(64856780)).toEqual(true)
+		expect(zaxRegexForm.isMobileHongKong('64856780')).toEqual(true)
+		expect(zaxRegexForm.isMobileHongKong('85264856780')).toEqual(true)
+		expect(zaxRegexForm.isMobileHongKong('+85264856780')).toEqual(true)
+
 	})
+
+	//澳门手机
+	it(`should be correct isMobileMacau function result `, () => {
+		expect(zaxRegexForm.isMobileMacau(6643248)).toEqual(true)
+		expect(zaxRegexForm.isMobileMacau('6643248')).toEqual(true)
+		expect(zaxRegexForm.isMobileMacau('8536643248')).toEqual(true)
+		expect(zaxRegexForm.isMobileMacau('+8536643248')).toEqual(true)
+
+		expect(zaxRegexForm.isMobileMacau(6843248)).toEqual(true)
+		expect(zaxRegexForm.isMobileMacau('6843248')).toEqual(true)
+		expect(zaxRegexForm.isMobileMacau('8536843248')).toEqual(true)
+		expect(zaxRegexForm.isMobileMacau('+8536843248')).toEqual(true)
+	})
+
+	//台湾手机
+	it(`should be correct isMobileTaiwan function result `, () => {
+		expect(zaxRegexForm.isMobileTaiwan('0922887075')).toEqual(true)
+		expect(zaxRegexForm.isMobileTaiwan('8860922887075')).toEqual(true)
+		expect(zaxRegexForm.isMobileTaiwan('+8860922887075')).toEqual(true)
+
+		expect(zaxRegexForm.isMobileTaiwan('0922887075')).toEqual(true)
+		expect(zaxRegexForm.isMobileTaiwan('8860922887075')).toEqual(true)
+		expect(zaxRegexForm.isMobileTaiwan('+8860922887075')).toEqual(true)
+
+	})
+
+	//全中国手机
+	it(`should be correct isMobileChina function result `, () => {
+		expect(zaxRegexForm.isMobileChina('13402938476')).toEqual(true)
+		expect(zaxRegexForm.isMobileChina('8613402938476')).toEqual(true)
+		expect(zaxRegexForm.isMobileChina('+8613402938476')).toEqual(true)
+		expect(zaxRegexForm.isMobileChina('94856780')).toEqual(true)
+		expect(zaxRegexForm.isMobileChina('6643248')).toEqual(true)
+		expect(zaxRegexForm.isMobileChina('0922887075')).toEqual(true)
+		expect(zaxRegexForm.isMobileTaiwan('+8860922887075')).toEqual(true)
+	})
+
 
 	it(`should be correct isQQ function result `, () => {
 		expect(zaxRegexForm.isQQ(54645464)).toEqual(true)

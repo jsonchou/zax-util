@@ -70,19 +70,6 @@ declare const toDay: (num: 0 | 1 | 2 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us"
  */
 declare const toMonth: (num: 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 11 | 12, locale?: "zh-cn" | "en-us") => string;
 /**
- * http to https
- *
- * @example
- * ```js
- * toHttps('http://m.baidu.com')
- * //=> https://m.baidu.com
- * ```
- *
- * @param str {Number} target url
- * @returns {String} https url
- */
-declare const toHttps: (str: string) => string;
-/**
  * cut & ellipsis string.
  *
  * @example
@@ -177,7 +164,6 @@ declare const expData: {
     toWord: (num: 0 | 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
     toDay: (num: 0 | 1 | 2 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
     toMonth: (num: 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 11 | 12, locale?: "zh-cn" | "en-us") => string;
-    toHttps: (str: string) => string;
     ellipsis: (str: string, limit?: number, tail?: "]" | "<" | ">" | "\"" | "'" | "-" | " " | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "_" | "+" | "{" | "}" | "|" | ":" | "?" | "=" | "[" | ";" | "," | "." | "/" | "`", tailRepeatTime?: number) => string;
     striptags: typeof striptags;
     padStart: (str: string | number, limit?: number, repeatWith?: string) => string;
@@ -187,5 +173,5 @@ declare const expData: {
     trimEnd: (str: string | number, tarChar?: string, replaceWith?: string) => string;
     isString: typeof isString;
 };
-export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, toHttps, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString };
+export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString };
 export default expData;

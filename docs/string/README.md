@@ -14,7 +14,6 @@
     * [~toWord(num, locale)](#module_zaxString..toWord) ⇒ <code>String</code>
     * [~toDay(num, locale)](#module_zaxString..toDay) ⇒ <code>String</code>
     * [~toMonth(num, locale)](#module_zaxString..toMonth) ⇒ <code>String</code>
-    * [~toHttps(str)](#module_zaxString..toHttps) ⇒ <code>String</code>
     * [~ellipsis(str, limit, tail, tailRepeatTime)](#module_zaxString..ellipsis) ⇒ <code>String</code>
     * [~padStart(str, limit, repeatWith)](#module_zaxString..padStart) ⇒ <code>String</code>
     * [~padEnd(str, limit, repeatWith)](#module_zaxString..padEnd) ⇒ <code>String</code>
@@ -78,23 +77,6 @@ Jan - Dec : 1 - 12</p>
 ```js
 toMonth(12)
 //=> 十二
-```
-<a name="module_zaxString..toHttps"></a>
-
-### zaxString~toHttps(str) ⇒ <code>String</code>
-<p>http to https</p>
-
-**Kind**: inner method of [<code>zaxString</code>](#module_zaxString)  
-**Returns**: <code>String</code> - <p>https url</p>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| str | <code>Number</code> | <p>target url</p> |
-
-**Example**  
-```js
-toHttps('http://m.baidu.com')
-//=> https://m.baidu.com
 ```
 <a name="module_zaxString..ellipsis"></a>
 

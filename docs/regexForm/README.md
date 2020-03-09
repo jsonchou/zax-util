@@ -13,7 +13,10 @@
     * [~isTel(v)](#module_zaxRegexForm..isTel)
     * [~isIdcard(v)](#module_zaxRegexForm..isIdcard)
     * [~isMobile(v)](#module_zaxRegexForm..isMobile)
-    * [~isPhone(v)](#module_zaxRegexForm..isPhone)
+    * [~isMobileChina(v)](#module_zaxRegexForm..isMobileChina)
+    * [~isMobileHongKong(v)](#module_zaxRegexForm..isMobileHongKong)
+    * [~isMobileMacau(v)](#module_zaxRegexForm..isMobileMacau)
+    * [~isMobileTaiwan(v)](#module_zaxRegexForm..isMobileTaiwan)
 
 <a name="module_zaxRegexForm..matchRegex"></a>
 
@@ -27,7 +30,7 @@
 
 | Param | Type | Description |
 | --- | --- | --- |
-| v | <code>String</code> | <p>target string</p> |
+| v | <code>String</code> \| <code>Number</code> \| <code>Date</code> | <p>target string</p> |
 | regexKey | <code>String</code> | <p>regex</p> |
 
 <a name="module_zaxRegexForm..isEmail"></a>
@@ -104,7 +107,16 @@
 
 ### zaxRegexForm~isMobile(v)
 <p>isMobile</p>
-<pre class="prettyprint source lang-js"><code>isMobile(13402938476);
+<pre class="prettyprint source lang-js"><code>isMobile(13402938476)
+//=> true
+
+isMobile('13402938476')
+//=> true
+
+isMobile('8613402938476')
+//=> true
+
+isMobile('+8613402938476')
 //=> true
 </code></pre>
 
@@ -112,13 +124,31 @@
 
 | Param | Type | Description |
 | --- | --- | --- |
-| v | <code>String</code> | <p>target string</p> |
+| v | <code>String</code> \| <code>Number</code> | <p>target string</p> |
 
-<a name="module_zaxRegexForm..isPhone"></a>
+<a name="module_zaxRegexForm..isMobileChina"></a>
 
-### zaxRegexForm~isPhone(v)
-<p>isPhone</p>
-<pre class="prettyprint source lang-js"><code>isPhone(13456575859);
+### zaxRegexForm~isMobileChina(v)
+<p>isMobileChina</p>
+<pre class="prettyprint source lang-js"><code>isMobileChina('13402938476')
+//=> true
+
+isMobileChina('8613402938476')
+//=> true
+
+isMobileChina('+8613402938476')
+//=> true
+
+isMobileChina('94856780')
+//=> true
+
+isMobileChina('6643248')
+//=> true
+
+isMobileChina('0922887075')
+//=> true
+
+isMobileChina('+8860922887075')
 //=> true
 </code></pre>
 
@@ -126,5 +156,89 @@
 
 | Param | Type | Description |
 | --- | --- | --- |
-| v | <code>String</code> | <p>target string</p> |
+| v | <code>String</code> \| <code>Number</code> | <p>target string</p> |
+
+<a name="module_zaxRegexForm..isMobileHongKong"></a>
+
+### zaxRegexForm~isMobileHongKong(v)
+<p>isMobileHongKong</p>
+<pre class="prettyprint source lang-js"><code>isMobileHongKong(94856780)
+//=> true
+
+isMobileHongKong('94856780')
+//=> true
+
+isMobileHongKong('85294856780')
+//=> true
+
+isMobileHongKong('+85294856780')
+//=> true
+
+isMobileHongKong(64856780)
+//=> true
+
+isMobileHongKong('64856780')
+//=> true
+
+isMobileHongKong('85264856780')
+//=> true
+
+isMobileHongKong('+85264856780')
+//=> true
+</code></pre>
+
+**Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| v | <code>String</code> \| <code>Number</code> | <p>target string</p> |
+
+<a name="module_zaxRegexForm..isMobileMacau"></a>
+
+### zaxRegexForm~isMobileMacau(v)
+<p>isMobileMacau</p>
+<pre class="prettyprint source lang-js"><code>isMobileMacau(6643248)
+//=> true
+
+isMobileMacau('6643248')
+//=> true
+
+isMobileMacau('8536643248')
+//=> true
+
+isMobileMacau('+8536643248')
+//=> true
+
+isMobileMacau(6843248)
+//=> true
+
+isMobileMacau('6843248')
+//=> true
+
+isMobileMacau('8536843248')
+//=> true
+
+isMobileMacau('+8536843248')
+//=> true
+</code></pre>
+
+**Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| v | <code>String</code> \| <code>Number</code> | <p>target string</p> |
+
+<a name="module_zaxRegexForm..isMobileTaiwan"></a>
+
+### zaxRegexForm~isMobileTaiwan(v)
+<p>isMobileTaiwan</p>
+<pre class="prettyprint source lang-js"><code>isMobileTaiwan(13402938476);
+//=> true
+</code></pre>
+
+**Kind**: inner method of [<code>zaxRegexForm</code>](#module_zaxRegexForm)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| v | <code>String</code> \| <code>Number</code> | <p>target string</p> |
 

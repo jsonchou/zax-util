@@ -85,22 +85,6 @@ var toMonth = function (num, locale) {
 };
 exports.toMonth = toMonth;
 /**
- * http to https
- *
- * @example
- * ```js
- * toHttps('http://m.baidu.com')
- * //=> https://m.baidu.com
- * ```
- *
- * @param str {Number} target url
- * @returns {String} https url
- */
-var toHttps = function (str) {
-    return str.indexOf('http') === 0 ? str.replace('http', 'https') : str;
-};
-exports.toHttps = toHttps;
-/**
  * cut & ellipsis string.
  *
  * @example
@@ -273,7 +257,6 @@ var expData = {
     toWord: toWord,
     toDay: toDay,
     toMonth: toMonth,
-    toHttps: toHttps,
     ellipsis: ellipsis,
     striptags: striptags_1.striptags,
     padStart: padStart,

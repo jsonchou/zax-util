@@ -17,14 +17,14 @@ var regex_1 = __importDefault(require("../regex"));
  * //=> true
  * ```
  *
- * @param v {String} target string
+ * @param v {String|Number|Date} target string
  * @param regexKey {String} regex
  */
 function matchRegex(v, regexKey) {
     v = String(v);
     var nv = v.replace(/\ /gi, '');
     var rex = regex_1.default[regexKey];
-    if (nv && nv.match(rex)) {
+    if (nv && rex.test(nv)) {
         return true;
     }
     return false;
@@ -104,37 +104,151 @@ exports.isIdcard = isIdcard;
  * isMobile
  *
  * ```js
- * isMobile(13402938476);
+ * isMobile(13402938476)
+ * //=> true
+ *
+ * isMobile('13402938476')
+ * //=> true
+ *
+ * isMobile('8613402938476')
+ * //=> true
+ *
+ * isMobile('+8613402938476')
  * //=> true
  * ```
  *
- * @param v {String} target string
+ * @param v {String|Number} target string
  */
 function isMobile(v) {
     return matchRegex(v, 'MOBILE');
 }
 exports.isMobile = isMobile;
 /**
- * isPhone
+ * isMobileChina
  *
  * ```js
- * isPhone(13456575859);
+ * isMobileChina('13402938476')
+ * //=> true
+ *
+ * isMobileChina('8613402938476')
+ * //=> true
+ *
+ * isMobileChina('+8613402938476')
+ * //=> true
+ *
+ * isMobileChina('94856780')
+ * //=> true
+ *
+ * isMobileChina('6643248')
+ * //=> true
+ *
+ * isMobileChina('0922887075')
+ * //=> true
+ *
+ * isMobileChina('+8860922887075')
  * //=> true
  * ```
  *
- * @param v {String} target string
+ * @param v {String|Number} target string
  */
-function isPhone(v) {
-    return isMobile(v);
+function isMobileChina(v) {
+    return isMobile(v) || isMobileHongKong(v) || isMobileMacau(v) || isMobileTaiwan(v);
 }
-exports.isPhone = isPhone;
+exports.isMobileChina = isMobileChina;
+/**
+ * isMobileHongKong
+ *
+ * ```js
+ * isMobileHongKong(94856780)
+ * //=> true
+ *
+ * isMobileHongKong('94856780')
+ * //=> true
+ *
+ * isMobileHongKong('85294856780')
+ * //=> true
+ *
+ * isMobileHongKong('+85294856780')
+ * //=> true
+ *
+ * isMobileHongKong(64856780)
+ * //=> true
+ *
+ * isMobileHongKong('64856780')
+ * //=> true
+ *
+ * isMobileHongKong('85264856780')
+ * //=> true
+ *
+ * isMobileHongKong('+85264856780')
+ * //=> true
+ * ```
+ *
+ * @param v {String|Number} target string
+ */
+function isMobileHongKong(v) {
+    return matchRegex(v, 'MOBILE_HONGKONG');
+}
+exports.isMobileHongKong = isMobileHongKong;
+/**
+ * isMobileMacau
+ *
+ * ```js
+ * isMobileMacau(6643248)
+ * //=> true
+ *
+ * isMobileMacau('6643248')
+ * //=> true
+ *
+ * isMobileMacau('8536643248')
+ * //=> true
+ *
+ * isMobileMacau('+8536643248')
+ * //=> true
+ *
+ * isMobileMacau(6843248)
+ * //=> true
+ *
+ * isMobileMacau('6843248')
+ * //=> true
+ *
+ * isMobileMacau('8536843248')
+ * //=> true
+ *
+ * isMobileMacau('+8536843248')
+ * //=> true
+ * ```
+ *
+ * @param v {String|Number} target string
+ */
+function isMobileMacau(v) {
+    return matchRegex(v, 'MOBILE_MACAU');
+}
+exports.isMobileMacau = isMobileMacau;
+/**
+ * isMobileTaiwan
+ *
+ * ```js
+ * isMobileTaiwan(13402938476);
+ * //=> true
+ * ```
+ *
+ * @param v {String|Number} target string
+ */
+function isMobileTaiwan(v) {
+    return matchRegex(v, 'MOBILE_TAIWAN');
+}
+exports.isMobileTaiwan = isMobileTaiwan;
 exports.default = {
     matchRegex: matchRegex,
     isDate: isDate,
     isEmail: isEmail,
     isIdcard: isIdcard,
     isMobile: isMobile,
-    isPhone: isPhone,
+    isMobileChina: isMobileChina,
+    isMobileHongKong: isMobileHongKong,
+    isMobileMacau: isMobileMacau,
+    isMobileTaiwan: isMobileTaiwan,
     isQQ: isQQ,
     isTel: isTel
 };
