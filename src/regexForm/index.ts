@@ -114,6 +114,20 @@ export function isMobile(v: string | number): boolean {
 }
 
 /**
+ * isHKMobile
+ *
+ * ```js
+ * isHKMobile(69047696);
+ * //=> true
+ * ```
+ *
+ * @param v {String} target string
+ */
+export function isHKMobile(v: string | number): boolean {
+	return matchRegex(v, 'HKMOBILE')
+}
+
+/**
  * isPhone
  *
  * ```js
@@ -133,6 +147,7 @@ export default {
 	isEmail,
 	isIdcard,
 	isMobile,
+	isHKMobile,
 	isPhone,
 	isQQ,
 	isTel
