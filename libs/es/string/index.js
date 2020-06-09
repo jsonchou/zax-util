@@ -6,7 +6,7 @@
  * @see Locale-codes https://www.science.co.il/language/Locale-codes.php
  */
 import { isString } from '../types/index';
-const striptags = require('./striptags');
+const striptags = require('striptags');
 const SpecialChar = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '<', '>', '?', '-', '=', '[', ']', ';', "'", ',', '.', '/', `"`, '`', ' '];
 const numbers = {
     'zh-cn': ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],

@@ -7,7 +7,7 @@
  */
 
 import { isString } from '../types/index'
-const striptags = require('./striptags')
+const striptags = require('striptags')
 
 type Nothing = {} // jsdoc2md bugs, do not remove this line
 

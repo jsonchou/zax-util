@@ -19,7 +19,7 @@
     exports.isString = exports.trimEnd = exports.trimStart = exports.trim = exports.padEnd = exports.padStart = exports.striptags = exports.ellipsis = exports.toMonth = exports.toDay = exports.toWord = void 0;
     var index_1 = require("../types/index");
     Object.defineProperty(exports, "isString", { enumerable: true, get: function () { return index_1.isString; } });
-    var striptags = require('./striptags');
+    var striptags = require('striptags');
     exports.striptags = striptags;
     var SpecialChar = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '<', '>', '?', '-', '=', '[', ']', ';', "'", ',', '.', '/', "\"", '`', ' '];
     var numbers = {
