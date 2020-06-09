@@ -14,6 +14,7 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isNull = exports.isError = exports.isBoolean = exports.isString = exports.isNumber = exports.isRegExp = exports.isDate = exports.isObject = exports.isArray = exports.isFunction = exports.get = exports.check = void 0;
     /**
      * check type
      * @param {any} tar

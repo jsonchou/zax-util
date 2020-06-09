@@ -5,6 +5,7 @@
  */
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.snakecase = exports.sentencecase = exports.pathcase = exports.dotcase = exports.dashcase = exports.camelcase = exports.pascalcase = exports.cleancase = void 0;
 var types_1 = require("../types");
 /**
  * standard string of cleaning

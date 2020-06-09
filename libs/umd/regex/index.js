@@ -14,6 +14,7 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MOBILE_TAIWAN = exports.MOBILE_MACAU = exports.MOBILE_HONGKONG = exports.MOBILE = exports.IDCARD = exports.TEL = exports.QQ = exports.DATE = exports.EMAIL = void 0;
     exports.EMAIL = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/; //邮件
     exports.DATE = /^\d{4}(\-|\/|.)\d{1,2}\1\d{1,2}$/; // 日期
     exports.QQ = /^[1-9]*[1-9][0-9]*$/; // QQ号码

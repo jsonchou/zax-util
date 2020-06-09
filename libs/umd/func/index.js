@@ -14,6 +14,7 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.sleep = exports.wait = void 0;
     var index_1 = require("../types/index");
     var index_2 = require("../object/index");
     /**

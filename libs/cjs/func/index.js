@@ -5,6 +5,7 @@
  * @see https://github.com/jsonchou/zax-util/tree/master/docs/func
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.sleep = exports.wait = void 0;
 var index_1 = require("../types/index");
 var index_2 = require("../object/index");
 /**

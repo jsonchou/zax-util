@@ -6,7 +6,7 @@
  * @see Locale-codes https://www.science.co.il/language/Locale-codes.php
  */
 import { isString } from '../types/index';
-import { striptags } from './striptags';
+declare const striptags: any;
 declare const SpecialChar: readonly ["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "{", "}", "|", ":", "<", ">", "?", "-", "=", "[", "]", ";", "'", ",", ".", "/", "\"", "`", " "];
 declare type SpecialCharType = typeof SpecialChar[number];
 declare const numbers: {
@@ -38,7 +38,7 @@ declare type MonthKeys = keyof typeof months;
  * @param locale {NumberKeys} locale
  * @returns {String} locale of number
  */
-declare const toWord: (num: 0 | 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
+declare const toWord: (num: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10, locale?: NumberKeys) => string;
 /**
  * number to day.
  * Sunday - Saturday : 0 - 6
@@ -53,7 +53,7 @@ declare const toWord: (num: 0 | 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3, locale?:
  * @param locale {daysKeys} locale
  * @returns {String} day of number
  */
-declare const toDay: (num: 0 | 1 | 2 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
+declare const toDay: (num: 0 | 1 | 2 | 3 | 4 | 5 | 6, locale?: daysKeys) => string;
 /**
  * number to month.
  * Jan - Dec : 1 - 12
@@ -68,7 +68,7 @@ declare const toDay: (num: 0 | 1 | 2 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us"
  * @param locale {MonthKeys} locale
  * @returns {String} day of month
  */
-declare const toMonth: (num: 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 11 | 12, locale?: "zh-cn" | "en-us") => string;
+declare const toMonth: (num: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12, locale?: MonthKeys) => string;
 /**
  * cut & ellipsis string.
  *
@@ -84,7 +84,7 @@ declare const toMonth: (num: 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 11 | 12, l
  * @param tailRepeatTime {Number} tail repeat times
  * @returns {String} string of result
  */
-declare const ellipsis: (str: string, limit?: number, tail?: "]" | "<" | ">" | "\"" | "'" | "-" | " " | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "_" | "+" | "{" | "}" | "|" | ":" | "?" | "=" | "[" | ";" | "," | "." | "/" | "`", tailRepeatTime?: number) => string;
+declare const ellipsis: (str: string, limit?: number, tail?: SpecialCharType, tailRepeatTime?: number) => string;
 /**
  * left pad with char.
  *
@@ -161,11 +161,11 @@ declare const trimStart: (str: string | number, tarChar?: string, replaceWith?: 
  */
 declare const trimEnd: (str: string | number, tarChar?: string, replaceWith?: string) => string;
 declare const expData: {
-    toWord: (num: 0 | 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
-    toDay: (num: 0 | 1 | 2 | 6 | 5 | 4 | 3, locale?: "zh-cn" | "en-us") => string;
-    toMonth: (num: 1 | 2 | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 11 | 12, locale?: "zh-cn" | "en-us") => string;
-    ellipsis: (str: string, limit?: number, tail?: "]" | "<" | ">" | "\"" | "'" | "-" | " " | "~" | "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")" | "_" | "+" | "{" | "}" | "|" | ":" | "?" | "=" | "[" | ";" | "," | "." | "/" | "`", tailRepeatTime?: number) => string;
-    striptags: typeof striptags;
+    toWord: (num: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10, locale?: NumberKeys) => string;
+    toDay: (num: 0 | 1 | 2 | 3 | 4 | 5 | 6, locale?: daysKeys) => string;
+    toMonth: (num: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12, locale?: MonthKeys) => string;
+    ellipsis: (str: string, limit?: number, tail?: SpecialCharType, tailRepeatTime?: number) => string;
+    striptags: any;
     padStart: (str: string | number, limit?: number, repeatWith?: string) => string;
     padEnd: (str: string | number, limit?: number, repeatWith?: string) => string;
     trim: (str: string | number, tarChar?: string, replaceWith?: string) => string;

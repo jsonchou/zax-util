@@ -5,8 +5,9 @@
  * @see https://github.com/jsonchou/zax-util/tree/master/docs/object
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isEmptyObject = exports.isObject = exports.shallowCompare = exports.hasDiff = void 0;
 var index_1 = require("../types/index");
-exports.isObject = index_1.isObject;
+Object.defineProperty(exports, "isObject", { enumerable: true, get: function () { return index_1.isObject; } });
 /**
  * has diff between objects.
  *

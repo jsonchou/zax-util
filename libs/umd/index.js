@@ -17,6 +17,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.zaxCases = exports.zaxTypes = exports.zaxRegexForm = exports.zaxRegex = exports.zaxObject = exports.zaxArray = exports.zaxFunc = exports.zaxString = void 0;
     var string_1 = __importDefault(require("./string"));
     exports.zaxString = string_1.default;
     var func_1 = __importDefault(require("./func"));

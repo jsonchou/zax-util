@@ -8,6 +8,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isMobileTaiwan = exports.isMobileMacau = exports.isMobileHongKong = exports.isMobileChina = exports.isMobile = exports.isIdcard = exports.isTel = exports.isQQ = exports.isDate = exports.isEmail = exports.matchRegex = void 0;
 var regex_1 = __importDefault(require("../regex"));
 /**
  * checke string with regex
