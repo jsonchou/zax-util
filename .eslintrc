@@ -29,7 +29,7 @@
 		"jquery": true //jQuery全局变量。
 	},
 	"root": true,
-	"extends": ["za", "za/typescript"],
+	"extends": ["standard"],
 	"settings": {},
 	"rules": {
 		"indent": 0,

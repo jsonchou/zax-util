@@ -24,7 +24,92 @@ function charEscape(str) {
     return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 /**
- * number to english word.
+ * Convert object to kindof querystring.
+ * 0 - 10
+ *
+ * @example
+ * ```js
+ * queryString({ k: 1, v: false, b: true, d: '', x: undefined, p: undefined })
+ * //=> k=1&v=false&b=true
+ * ```
+ *
+ * @param obj {Object} object
+ * @returns {String} string
+ */
+const queryString = (obj, option) => {
+    if (!option) {
+        option = {};
+    }
+    let opt = Object.assign({ joinWith: '&', perfectResult: true }, Object.assign({}, option));
+    let arr = Object.keys(obj).reduce((sum, item) => {
+        let val = obj[item];
+        if (opt.perfectResult) {
+            if (val || val === false) {
+                sum.push(`${item}=${val}`);
+            }
+        }
+        else {
+            sum.push(`${item}=${val}`);
+        }
+        return sum;
+    }, []);
+    if (arr && arr.length) {
+        return arr.join(opt.joinWith);
+    }
+    return '';
+};
+/**
+ * Convert object to kindof querystring.
+ * 0 - 10
+ *
+ * @example
+ * ```js
+ * parseString("k=1&v=false&b=true&d=&x=undefined&p=undefined")
+ * //=> { k: 1, v: false, b: true }
+ * ```
+ *
+ * @param str {String} string
+ * @returns {String} string
+ */
+const parseString = (str, option) => {
+    if (!option) {
+        option = {};
+    }
+    let opt = Object.assign({ joinWith: '&', perfectResult: true }, Object.assign({}, option));
+    let obj = str.split(opt.joinWith).reduce((sum, item) => {
+        let [first, second] = item.split('=');
+        if (!opt.perfectResult) {
+            // dirty control
+            sum[first] = second;
+        }
+        else {
+            if (second && second !== 'undefined') {
+                if (second === 'true' || second === 'false') {
+                    second = (second === 'true' ? true : false);
+                }
+                else {
+                    // fix correct number
+                    try {
+                        /* istanbul ignore next */
+                        if (!isNaN(second)) {
+                            // 是数字
+                            second = Number(second);
+                        }
+                    }
+                    catch (err) {
+                        /* istanbul ignore next */
+                        console.log('parseString err', err);
+                    }
+                }
+                sum[first] = second;
+            }
+        }
+        return sum;
+    }, {});
+    return obj;
+};
+/**
+ * Number to english word.
  * 0 - 10
  *
  * @example
@@ -225,6 +310,8 @@ const trimEnd = (str, tarChar = ' ', replaceWith = '') => {
 };
 /* istanbul ignore next */
 const expData = {
+    queryString,
+    parseString,
     toWord,
     toDay,
     toMonth,
@@ -237,6 +324,6 @@ const expData = {
     trimEnd,
     isString
 };
-export { toWord, toDay, toMonth, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString };
+export { queryString, parseString, toWord, toDay, toMonth, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString };
 export default expData;
 //# sourceMappingURL=index.js.map

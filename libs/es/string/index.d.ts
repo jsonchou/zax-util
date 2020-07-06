@@ -25,7 +25,41 @@ declare type NumberKeys = keyof typeof numbers;
 declare type daysKeys = keyof typeof days;
 declare type MonthKeys = keyof typeof months;
 /**
- * number to english word.
+ * Convert object to kindof querystring.
+ * 0 - 10
+ *
+ * @example
+ * ```js
+ * queryString({ k: 1, v: false, b: true, d: '', x: undefined, p: undefined })
+ * //=> k=1&v=false&b=true
+ * ```
+ *
+ * @param obj {Object} object
+ * @returns {String} string
+ */
+declare const queryString: (obj: Record<string, string | number | boolean | undefined>, option?: Partial<{
+    joinWith: string;
+    perfectResult: boolean;
+}> | undefined) => string;
+/**
+ * Convert object to kindof querystring.
+ * 0 - 10
+ *
+ * @example
+ * ```js
+ * parseString("k=1&v=false&b=true&d=&x=undefined&p=undefined")
+ * //=> { k: 1, v: false, b: true }
+ * ```
+ *
+ * @param str {String} string
+ * @returns {String} string
+ */
+declare const parseString: (str: string, option?: Partial<{
+    joinWith: string;
+    perfectResult: boolean;
+}> | undefined) => Record<string, string | number | boolean>;
+/**
+ * Number to english word.
  * 0 - 10
  *
  * @example
@@ -161,6 +195,14 @@ declare const trimStart: (str: string | number, tarChar?: string, replaceWith?: 
  */
 declare const trimEnd: (str: string | number, tarChar?: string, replaceWith?: string) => string;
 declare const expData: {
+    queryString: (obj: Record<string, string | number | boolean | undefined>, option?: Partial<{
+        joinWith: string;
+        perfectResult: boolean;
+    }> | undefined) => string;
+    parseString: (str: string, option?: Partial<{
+        joinWith: string;
+        perfectResult: boolean;
+    }> | undefined) => Record<string, string | number | boolean>;
     toWord: (num: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10, locale?: NumberKeys) => string;
     toDay: (num: 0 | 1 | 2 | 3 | 4 | 5 | 6, locale?: daysKeys) => string;
     toMonth: (num: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12, locale?: MonthKeys) => string;
@@ -173,5 +215,5 @@ declare const expData: {
     trimEnd: (str: string | number, tarChar?: string, replaceWith?: string) => string;
     isString: typeof isString;
 };
-export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString };
+export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, queryString, parseString, toWord, toDay, toMonth, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString };
 export default expData;

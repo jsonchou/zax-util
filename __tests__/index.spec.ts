@@ -29,6 +29,21 @@ describe('zaxString', () => {
 		})
 	})
 
+	it(`should be queryString type`, () => {
+		expect(zaxString.queryString({})).toEqual("")
+		expect(zaxString.queryString({ k: 1, v: false, b: true, d: '', x: undefined, p: undefined })).toEqual("k=1&v=false&b=true")
+		expect(zaxString.queryString({ k: 1, v: false, b: true, d: '', x: undefined, p: undefined }, { joinWith: '@' })).toEqual("k=1@v=false@b=true")
+		expect(zaxString.queryString({ k: 1, v: false, b: true, d: '', x: undefined, p: undefined }, { perfectResult: true })).toEqual("k=1&v=false&b=true")
+		expect(zaxString.queryString({ k: 1, v: false, b: true, d: '', x: undefined, p: undefined }, { perfectResult: false })).toEqual("k=1&v=false&b=true&d=&x=undefined&p=undefined")
+	})
+
+	it(`should be parseString type`, () => {
+		expect(zaxString.parseString("k=1&v=false&b=true&d=&x=undefined&p=undefined")).toEqual({ k: 1, v: false, b: true })
+		expect(zaxString.parseString("k=1@v=false@b=true@d=@x=undefined@p=undefined", { joinWith: '@' })).toEqual({ k: 1, v: false, b: true })
+		expect(zaxString.parseString("k=1&v=false&b=true&d=&x=undefined&p=undefined", { perfectResult: true })).toEqual({ k: 1, v: false, b: true })
+		expect(zaxString.parseString("k=1&v=false&b=true&d=&x=undefined&p=undefined", { perfectResult: false })).toEqual({ k: "1", v: "false", b: "true", d: "", p: 'undefined', x: 'undefined' })
+	})
+
 	it(`should be isString type`, () => {
 		expect(zaxString.isString('a')).toEqual(true)
 		expect(zaxString.isString(1)).toEqual(false)

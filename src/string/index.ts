@@ -37,10 +37,101 @@ type NumberKeys = keyof typeof numbers
 type daysKeys = keyof typeof days
 type MonthKeys = keyof typeof months
 
+type Nothing0 = {}
+
+/**
+ * Convert object to kindof querystring.
+ * 0 - 10
+ *
+ * @example
+ * ```js
+ * queryString({ k: 1, v: false, b: true, d: '', x: undefined, p: undefined })
+ * //=> k=1&v=false&b=true
+ * ```
+ *
+ * @param obj {Object} object
+ * @returns {String} string
+ */
+
+const queryString = (obj: Record<string, string | number | boolean | undefined>, option?: Partial<{ joinWith: string, perfectResult: boolean }>): string => {
+	if (!option) {
+		option = {}
+	}
+	let opt = Object.assign({ joinWith: '&', perfectResult: true }, { ...option })
+	let arr = Object.keys(obj).reduce((sum: Array<string>, item) => {
+		let val = obj[item]
+		if (opt.perfectResult) {
+			if (val || val === false) {
+				sum.push(`${item}=${val}`)
+			}
+		} else {
+			sum.push(`${item}=${val}`)
+		}
+		return sum
+	}, [])
+	if (arr && arr.length) {
+		return arr.join(opt.joinWith)
+	}
+	return ''
+}
+
+type Nothing30 = {}
+
+/**
+ * Convert object to kindof querystring.
+ * 0 - 10
+ *
+ * @example
+ * ```js
+ * parseString("k=1&v=false&b=true&d=&x=undefined&p=undefined")
+ * //=> { k: 1, v: false, b: true }
+ * ```
+ *
+ * @param str {String} string
+ * @returns {String} string
+ */
+
+const parseString = (str: string, option?: Partial<{ joinWith: string, perfectResult: boolean }>): Record<string, string | number | boolean> => {
+	if (!option) {
+		option = {}
+	}
+	let opt = Object.assign({ joinWith: '&', perfectResult: true }, { ...option })
+	let obj = str.split(opt.joinWith).reduce((sum: Record<string, string | number | boolean>, item) => {
+		let [first, second] = item.split('=')
+		if (!opt.perfectResult) {
+			// dirty control
+			sum[first] = second
+		} else {
+			if (second && second !== 'undefined') {
+				if (second === 'true' || second === 'false') {
+					second = (second === 'true' ? true : false) as any
+				} else {
+					// fix correct number
+					try {
+						/* istanbul ignore next */
+						if (!isNaN(second as unknown as number)) {
+							// 是数字
+							second = Number(second) as any
+						}
+					} catch (err) {
+						/* istanbul ignore next */
+						console.log('parseString err', err)
+					}
+				}
+				sum[first] = second
+			}
+		}
+		return sum
+	}, {})
+	return obj
+}
+
+
+
 type Nothing1 = {}
 
 /**
- * number to english word.
+ * Number to english word.
  * 0 - 10
  *
  * @example
@@ -263,6 +354,8 @@ const trimEnd = (str: string | number, tarChar = ' ', replaceWith = ''): string 
 
 /* istanbul ignore next */
 const expData = {
+	queryString,
+	parseString,
 	toWord,
 	toDay,
 	toMonth,
@@ -276,6 +369,6 @@ const expData = {
 	isString
 }
 
-export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, toWord, toDay, toMonth, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString }
+export { SpecialCharType, NumberKeys, daysKeys, MonthKeys, queryString, parseString, toWord, toDay, toMonth, ellipsis, striptags, padStart, padEnd, trim, trimStart, trimEnd, isString }
 
 export default expData
